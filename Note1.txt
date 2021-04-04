@@ -1,0 +1,7 @@
+bonus expday cho bảng order
+Bổ sung trạng thái cho order ghép bảng method cho bảng order
+Đổi Bookorder thành order detail
+Thêm trường address giao hàng cho bảng order
+hình thức thanh toán vào trong bảng order
+Gộp bảng purchase vào bảng order
+Thêm hiệu lực cho discount đối với book (Ngày bắt đầu - Ngày kết thúc)

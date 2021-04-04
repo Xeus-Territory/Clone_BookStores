@@ -1,0 +1,5 @@
+gộp customer vs account lại thành 1 và thêm thông tin là ngày sinh và giới tính, đăng nhập bằng số điện thoại hoặc là email đưa mk vào bảng customer
+thêm thông tin để xem demo 1 đầu sách cụ thể ở bảng sách, thêm thuộc tính mô tả thông tin sách
+thêm 2 bảng là danh mục đầu sách hoặc là tác giả 
+tạo thêm 1 bảng là order sách có lưu trữ id khách hàng, id thời gian đặt sách và id order và ghi chú id order
+tạo thêm 1 bảng con của order là thông tin đầu sách, các số liệu về mua sách hay là các khuyến mãi về đầu sách

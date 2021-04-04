@@ -1,0 +1,124 @@
+{
+    "data": [
+        {
+            "url_key": "sach-truyen-thieu-nhi",
+            "category": 393,
+            "name": "Sách thiếu nhi "
+        },
+        {
+            "url_key": "sach-van-hoc",
+            "category": 839,
+            "name": "Sách văn học"
+        },
+        {
+            "url_key": "sach-ky-nang-song",
+            "category": 870,
+            "name": "Sách kỹ năng sống"
+        },
+        {
+            "url_key": "sach-kinh-te",
+            "category": 846,
+            "name": "Sách kinh tế"
+        },
+        {
+            "url_key": "sach-tham-khao",
+            "category": 2320,
+            "name": "Sách Tham Khảo"
+        },
+        {
+            "url_key": "ngoai-ngu-tu-dien",
+            "category": 887,
+            "name": "Sách Học Ngoại Ngữ"
+        },
+        {
+            "url_key": "sach-kien-thuc-tong-hop",
+            "category": 873,
+            "name": "Sách Kiến Thức Tổng Hợp"
+        },
+        {
+            "url_key": "truyen-tranh",
+            "category": 1084,
+            "name": "Truyện Tranh, Manga, Comic"
+        },
+        {
+            "url_key": "sach-ba-me-em-be",
+            "category": 2527,
+            "name": "Sách Bà mẹ - Em bé"
+        },
+        {
+            "url_key": "chinh-tri-phap-ly",
+            "category": 875,
+            "name": "Sách Chính Trị - Pháp Lý"
+        },
+        {
+            "url_key": "y-hoc",
+            "category": 885,
+            "name": "Sách Y Học"
+        },
+        {
+            "url_key": "lich-su-dia-ly",
+            "category": 880,
+            "name": "Sách Lịch sử"
+        },
+        {
+            "url_key": "ton-giao-tam-linh",
+            "category": 861,
+            "name": "Sách Tôn Giáo - Tâm Linh"
+        },
+        {
+            "url_key": "sach-thuong-thuc-gia-dinh",
+            "category": 862,
+            "name": "Sách Thường Thức - Gia Đình"
+        },
+        {
+            "url_key": "khoa-hoc-ky-thuat",
+            "category": 879,
+            "name": "Sách Khoa Học - Kỹ Thuật"
+        },
+        {
+            "url_key": "sach-van-hoa-dia-ly-du-lich",
+            "category": 857,
+            "name": "Sách Văn Hóa - Địa Lý - Du Lịch"
+        },
+        {
+            "url_key": "tu-dien",
+            "category": 897,
+            "name": "Từ Điển"
+        },
+        {
+            "url_key": "sach-giao-khoa-giao-trinh",
+            "category": 2321,
+            "name": "Sách Giáo Khoa - Giáo Trình"
+        },
+        {
+            "url_key": "dien-anh-nhac-hoa",
+            "category": 881,
+            "name": "Điện Ảnh - Nhạc - Họa"
+        },
+        {
+            "url_key": "tam-ly-gioi-tinh",
+            "category": 868,
+            "name": "Sách Tâm lý - Giới tính"
+        },
+        {
+            "url_key": "the-duc-the-thao",
+            "category": 6905,
+            "name": "Thể Dục - Thể Thao"
+        },
+        {
+            "url_key": "cong-nghe-thong-tin",
+            "category": 876,
+            "name": "Sách Công Nghệ Thông Tin"
+        },
+        {
+            "url_key": "tap-chi-catalogue",
+            "category": 1468,
+            "name": "Tạp Chí - Catalogue"
+        },
+        {
+            "url_key": "nong-lam-ngu-nghiep",
+            "category": 882,
+            "name": "Sách Nông - Lâm - Ngư Nghiệp"
+        }
+    ]
+}
