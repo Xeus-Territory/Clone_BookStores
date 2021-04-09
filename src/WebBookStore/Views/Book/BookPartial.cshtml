@@ -1,0 +1,54 @@
+﻿@using WebBookStore.Models;
+@model List<Book>
+
+@{
+    for (int i = 0; i < Model.Count - 15; i++)
+    {
+        <a class="best-sell-item" href="@Url.Action("DetailBook", new { @idbook = Model[i].Id_Book})">
+            <div class="discount-container">
+                <div class="discount">
+                    25%
+                </div>
+            </div>
+            <div class="img-container">
+                <img src=@Model[i].Images>
+            </div>
+            <div>
+                <p class="book-name">@Model[i].Title</p>
+                <p class="book-price">@Model[i].Price VND</p>
+                <button class="add-to-cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    <div class="tooltip">Add To Cart</div>
+                </button>
+                <button class="quick-view">
+                    <i class="fa fa-search"></i>
+                    <div class="tooltip">Quick View</div>
+                </button>
+            </div>
+        </a>
+    }
+}
+@{
+    for (int i = 5; i < Model.Count - 10; i++)
+    {
+    <a class="best-sell-item" href="@Url.Action("DetailBook", new { @idbook = Model[i].Id_Book})">
+        <div class="img-container">
+            <img src=@Model[i].Images>
+        </div>
+        <div>
+            <p class="book-name">@Model[i].Title</p>
+            <p class="book-price">@Model[i].Price VND</p>
+            <button class="add-to-cart">
+                <i class="fa fa-shopping-cart"></i>
+                <div class="tooltip">Add To Cart</div>
+            </button>
+            <button class="quick-view">
+                <i class="fa fa-search"></i>
+                <div class="tooltip">Quick View</div>
+            </button>
+        </div>
+    </a>
+    }
+}
+
+

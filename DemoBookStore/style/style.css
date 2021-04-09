@@ -395,13 +395,66 @@ header {
     z-index: 0;
 }
 
+.best-sell-list.slick-slider .slick-track{
+    padding: 0.5rem;
+}
+
 .best-sell-item {
     display: block;
     width: 17rem;
     position: relative;
     padding-bottom: 1rem;
-    margin: 0 0.5rem;
+    margin: 0 1rem;
     z-index: 1;
+}
+
+.discount-container {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+
+    width: 12rem;
+    height: 12rem;
+
+    overflow: hidden;
+}
+
+.discount {
+    position: absolute;
+    top: 1.6rem;
+    left: -2.3rem;
+
+    width: 100%;
+    padding: 0.5rem 0;
+    text-align: center;
+
+    font-size: 1.6rem;
+    color: white;
+    background-color: #1B8BCC;
+
+    transform: rotate(-40deg);
+}
+
+.discount-container::after {
+    content: "";
+    position: absolute;
+    top: 73px;
+    left: 1px;
+    border-width: 5px 5px;
+    border-color: transparent transparent #276d99 transparent;
+    border-style: solid;
+    transform: rotate(139deg);
+}
+
+.discount-container::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 85px;
+    border-width: 8px 7px;
+    border-color: transparent transparent #276d99 transparent;
+    border-style: solid;
+    transform: rotate(132deg);
 }
 
 .best-sell-item img {
@@ -424,8 +477,8 @@ header {
 
 .add-to-cart, .quick-view {
     background-color: #1B8BCC;
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
     border: 0;
     border-radius: 50%;
     color: #fff;
@@ -445,7 +498,7 @@ header {
 }
 
 .quick-view {
-    top: 6rem;
+    top: 7.5rem;
 }
 
 .tooltip  {

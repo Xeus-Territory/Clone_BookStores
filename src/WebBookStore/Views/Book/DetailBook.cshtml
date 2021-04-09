@@ -1,0 +1,339 @@
+﻿@using WebBookStore.Models;
+@{ 
+    BookStoreEntities db = new BookStoreEntities();
+    var item = db.Books.Where(n => n.Id_Category == Model.Id_Category).OrderBy(n => n.Id_Category).ToList();
+}
+@model Book
+
+@{
+    Layout = "~/Views/Layout/UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<title>Document</title>*@
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link href="~/Asset/style/reset.css" rel="stylesheet" />
+    @*SLICK SLIDER
+        Add the slick-theme.css if you want default styling*@
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    @*Add the slick-theme.css if you want default styling*@
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    @*STYLES*@
+    <link href="~/Asset/style/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    @*-------------------------HEADER----------------------------*@
+    <header>
+        <div class="container">
+            <div class="header-content row">
+                <div class="header-left row">
+                    <img src="./img/logo.png" alt="">
+                    <div class="categories">
+                        <i class="fa fa-list-ul"></i>
+                        <span>Categories</span>
+                        <div class="categories-content row">
+                            <ul class="categories-item">
+                                <h5>All Genre</h5>
+                                <li>
+                                    <a href="">Công nghệ thông tin</a>
+                                </li>
+                                <li>
+                                    <a href="">Văn Học</a>
+                                </li>
+                                <li>
+                                    <a href="">Tôn Giáo</a>
+                                </li>
+                                <li>
+                                    <a href="">Truyện Tranh</a>
+                                </li>
+                                <li>
+                                    <a href="">Từ Điển Ngoại Ngữ</a>
+                                </li>
+                            </ul>
+                            <ul class="categories-item">
+                                <h5>All Genre</h5>
+                                <li>
+                                    <a href="">Y Học</a>
+                                </li>
+                                <li>
+                                    <a href="">Khoa Học Kĩ Thuật</a>
+                                </li>
+                                <li>
+                                    <a href="">Giáo Khoa</a>
+                                </li>
+                                <li>
+                                    <a href="">Kiến Thức</a>
+                                </li>
+                                <li>
+                                    <a href="">Kĩ Năng</a>
+                                </li>
+                            </ul>
+                            <ul class="categories-item">
+                                <h5>All Genre</h5>
+                                <li>
+                                    <a href="">Kinh Tế</a>
+                                </li>
+                                <li>
+                                    <a href="">Lịch Sử </a>
+                                </li>
+                                <li>
+                                    <a href="">Sách Tham Khảo</a>
+                                </li>
+                                <li>
+                                    <a href="">Sách Thiếu Nhi</a>
+                                </li>
+                                <li>
+                                    <a href="">Chính Trị Pháp Lý</a>
+                                </li>
+                            </ul>
+                            <div class="categories-item">
+                                <h5>Banner Image</h5>
+                                <img src="~/Asset/img/categories-img.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-mid">
+                    <div class="header-search row">
+                        <i class="fa fa-search"></i>
+                        <input type="text" placeholder="Search">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <i class="fa fa-shopping-cart cart"></i>
+                    <i class="fa fa-user-alt account"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @*------------------------DETAIL-----------------------------*@
+    <section class="book">
+        <div class="container">
+            <div class="book-content row--base">
+                <div class="book__info">
+                    <div class="book__item">
+                        <div class="row--base">
+                            <img class="book__item--image" src=@Model.Images>
+                            <div class="book__item--detail">
+                                <h3>
+                                    @Model.Title
+                                </h3>
+                                <p class="author">@Model.Author.Name</p>
+                                <p class="price">@Model.Price VND</p>
+                                <p class="description">
+                                    @Model.Description
+                                </p>
+                                <div class="ctrl__list">
+                                    <div class="numeric">
+                                        <button class="numeric__button">+</button>
+                                        <input />
+                                        <button class="numeric__button">-</button>
+                                    </div>
+                                    <button class="ctrl--add-to-cart btn">
+                                        ADD TO CART
+                                    </button>
+                                </div>
+                                <div class="social__list">
+                                    <div class="row--base">
+                                        <a class="social__item">
+                                            <i class="fab fa-twitter"></i>
+                                            <span>Twiter</span>
+                                        </a>
+                                        <a class="social__item">
+                                            <i class="fab fa-twitter"></i>
+                                            <span>Twiter</span>
+                                        </a>
+                                        <a class="social__item">
+                                            <i class="fab fa-twitter"></i>
+                                            <span>Twiter</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <table class="book__detail">
+                        <tbody>
+                            <tr>
+                                <td class="title">
+                                    Book Title
+                                </td>
+                                <td>
+                                    @Model.Title
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">
+                                    Author
+                                </td>
+                                <td>
+                                    @Model.Author.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">
+                                    Type
+                                </td>
+                                <td>
+                                    @Model.Category.NameCatelogy
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">
+                                    Condition
+                                </td>
+                                <td>
+                                    @if (Model.Condition == true)
+                                    {
+                                        <h1>Còn Hàng</h1>
+                                    }
+                                    else
+                                    {
+                                        <h1>Hết Hàng</h1>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">
+                                    Description
+                                </td>
+                                <td>
+                                    @Model.Description
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="book-related">
+                    <h4>Related Books</h4>
+                    <div class="book-related__list">
+                        @{
+                            foreach (var i in item)
+                            {
+                                <div class="book-related__item row--base">
+                                    <a href="@Url.Action("DetailBook", new { @idbook = i.Id_Book})" class="book-related__img">
+                                        <img src= @i.Images />
+                                    </a>
+                                    <div class="book-related__info">
+                                        <a href="@Url.Action("DetailBook", new { @idbook = i.Id_Book})">@i.Title</a>
+                                        <p>@i.Price VND</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @*------------------------FOOTER------------------------------*@
+    <section class="footer">
+        <div class="container">
+            <div class="mailling">
+                <div class="mailling-content">
+                    <h3>
+                        SUBSCRIBE TO OUR NEWSLETTER
+                    </h3>
+                    <div class="form-group row">
+                        <input type="text" placeholder="Enter yout e-mail address">
+                        <button class="btn">SUBCRIBE</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content row">
+                <div class="footer-item">
+                    <h5><img src="~/Asset/img/logo-white.png" /></h5>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipisci
+                        ng elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.
+                    </p>
+                    <a href="">Learn More About Us</a>
+                </div>
+                <div class="footer-item">
+                    <h5 class="row">
+                        <img src="~/Asset/img/icon-7webp.png" />
+                        OUR MAIN OFFICE
+                    </h5>
+                    <p>San Francisco, California, US P.O. BOX: 553204</p>
+                    <p>Phone: (+1) 998 3384</p>
+                    <p>Mail: admin@bookshop.com</p>
+                </div>
+                <div class="footer-item">
+                    <h5 class="row">
+                        <img src="~/Asset/img/icon-8.png" />
+                        KEEP TOUCH WITH US
+                    </h5>
+
+                    <ul>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-item">
+                    <h5 class="row">
+                        <img src="~/Asset/img/icon-8.png" />
+                        INFORMATION
+                    </h5>
+                    <ul>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</body>
+</html>
