@@ -1,0 +1,16 @@
+
+Bỏ phần quick delivery
+Giảm kích thước các thẻ header bottom ...
+Button Add to Cart, số lượng sửa nhỏ lại
+Xoa 3 cai twiter (dưới Add to cart)
+Signup bỏ Address
+
+Thêm so luot da ban, them url cua img sach - cho sách mua nhiều
+Dẫn api cho các sách bán nhiều nhất
+Thêm vào cart
+view information user, chức năng tìm kiếm, view book*
+
++Login - Logout - Signup:
+them sign out
+them chuc nang dang ky, them forget pass
+them cac case validate khi log in

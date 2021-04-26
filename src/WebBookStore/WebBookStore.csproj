@@ -125,7 +125,9 @@
     <Content Include="Asset\img\special-bg-1.png" />
     <Content Include="Asset\img\special-bg-2.png" />
     <Content Include="Asset\img\special-bg-3.png" />
+    <Content Include="Asset\js\detail.js" />
     <Content Include="Asset\js\index.js" />
+    <Content Include="Asset\js\login.js" />
     <Content Include="Asset\style\reset.css" />
     <Content Include="Asset\style\style.css" />
     <Content Include="Content\Site.css" />
@@ -144,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
@@ -221,6 +224,8 @@
     <Content Include="Views\Layout\UserLayout.cshtml" />
     <Content Include="Views\Book\BookPartial.cshtml" />
     <Content Include="Views\Book\DetailBook.cshtml" />
+    <Content Include="Views\Layout\SearchLayout.cshtml" />
+    <Content Include="Views\Category\BookByCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

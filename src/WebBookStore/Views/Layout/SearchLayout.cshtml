@@ -1,0 +1,287 @@
+﻿@using WebBookStore.Models
+@model List<Book>
+@{
+    string nametimkiem = Model.Select(x => x.Category.NameCatelogy).FirstOrDefault();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<title>Document</title>*@
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link href="~/Asset/style/reset.css" rel="stylesheet" />
+    <!-- SLICK SLIDER -->
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- STYLES -->
+    <link href="~/Asset/style/style.css" rel="stylesheet" asp-append-version="true" />
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="header-content row">
+                <div class="header-left row">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Asset/img/logo.png" />
+                    </a>
+                    <div class="categories">
+                        <i class="fa fa-list-ul"></i>
+                        <span>Thể loại</span>
+                        <div class="categories-content row">
+                            <ul class="categories-item">
+                                <h5>Tất cả thể loại</h5>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 1 })">Công nghệ thông tin</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 10 })">Văn Học</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 11 })">Tôn Giáo</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 12 })">Truyện Tranh</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 13 })">Từ Điển Ngoại Ngữ</a>
+                                </li>
+                            </ul>
+                            <ul class="categories-item">
+                                <h5>Tất cả thể loại</h5>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 14 })">Y Học</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 2 })">Khoa Học Kĩ Thuật</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 3 })">Giáo Khoa</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 4 })">Kiến Thức</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 5 })">Kĩ Năng</a>
+                                </li>
+                            </ul>
+                            <ul class="categories-item">
+                                <h5>Tất cả thể loại</h5>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 6 })">Kinh Tế</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 7 })">Lịch Sử Địa Lý</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 8 })">Sách Tham Khảo</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 9 })">Sách Thiếu Nhi</a>
+                                </li>
+                            </ul>
+                            <div class="categories-item">
+                                <h5>Ảnh Banner</h5>
+                                <img src="~/Asset/img/categories-img.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-mid">
+                    <form class="header-search row">
+                        <i class="fa fa-search"></i>
+                        <input type="text" placeholder="Search">
+                        <button type="submit" class="btn-search"></button>
+                    </form>
+                </div>
+                <div class="header-right row">
+                    <div class="cart">
+                        <i class="fa fa-shopping-cart cart"></i>
+                        <div class="quantity">3</div>
+                        <div class="cart__detail">
+                            <div class="cart__list">
+                                <div class="cart__item row--base">
+                                    <img src="./img/book-1.jpg" alt="">
+                                    <div class="cart__item-info">
+                                        <h4>It e nghia map</h4>
+                                        <div class="cart__item-quantity row">
+                                            <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
+                                            <p>2</p>
+                                            <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                        <p>$45.00</p>
+                                    </div>
+                                    <p class="delete-cart__item"><i class="fa fa-times"></i></p>
+                                </div>
+                                <div class="cart__item row--base">
+                                    <img src="./img/book-1.jpg" alt="">
+                                    <div class="cart__item-info">
+                                        <h4>It e nghia map</h4>
+                                        <div class="cart__item-quantity row">
+                                            <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
+                                            <p>2</p>
+                                            <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                        <p>$45.00</p>
+                                    </div>
+                                    <p class="delete-cart__item"><i class="fa fa-times"></i></p>
+                                </div>
+                                <div class="cart__item row--base">
+                                    <img src="./img/book-1.jpg" alt="">
+                                    <div class="cart__item-info">
+                                        <h4>It e nghia map</h4>
+                                        <div class="cart__item-quantity row">
+                                            <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
+                                            <p>2</p>
+                                            <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                        <p>$45.00</p>
+                                    </div>
+                                    <p class="delete-cart__item"><i class="fa fa-times"></i></p>
+                                </div>
+
+                            </div>
+                            <p class="total">Total: <span>$100.00</span></p>
+                            <div class="cart__detail-ctrl row">
+                                <button class="btn btn-secondary">Pay</button>
+                                <button class="btn btn-danger">Clear All</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-status">
+                        <!-- <a href="./login.html"><i class="fa fa-user-alt account"></i></a> -->
+                        <div class="row">
+                            <p>Ịt ẹ Nghĩa</p>
+                            <img src="https://ui-avatars.com/api/?name=Nghia" alt="">
+                            <div class="user-ctrl">
+                                <i class="fa fa-caret-down"></i>
+                                <div class="user-dropdown">
+                                    <a href="user.html">Infomation</a>
+                                    <p class="logout">Logout</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        </div>
+    </header>
+    <!-- SEARCH -->
+    <section class="search">
+        <div class="container">
+            <h3>Kết quả của <span>@nametimkiem</span>: </h3>
+            <div class="best-sell-list search-result row--base">
+                @RenderBody()
+            </div>
+</section>
+    <!-- FOOTER -->
+    <section class="footer">
+        <div class="container">
+            <div class="mailling">
+                <div class="mailling-content">
+                    <h3>
+                        Đăng ký để nhận thêm thông tin
+                    </h3>
+                    <div class="form-group row">
+                        <input type="text" placeholder="Enter yout e-mail address">
+                        <button class="btn">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content row">
+                <div class="footer-item">
+                    <h5><img src="~/Asset/img/logo-white.png" /></h5>
+                    <p>
+                    </p>
+                    <a href="">Thêm thông tin về chúng tôi</a>
+                </div>
+                <div class="footer-item">
+                    <h5 class="row">
+                        <img src="~/Asset/img/icon-7webp.png" />
+                        Địa điểm cửa hàng
+                    </h5>
+                    <p>San Francisco, California, US P.O. BOX: 553204</p>
+                    <p>Phone: (+1) 998 3384</p>
+                    <p>Mail: admin@bookshop.com</p>
+                </div>
+                <div class="footer-item">
+                    <h5 class="row">
+                        <img src="~/Asset/img/icon-8.png" />
+                        Fanpage liên lạc
+                    </h5>
+
+                    <ul>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-item">
+                    <h5 class="row">
+                        <img src="./img/icon-8.png" alt="">
+                        Thông tin về chúng tôi
+                    </h5>
+                    <ul>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <script src="~/Asset/js/index.js"></script>
+</body>
+</html>

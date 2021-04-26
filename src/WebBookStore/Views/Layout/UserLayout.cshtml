@@ -1,5 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using WebBookStore.Models;
+@{ 
+    BookStoreEntities db = new BookStoreEntities();
+    int countkh = db.Accounts.Count();
+    int countsach = db.Books.Count();
+}
 
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -16,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <!-- STYLES -->
     @*<link rel="stylesheet" href="./style/style.css">*@
-    <link href="~/Asset/style/style.css" rel="stylesheet" />
+    <link href="~/Asset/style/style.css" rel="stylesheet" asp-append-version="true"/>
 </head>
 <body>
     @RenderBody()
@@ -28,64 +34,61 @@
                     <img src="~/Asset/img/logo.png" />
                     <div class="categories">
                         <i class="fa fa-list-ul"></i>
-                        <span>Categories</span>
+                        <span>Thể loại</span>
                         <div class="categories-content row">
                             <ul class="categories-item">
-                                <h5>All Genre</h5>
+                                <h5>Tất cả thể loại</h5>
                                 <li>
-                                    <a href="">Công nghệ thông tin</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 1 })">Công nghệ thông tin</a>
                                 </li>
                                 <li>
-                                    <a href="">Văn Học</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 10 })">Văn Học</a>
                                 </li>
                                 <li>
-                                    <a href="">Tôn Giáo</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 11 })">Tôn Giáo</a>
                                 </li>
                                 <li>
-                                    <a href="">Truyện Tranh</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 12 })">Truyện Tranh</a>
                                 </li>
                                 <li>
-                                    <a href="">Từ Điển Ngoại Ngữ</a>
-                                </li>
-                            </ul>
-                            <ul class="categories-item">
-                                <h5>All Genre</h5>
-                                <li>
-                                    <a href="">Y Học</a>
-                                </li>
-                                <li>
-                                    <a href="">Khoa Học Kĩ Thuật</a>
-                                </li>
-                                <li>
-                                    <a href="">Giáo Khoa</a>
-                                </li>
-                                <li>
-                                    <a href="">Kiến Thức</a>
-                                </li>
-                                <li>
-                                    <a href="">Kĩ Năng</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 13 })">Từ Điển Ngoại Ngữ</a>
                                 </li>
                             </ul>
                             <ul class="categories-item">
-                                <h5>All Genre</h5>
+                                <h5>Tất cả thể loại</h5>
                                 <li>
-                                    <a href="">Kinh Tế</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 14 })">Y Học</a>
                                 </li>
                                 <li>
-                                    <a href="">Lịch Sử Địa Lý</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 2 })">Khoa Học Kĩ Thuật</a>
                                 </li>
                                 <li>
-                                    <a href="">Sách Tham Khảo</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 3 })">Giáo Khoa</a>
                                 </li>
                                 <li>
-                                    <a href="">Sách Thiếu Nhi</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 4 })">Kiến Thức</a>
                                 </li>
                                 <li>
-                                    <a href="">Chính Trị Pháp Lý</a>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 5 })">Kĩ Năng</a>
+                                </li>
+                            </ul>
+                            <ul class="categories-item">
+                                <h5>Tất cả thể loại</h5>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 6 })">Kinh Tế</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 7 })">Lịch Sử Địa Lý</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 8 })">Sách Tham Khảo</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 9 })">Sách Thiếu Nhi</a>
                                 </li>
                             </ul>
                             <div class="categories-item">
-                                <h5>Banner Image</h5>
+                                <h5>Ảnh Banner</h5>
                                 <img src="~/Asset/img/categories-img.jpg" />
                             </div>
                         </div>
@@ -94,13 +97,78 @@
                 <div class="header-mid">
                     <form class="header-search row">
                         <i class="fa fa-search"></i>
-                        <input type="text" placeholder="Search">
+                        <input type="text" placeholder="Tìm kiếm">
                         <button type="submit" class="btn-search"></button>
                     </form>
                 </div>
-                <div class="header-right">
-                    <i class="fa fa-shopping-cart cart"></i>
-                    <a href="./login.html"><i class="fa fa-user-alt account"></i></a>
+                <div class="header-right row">
+                    <div class="cart">
+                        <i class="fa fa-shopping-cart cart"></i>
+                        <div class="quantity">3</div>
+                        <div class="cart__detail">
+                            <div class="cart__list">
+                                <div class="cart__item row--base">
+                                    <img src="~/Asset/img/book-2.jpg" />
+                                    <div class="cart__item-info">
+                                        <h4></h4>
+                                        <div class="cart__item-quantity row">
+                                            <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
+                                            <p>2</p>
+                                            <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                        <p>$45.00</p>
+                                    </div>
+                                    <p class="delete-cart__item"><i class="fa fa-times"></i></p>
+                                </div>
+                                <div class="cart__item row--base">
+                                    <img src="~/Asset/img/book-1.jpg" />
+                                    <div class="cart__item-info">
+                                        <h4></h4>
+                                        <div class="cart__item-quantity row">
+                                            <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
+                                            <p>2</p>
+                                            <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                        <p>$45.00</p>
+                                    </div>
+                                    <p class="delete-cart__item"><i class="fa fa-times"></i></p>
+                                </div>
+                                <div class="cart__item row--base">
+                                    <img src="~/Asset/img/book-2.jpg" />
+                                    <div class="cart__item-info">
+                                        <h4></h4>
+                                        <div class="cart__item-quantity row">
+                                            <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
+                                            <p>2</p>
+                                            <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                        <p>$45.00</p>
+                                    </div>
+                                    <p class="delete-cart__item"><i class="fa fa-times"></i></p>
+                                </div>
+
+                            </div>
+                            <p class="total">Total: <span>$100.00</span></p>
+                            <div class="cart__detail-ctrl row">
+                                <button class="btn btn-secondary">Pay</button>
+                                <button class="btn btn-danger">Clear All</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-status">
+                        <!-- <a href="./login.html"><i class="fa fa-user-alt account"></i></a> -->
+                        <div class="row">
+                            <p></p>
+                            <img src="https://ui-avatars.com/api/?name=Nghia" alt="">
+                            <div class="user-ctrl">
+                                <i class="fa fa-caret-down"></i>
+                                <div class="user-dropdown">
+                                    <a href="user.html">Infomation</a>
+                                    <p class="logout">Logout</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -149,29 +217,29 @@
                 <div class="advantages-item row">
                     <img src="~/Asset/img/advantage-icon-1.png" />
                     <div class="advantages-desc">
-                        <h5>Quick Delivery</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <h5>Giao hàng nhanh chóng</h5>
+                        <p>Đảm bảo giao hàng trong thời gian sớm nhất</p>
                     </div>
                 </div>
                 <div class="advantages-item row">
                     <img src="~/Asset/img/advantage-icon-2.png" />
                     <div class="advantages-desc">
-                        <h5>Quick Delivery</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <h5>Vận chuyển an toàn</h5>
+                        <p>Đảm bảo sản phẩm luôn trong tình trạng tốt nhất</p>
                     </div>
                 </div>
                 <div class="advantages-item row">
                     <img src="~/Asset/img/advantage-icon-3.png" />
                     <div class="advantages-desc">
-                        <h5>Quick Delivery</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <h5>Thanh toán và ký gửi </h5>
+                        <p>Đảm bảo và luôn uy tín với khách hàng </p>
                     </div>
                 </div>
                 <div class="advantages-item row">
                     <img src="~/Asset/img/advantage-icon-4.png" />
                     <div class="advantages-desc">
-                        <h5>Quick Delivery</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <h5>Luôn cam kết bảo hành </h5>
+                        <p>Đổi trả nếu tình trạng sách bị hỏng do bên giao</p>
                     </div>
                 </div>
             </div>
@@ -181,7 +249,7 @@
     <section class="best-sell">
         <div class="container">
             <div class="best-sell-header row">
-                <h3>Current Bestsellers</h3>
+                <h3>Sách bán chạy nhất</h3>
                 <a>View All</a>
             </div>
             <div class="best-sell-list">
@@ -193,43 +261,11 @@
     <section class="best-sell top-rated">
         <div class="container">
             <div class="best-sell-header row">
-                <h3>Top Rated</h3>
+                <h3>Đánh giá cao nhất</h3>
                 <a>View All</a>
             </div>
             <div class="best-sell-list">
                 @Html.Action("BookPartial", "Book")
-            </div>
-        </div>
-    </section>
-    <!-- SPECIAL -->
-    <section class="special">
-        <div class="special-list">
-            <div class="special-item special-item-1 row">
-                <img src="~/Asset/img/book-2.jpg" />
-                <div class="special-item-desc">
-                    <h4>Digital Download Product Example</h4>
-                    <p class="price">$9.99</p>
-                    <p class="author">Author: Armani</p>
-                    <button class="btn">VIEW DETAIL</button>
-                </div>
-            </div>
-            <div class="special-item special-item-2 row">
-                <img src="~/Asset/img/book-1.jpg" />>
-                <div class="special-item-desc">
-                    <h4>Digital Download Product Example</h4>
-                    <p class="price">$9.99</p>
-                    <p class="author">Author: Armani</p>
-                    <button class="btn">VIEW DETAIL</button>
-                </div>
-            </div>
-            <div class="special-item special-item-3 row">
-                <img src="~/Asset/img/book-2.jpg" />
-                <div class="special-item-desc">
-                    <h4>Digital Download Product Example</h4>
-                    <p class="price">$9.99</p>
-                    <p class="author">Author: Armani</p>
-                    <button class="btn">VIEW DETAIL</button>
-                </div>
             </div>
         </div>
     </section>
@@ -238,17 +274,17 @@
         <div class="container">
             <div class="bookshelves-list row">
                 <div class="bookshelves-item">
-                    <h4>NEW ARRIVALS</h4>
+                    <h4>Sản phẩm mới</h4>
                     <ul>
                         <li class="row">
-                            <img src="~/Asset/img/book-2.jpg" />
+                            <img src="~/Asset/img/book-1.jpg" />
                             <div class="bookshelves-item-content">
                                 <h5>The Best Investment</h5>
                                 <p>$360.00</p>
                             </div>
                         </li>
                         <li class="row">
-                            <img src="~/Asset/img/book-2.jpg" />
+                            <img src="~/Asset/img/book-1.jpg" />
                             <div class="bookshelves-item-content">
                                 <h5>The Best Investment</h5>
                                 <p>$360.00</p>
@@ -264,17 +300,17 @@
                     </ul>
                 </div>
                 <div class="bookshelves-item">
-                    <h4>FEATURED PRODUCTS</h4>
+                    <h4>Sản phẩm nổi bật</h4>
                     <ul>
                         <li class="row">
-                            <img src="~/Asset/img/book-2.jpg" />
+                            <img src="~/Asset/img/book-1.jpg" />
                             <div class="bookshelves-item-content">
                                 <h5>The Best Investment</h5>
                                 <p>$360.00</p>
                             </div>
                         </li>
                         <li class="row">
-                            <img src="~/Asset/img/book-2.jpg" />>
+                            <img src="~/Asset/img/book-1.jpg" />
                             <div class="bookshelves-item-content">
                                 <h5>The Best Investment</h5>
                                 <p>$360.00</p>
@@ -290,17 +326,17 @@
                     </ul>
                 </div>
                 <div class="bookshelves-item">
-                    <h4>STAFF PICKS</h4>
+                    <h4>Lựa chọn bởi nhân viên</h4>
                     <ul>
                         <li class="row">
-                            <img src="~/Asset/img/book-2.jpg" />
+                            <img src="~/Asset/img/book-1.jpg" />
                             <div class="bookshelves-item-content">
                                 <h5>The Best Investment</h5>
                                 <p>$360.00</p>
                             </div>
                         </li>
                         <li class="row">
-                            <img src="~/Asset/img/book-2.jpg" />
+                            <img src="~/Asset/img/book-1.jpg" />
                             <div class="bookshelves-item-content">
                                 <h5>The Best Investment</h5>
                                 <p>$360.00</p>
@@ -325,18 +361,18 @@
             <div class="collection-content row">
                 <div class="collection-item">
                     <img src="~/Asset/img/icon-4.png" />
-                    <p class="number">138,098</p>
-                    <p class="caption">Happy Customers</p>
+                    <p class="number">@countkh</p>
+                    <p class="caption">Số lượng khách hàng</p>
                 </div>
                 <div class="collection-item">
                     <img src="~/Asset/img/icon-5.png" />
-                    <p class="number">138,098</p>
-                    <p class="caption">Happy Customers</p>
+                    <p class="number">@countsach</p>
+                    <p class="caption">Số lượng đầu sách</p>
                 </div>
                 <div class="collection-item">
                     <img src="~/Asset/img/icon-6.png" />
-                    <p class="number">138,098</p>
-                    <p class="caption">Happy Customers</p>
+                    <p class="number">1</p>
+                    <p class="caption">Số lượng chi nhánh</p>
                 </div>
             </div>
         </div>
@@ -347,36 +383,35 @@
             <div class="mailling">
                 <div class="mailling-content">
                     <h3>
-                        SUBSCRIBE TO OUR NEWSLETTER
+                        Đăng ký thông báo mới
                     </h3>
                     <div class="form-group row">
                         <input type="text" placeholder="Enter yout e-mail address">
-                        <button class="btn">SUBCRIBE</button>
+                        <button class="btn">Đăng ký</button>
                     </div>
                 </div>
             </div>
             <div class="footer-content row">
                 <div class="footer-item">
-                    <h5><img src="~/Asset/img/logo-white.png" />></h5>
+                    <h5><img src="~/Asset/img/logo-white.png" /></h5>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipisci
-                        ng elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.
+                        BookStore
                     </p>
-                    <a href="">Learn More About Us</a>
+                    <a href="">Thông tin về trang web</a>
                 </div>
                 <div class="footer-item">
                     <h5 class="row">
                         <img src="~/Asset/img/icon-7webp.png" />
-                        OUR MAIN OFFICE
+                        Văn phòng cửa hàng chính
                     </h5>
                     <p>San Francisco, California, US P.O. BOX: 553204</p>
-                    <p>Phone: (+1) 998 3384</p>
+                    <p>Số điện thoại: (+1) 998 3384</p>
                     <p>Mail: admin@bookshop.com</p>
                 </div>
                 <div class="footer-item">
                     <h5 class="row">
                         <img src="~/Asset/img/icon-8.png" />
-                        KEEP TOUCH WITH US
+                        Địa chỉ Facebook
                     </h5>
 
                     <ul>
@@ -409,7 +444,7 @@
                 <div class="footer-item">
                     <h5 class="row">
                         <img src="~/Asset/img/icon-8.png" />
-                        INFORMATION
+                        Thông tin
                     </h5>
                     <ul>
                         <li>

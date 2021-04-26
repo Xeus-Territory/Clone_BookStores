@@ -22,7 +22,7 @@ namespace WebBookStore.Models
         }
     
         public string Id_Book { get; set; }
-        public int Price { get; set; }
+        public Nullable<int> Price { get; set; }
         public string Title { get; set; }
         public string Id_Author { get; set; }
         public string Id_Publisher { get; set; }

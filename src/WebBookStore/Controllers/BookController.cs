@@ -28,5 +28,10 @@ namespace WebBookStore.Controllers
             }
             return View(book);
         }
+        //public PartialViewResult RandomBook()
+        //{
+        //    var item = db.Books.OrderBy(n => n.Id_Book).Skip(3).Take(3).ToList();
+        //    return PartialView(item);
+        //}
     }
 }
