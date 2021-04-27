@@ -1,13 +1,13 @@
 ﻿@using WebBookStore.Models;
-@{ 
+@{
     BookStoreEntities db = new BookStoreEntities();
     var item = db.Books.Where(n => n.Id_Category == Model.Id_Category).OrderBy(n => n.Id_Category).Take(8).ToList();
 }
 @model Book
 
 @*@{
-    Layout = "~/Views/Layout/UserLayout.cshtml";
-}*@
+        Layout = "~/Views/Layout/UserLayout.cshtml";
+    }*@
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@
     @*Add the slick-theme.css if you want default styling*@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     @*STYLES*@
-    <link href="~/Asset/style/style.css" rel="stylesheet" asp-append-version="true"/>
+    <link href="~/Asset/style/style.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -102,11 +102,11 @@
                     </div>
                 </div>
                 <div class="header-mid">
-                    <div class="header-search row">
+                    <form method="get" class="header-search row" action="~/Searching/ResultSearchingInLayoutSearching">
                         <i class="fa fa-search"></i>
-                        <input type="text" placeholder="Tìm kiếm">
+                        <input type="text" name="Keyword" placeholder="Tìm kiếm">
                         <button type="submit" class="btn-search"></button>
-                    </div>
+                    </form>
                 </div>
                 <div class="header-right row">
                     <div class="cart">

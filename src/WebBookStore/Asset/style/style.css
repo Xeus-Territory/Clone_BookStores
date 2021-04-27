@@ -234,11 +234,11 @@ header {
         color: #666666;
     }
 
-        .header-search input::placeholder {
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: #666666;
-        }
+.header-search input::placeholder {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #666666;
+}
 
         .header-search input:focus {
             outline: none;

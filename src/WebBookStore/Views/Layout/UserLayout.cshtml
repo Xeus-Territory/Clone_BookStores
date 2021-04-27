@@ -1,5 +1,5 @@
 ﻿@using WebBookStore.Models;
-@{ 
+@{
     BookStoreEntities db = new BookStoreEntities();
     int countkh = db.Accounts.Count();
     int countsach = db.Books.Count();
@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <!-- STYLES -->
     @*<link rel="stylesheet" href="./style/style.css">*@
-    <link href="~/Asset/style/style.css" rel="stylesheet" asp-append-version="true"/>
+    <link href="~/Asset/style/style.css" rel="stylesheet" />
 </head>
 <body>
     @RenderBody()
@@ -31,7 +31,9 @@
         <div class="container">
             <div class="header-content row">
                 <div class="header-left row">
-                    <img src="~/Asset/img/logo.png" />
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Asset/img/logo.png" />
+                    </a>
                     <div class="categories">
                         <i class="fa fa-list-ul"></i>
                         <span>Thể loại</span>
@@ -95,9 +97,9 @@
                     </div>
                 </div>
                 <div class="header-mid">
-                    <form class="header-search row">
+                    <form method="get" class="header-search row" action="~/Searching/ResultSearchingInLayoutSearching">
                         <i class="fa fa-search"></i>
-                        <input type="text" placeholder="Tìm kiếm">
+                        <input type="text" name="Keyword" placeholder="Tìm kiếm">
                         <button type="submit" class="btn-search"></button>
                     </form>
                 </div>

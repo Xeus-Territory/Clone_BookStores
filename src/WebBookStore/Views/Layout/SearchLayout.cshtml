@@ -22,7 +22,7 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <!-- STYLES -->
-    <link href="~/Asset/style/style.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/Asset/style/style.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -97,9 +97,9 @@
                     </div>
                 </div>
                 <div class="header-mid">
-                    <form class="header-search row">
+                    <form method="get" class="header-search row" action="~/Searching/ResultSearchingInLayoutSearching">
                         <i class="fa fa-search"></i>
-                        <input type="text" placeholder="Search">
+                        <input type="text" name="Keyword" placeholder="Tìm kiếm">
                         <button type="submit" class="btn-search"></button>
                     </form>
                 </div>
@@ -112,7 +112,7 @@
                                 <div class="cart__item row--base">
                                     <img src="./img/book-1.jpg" alt="">
                                     <div class="cart__item-info">
-                                        <h4>It e nghia map</h4>
+                                        <h4></h4>
                                         <div class="cart__item-quantity row">
                                             <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
                                             <p>2</p>
@@ -125,7 +125,7 @@
                                 <div class="cart__item row--base">
                                     <img src="./img/book-1.jpg" alt="">
                                     <div class="cart__item-info">
-                                        <h4>It e nghia map</h4>
+                                        <h4></h4>
                                         <div class="cart__item-quantity row">
                                             <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
                                             <p>2</p>
@@ -138,7 +138,7 @@
                                 <div class="cart__item row--base">
                                     <img src="./img/book-1.jpg" alt="">
                                     <div class="cart__item-info">
-                                        <h4>It e nghia map</h4>
+                                        <h4></h4>
                                         <div class="cart__item-quantity row">
                                             <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
                                             <p>2</p>

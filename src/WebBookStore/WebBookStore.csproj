@@ -147,6 +147,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\SearchingController.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
@@ -226,6 +227,8 @@
     <Content Include="Views\Book\DetailBook.cshtml" />
     <Content Include="Views\Layout\SearchLayout.cshtml" />
     <Content Include="Views\Category\BookByCategory.cshtml" />
+    <Content Include="Views\Searching\ResultSearching.cshtml" />
+    <Content Include="Views\Searching\ResultSearchingInLayoutSearching.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
