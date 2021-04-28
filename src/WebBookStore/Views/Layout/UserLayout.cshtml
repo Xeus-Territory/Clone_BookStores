@@ -105,57 +105,10 @@
                 </div>
                 <div class="header-right row">
                     <div class="cart">
-                        <i class="fa fa-shopping-cart cart"></i>
-                        <div class="quantity">3</div>
-                        <div class="cart__detail">
-                            <div class="cart__list">
-                                <div class="cart__item row--base">
-                                    <img src="~/Asset/img/book-2.jpg" />
-                                    <div class="cart__item-info">
-                                        <h4></h4>
-                                        <div class="cart__item-quantity row">
-                                            <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
-                                            <p>2</p>
-                                            <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
-                                        </div>
-                                        <p>$45.00</p>
-                                    </div>
-                                    <p class="delete-cart__item"><i class="fa fa-times"></i></p>
-                                </div>
-                                <div class="cart__item row--base">
-                                    <img src="~/Asset/img/book-1.jpg" />
-                                    <div class="cart__item-info">
-                                        <h4></h4>
-                                        <div class="cart__item-quantity row">
-                                            <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
-                                            <p>2</p>
-                                            <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
-                                        </div>
-                                        <p>$45.00</p>
-                                    </div>
-                                    <p class="delete-cart__item"><i class="fa fa-times"></i></p>
-                                </div>
-                                <div class="cart__item row--base">
-                                    <img src="~/Asset/img/book-2.jpg" />
-                                    <div class="cart__item-info">
-                                        <h4></h4>
-                                        <div class="cart__item-quantity row">
-                                            <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
-                                            <p>2</p>
-                                            <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
-                                        </div>
-                                        <p>$45.00</p>
-                                    </div>
-                                    <p class="delete-cart__item"><i class="fa fa-times"></i></p>
-                                </div>
-
-                            </div>
-                            <p class="total">Total: <span>$100.00</span></p>
-                            <div class="cart__detail-ctrl row">
-                                <button class="btn btn-secondary">Pay</button>
-                                <button class="btn btn-danger">Clear All</button>
-                            </div>
-                        </div>
+                        <a href="@Url.Action("ViewCart", "Cart")">
+                            <i class="fa fa-shopping-cart cart"></i>
+                        </a>
+                        @Html.Action("PartialCart", "Cart")
                     </div>
                     <div class="login-status">
                         <!-- <a href="./login.html"><i class="fa fa-user-alt account"></i></a> -->
@@ -252,7 +205,7 @@
         <div class="container">
             <div class="best-sell-header row">
                 <h3>Sách bán chạy nhất</h3>
-                <a>View All</a>
+                <a>Tất cả</a>
             </div>
             <div class="best-sell-list">
                 @Html.Action("BookPartial", "Book")
@@ -264,7 +217,7 @@
         <div class="container">
             <div class="best-sell-header row">
                 <h3>Đánh giá cao nhất</h3>
-                <a>View All</a>
+                <a>Tất cả</a>
             </div>
             <div class="best-sell-list">
                 @Html.Action("BookPartial", "Book")

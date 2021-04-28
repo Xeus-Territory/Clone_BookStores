@@ -16,15 +16,18 @@
             <div>
                 <p class="book-name">@Model[i].Title</p>
                 <p class="book-price">@Model[i].Price VND</p>
-                <button class="add-to-cart">
-                    <i class="fa fa-shopping-cart"></i>
-                    <div class="tooltip">Add To Cart</div>
-                </button>
-                <button class="quick-view">
-                    <i class="fa fa-search"></i>
-                    <div class="tooltip">Quick View</div>
-                </button>
-            </div>
+                @using (Html.BeginForm("AddToCart", "Cart", new { @id_book = Model[i].Id_Book, @Strurl = Request.Url.ToString() }))
+                {
+                    <button class="add-to-cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <div class="tooltip">Add To Cart</div>
+                    </button>
+                }
+                    <button class="quick-view">
+                        <i class="fa fa-search"></i>
+                        <div class="tooltip">Quick View</div>
+                    </button>
+                </div>
         </a>
     }
 }
@@ -38,15 +41,18 @@
         <div>
             <p class="book-name">@Model[i].Title</p>
             <p class="book-price">@Model[i].Price VND</p>
-            <button class="add-to-cart">
-                <i class="fa fa-shopping-cart"></i>
-                <div class="tooltip">Add To Cart</div>
-            </button>
-            <button class="quick-view">
-                <i class="fa fa-search"></i>
-                <div class="tooltip">Quick View</div>
-            </button>
-        </div>
+            @using (Html.BeginForm("AddToCart", "Cart", new { @id_book = Model[i].Id_Book, @Strurl = Request.Url.ToString() }))
+            {
+                <button class="add-to-cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    <div class="tooltip">Add To Cart</div>
+                </button>
+            }
+                <button class="quick-view">
+                    <i class="fa fa-search"></i>
+                    <div class="tooltip">Quick View</div>
+                </button>
+            </div>
     </a>
     }
 }

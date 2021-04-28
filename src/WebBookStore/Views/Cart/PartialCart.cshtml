@@ -1,0 +1,40 @@
+﻿@using WebBookStore.Models;
+@model List<Cart>
+@{
+    if (@ViewBag.TotalItem == null)
+    {
+        <div class="quantity">0</div>
+    }
+    else
+    {
+        <div class="quantity">@ViewBag.TotalItem</div>
+        <div class="cart__detail">
+            <div class="cart__list">
+                @{
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        <div class="cart__item row--base">
+                            <img src="@Model[i].sImages" />
+                            <div class="cart__item-info">
+                                <h4>@Model[i].sTitle</h4>
+                                <div class="cart__item-quantity row">
+                                    <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
+                                    <p>@Model[i].sQuantity</p>
+                                    <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
+                                </div>
+                                <p>@Model[i].sPrice VND</p>
+                            </div>
+                            <p class="delete-cart__item"><i class="fa fa-times"></i></p>
+                        </div>
+                    }
+                }
+            </div>
+                <p class="total">Total: <span>@ViewBag.TotalPrice</span></p>
+                <div class="cart__detail-ctrl row">
+                    <button class="btn btn-secondary">Thanh Toán</button>
+                    <button class="btn btn-danger">Xóa tất cả</button>
+                </div>
+            </div>
+    }
+}
+

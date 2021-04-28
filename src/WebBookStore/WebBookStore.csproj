@@ -121,6 +121,7 @@
     <Content Include="Asset\img\icon-8.png" />
     <Content Include="Asset\img\logo-white.png" />
     <Content Include="Asset\img\logo.png" />
+    <Content Include="Asset\img\payment-method.png" />
     <Content Include="Asset\img\slider-1_aca44fb2-95e2-43ce-b840-ac3c62a0bf9c_1170x.jpg" />
     <Content Include="Asset\img\special-bg-1.png" />
     <Content Include="Asset\img\special-bg-2.png" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\SearchingController.cs" />
     <Compile Include="Models\Account.cs">
@@ -158,6 +160,7 @@
     <Compile Include="Models\Book.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
@@ -229,6 +232,9 @@
     <Content Include="Views\Category\BookByCategory.cshtml" />
     <Content Include="Views\Searching\ResultSearching.cshtml" />
     <Content Include="Views\Searching\ResultSearchingInLayoutSearching.cshtml" />
+    <Content Include="Views\Layout\CartLayout.cshtml" />
+    <Content Include="Views\Cart\ViewCart.cshtml" />
+    <Content Include="Views\Cart\PartialCart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

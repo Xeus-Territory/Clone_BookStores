@@ -1,0 +1,79 @@
+﻿
+@{
+    Layout = "~/Views/Layout/CartLayout.cshtml";
+}
+@using WebBookStore.Models;
+@model List<Cart>
+@{
+    int tongtien = 0;
+    foreach (var item in Model)
+    {
+        tongtien += item.Total;
+    }
+}
+
+<div class="cart-container">
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Tên sách</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng cộng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="@item.sImages" /></td>
+                    <td>
+                        <h4>@item.sTitle</h4>
+                        <p>@item.sAuthor</p>
+                    </td>
+                    <td>@String.Format("{0:0,0}", item.sPrice.ToString()) VND</td>
+                    <td>
+                        <div class="cart-quantity">
+                            <i class="fa fa-chevron-down"></i>
+                            <span>@item.sQuantity</span>
+                            <i class="fa fa-chevron-up"></i>
+                        </div>
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}", item.Total.ToString()) VND
+                        <p class="cart-remove"><i class="fa fa-trash"></i> Remove</p>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <div class="cart-container-ctrl row">
+        @using (Html.BeginForm("Index", "Home"))
+        {
+            <button class="btn">Tiếp tục mua sắm</button>
+        }
+        <button class="btn btn-danger">Xóa tất cả</button>
+    </div>
+</div>
+<div class="check-out">
+    <div class="order-summary">
+        <h3>
+            Thông tin Order
+        </h3>
+        <div class="subtotal">
+            <p class="row">Tất cả: <span>@Model.Count</span></p>
+            <p class="row">Tổng tiền: <span>@tongtien VND</span></p>
+            <button class="btn btn-secondary">
+                Thanh toán
+            </button>
+        </div>
+    </div>
+    <div class="payment-method">
+        <h3>Cách thức thanh toán </h3>
+        <div class="method">
+            <img src="~/Asset/img/payment-method.png" />
+        </div>
+    </div>
+</div>

@@ -1,17 +1,11 @@
-﻿@using WebBookStore.Models
-@model List<Book>
-@{
-    string nametimkiem = Model.Select(x => x.Category.NameCatelogy).FirstOrDefault();
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @*<title>Document</title>*@
+    <meta name="viewport" content="width=z, initial-scale=1.0">
+    <title>Document</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
@@ -90,7 +84,7 @@
                                 </li>
                             </ul>
                             <div class="categories-item">
-                                <h5>Ảnh Banner</h5>
+                                <h5>Banner Image</h5>
                                 <img src="~/Asset/img/categories-img.jpg" />
                             </div>
                         </div>
@@ -108,7 +102,7 @@
                         <a href="@Url.Action("ViewCart", "Cart")">
                             <i class="fa fa-shopping-cart cart"></i>
                         </a>
-                            @Html.Action("PartialCart", "Cart")
+                        @Html.Action("PartialCart", "Cart")
                     </div>
                     <div class="login-status">
                         <!-- <a href="./login.html"><i class="fa fa-user-alt account"></i></a> -->
@@ -126,18 +120,19 @@
                     </div>
                 </div>
             </div>
+
         </div>
         </div>
         </div>
     </header>
-    <!-- SEARCH -->
-    <section class="search">
-        <div class="container">
-            <h3>Kết quả của <span>@nametimkiem</span>: </h3>
-            <div class="best-sell-list search-result row--base">
-                @RenderBody()
-            </div>
-</section>
+
+    <!-- CART -->
+    <section class="shopping-cart">
+        <div class="container row--base">
+            @RenderBody()
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <section class="footer">
         <div class="container">
@@ -156,13 +151,14 @@
                 <div class="footer-item">
                     <h5><img src="~/Asset/img/logo-white.png" /></h5>
                     <p>
+                     BookStores
                     </p>
-                    <a href="">Thêm thông tin về chúng tôi</a>
+                    <a href="">Thông tin về chúng tôi</a>
                 </div>
                 <div class="footer-item">
                     <h5 class="row">
                         <img src="~/Asset/img/icon-7webp.png" />
-                        Địa điểm cửa hàng
+                        Địa chỉ cửa hàng 
                     </h5>
                     <p>San Francisco, California, US P.O. BOX: 553204</p>
                     <p>Phone: (+1) 998 3384</p>
@@ -203,7 +199,7 @@
                 </div>
                 <div class="footer-item">
                     <h5 class="row">
-                        <img src="./img/icon-8.png" alt="">
+                        <img src="~/Asset/img/icon-8.png" />
                         Thông tin về chúng tôi
                     </h5>
                     <ul>

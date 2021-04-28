@@ -9,6 +9,12 @@ const search = document.querySelector(".search");
 if (search) {
     search.setAttribute("style", "padding-top: " + header.offsetHeight*2 + "px");
 }
+
+const shoppingCart = document.querySelector(".shopping-cart");
+if (shoppingCart) {
+    shoppingCart.setAttribute("style", "padding-top: " + header.offsetHeight*1.5 + "px");
+}
+
 let currentScrollY = 0;
 window.addEventListener("scroll", () => {
     let y = window.scrollY;
