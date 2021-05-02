@@ -16,13 +16,13 @@
                         <div class="cart__item row--base">
                             <img src="@Model[i].sImages" />
                             <div class="cart__item-info">
-                                <h4>@Model[i].sTitle</h4>
+                                <h4 class="name">@Model[i].sTitle</h4>
                                 @using (Html.BeginForm("UpdateCart", "Cart", new { @id_book = Model[i].sID_Book, @Strurl = Request.Url.ToString() }))
                                 {
                                     <div class="cart__item-quantity row">
-                                        <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
-                                        @Html.TextBox("quantity-text", Model[i].sQuantity)
-                                        <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
+                                        <button type="submit" class="btn cart-btn-increase" name="btninc" value="1"><i class="fa fa-plus"></i></button>
+                                        <p>@Model[i].sQuantity</p>
+                                        <button type="submit" class="btn cart-btn-decrease" name="btninc" value="-1"><i class="fa fa-minus"></i></button>
                                     </div>
                                 }
                                 <p>@Model[i].sPrice VND</p>

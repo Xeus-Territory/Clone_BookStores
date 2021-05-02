@@ -65,6 +65,13 @@ bookNames.forEach((bookName) => {
     }
 });
 
+const bookNamess = document.querySelectorAll(".name");
+bookNamess.forEach((bookName) => {
+    if (bookName.innerHTML.length > 35) {
+        bookName.innerHTML = bookName.innerHTML.substring(0, 35) + "...";
+    }
+});
+
 
 
 

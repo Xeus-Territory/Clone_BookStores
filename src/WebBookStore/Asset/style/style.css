@@ -1723,10 +1723,10 @@ header {
     }
 
     .cart-table th {
-        font-size: 2.4rem;
+        font-size: 2rem;
         font-weight: 300;
         color: #666666;
-        padding-bottom: 3rem;
+        padding-bottom: 2.5rem;
         text-align: left;
     }
 
@@ -1734,7 +1734,7 @@ header {
         padding: 2rem 0;
         vertical-align: middle;
         text-align: left;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         font-weight: 300;
         color: #817f7f;
     }
@@ -1744,7 +1744,7 @@ header {
         }
 
         .cart-table td h4 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 400;
             margin-bottom: 1rem;
         }
@@ -1764,7 +1764,9 @@ header {
     border-radius: 5px;
 }
 
-    .cart-quantity i {
+    .cart-quantity > button {
+        border: 0;
+        background-color: transparent;
         padding: 1rem;
         color: #666666;
         cursor: pointer;
@@ -1779,13 +1781,24 @@ header {
     position: absolute;
     bottom: 1.5rem;
     right: 0;
+
     font-size: 1.4rem;
+    color: #666666;
     text-align: right;
     cursor: pointer;
     transition: all 0.3s linear;
 }
 
+.cart-remove > a {
+    color: #666666;
+    padding-left: 0.5rem;
+}
+
 .cart-remove:hover {
+    color: #1B8BCC;
+}
+
+.cart-remove:hover > a{
     color: #1B8BCC;
 }
 

@@ -29,17 +29,17 @@
                 <tr>
                     <td><a href="@Url.Action("DetailBook", "Book", new { @idbook = item.sID_Book})"><img src="@item.sImages" /></a></td>
                     <td>
-                        <h4>@item.sTitle</h4>
+                        <h4 class="name">@item.sTitle</h4>
                         <p>@item.sAuthor</p>
                     </td>
                     <td>@String.Format("{0:0,0}", item.sPrice.ToString()) VND</td>
                     <td>
-                        @using (Html.BeginForm("UpdateCart", "Cart", new { @id_book = item.sID_Book, @Strurl = Request.Url.ToString() }))
+                        @using (Html.BeginForm("UpdateCart", "Cart", new { @id_book = item.sID_Book, @Strurl = Request.Url.ToString() }, FormMethod.Post))
                         {
                             <div class="cart-quantity">
-                                <button class="fa fa-chevron-up"></button>
-                                <span>@Html.TextBox("quantity-text", item.sQuantity)</span>
-                                <button class="fa fa-chevron-down"></button>
+                                <button type="submit" name="btninc" value="1"><i class="fa fa-chevron-up"></i></button>
+                                <span>@item.sQuantity</span>
+                                <button type="submit" name="btninc" value="-1"><i class="fa fa-chevron-down"></i></button>
                             </div>
                         }
                     </td>

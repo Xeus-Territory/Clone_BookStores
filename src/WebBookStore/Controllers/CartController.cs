@@ -64,10 +64,16 @@ namespace WebBookStore.Controllers
             Cart cart = listcart.Find(x => x.sID_Book == id_book);
             if (cart != null)
             {
-                cart.sQuantity = int.Parse(f["quantity-text"].ToString());
+                if(cart.sQuantity > 0)
+                {
+                    cart.sQuantity = cart.sQuantity + int.Parse(f["btninc"].ToString());
+                }
+                else
+                {
+                    cart.sQuantity = cart.sQuantity + 1;
+                }    
             }
             return Redirect(Strurl);
-
         }
 
         // Xóa giỏ hàng 
@@ -87,7 +93,7 @@ namespace WebBookStore.Controllers
             }
             if (listcart.Count == 0)
             {
-                return RedirectToAction("Index", "Home");
+                return Redirect(Strurl);
             }
             return Redirect(Strurl);
         }

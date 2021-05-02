@@ -9,7 +9,7 @@
             <li class="row">
                 <a href="@Url.Action("DetailBook","Book", new {@idbook = item.Id_Book })"><img src="@item.Images" /></a>
                 <div class="bookshelves-item-content">
-                    <h5>@item.Title.Substring(0, 13)...</h5>
+                    <h5 class="name">@item.Title</h5>
                     <p>@item.Price VND</p>
                 </div>
             </li>
