@@ -32,6 +32,8 @@ namespace WebBookStore.Models
         public Nullable<bool> Condition { get; set; }
         public Nullable<int> Quantity { get; set; }
         public string Id_Category { get; set; }
+        public Nullable<int> CountView { get; set; }
+        public Nullable<System.DateTime> DateExpUpdate { get; set; }
     
         public virtual Author Author { get; set; }
         public virtual Category Category { get; set; }

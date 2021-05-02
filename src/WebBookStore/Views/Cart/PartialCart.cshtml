@@ -17,24 +17,35 @@
                             <img src="@Model[i].sImages" />
                             <div class="cart__item-info">
                                 <h4>@Model[i].sTitle</h4>
-                                <div class="cart__item-quantity row">
-                                    <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
-                                    <p>@Model[i].sQuantity</p>
-                                    <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
-                                </div>
+                                @using (Html.BeginForm("UpdateCart", "Cart", new { @id_book = Model[i].sID_Book, @Strurl = Request.Url.ToString() }))
+                                {
+                                    <div class="cart__item-quantity row">
+                                        <button class="btn cart-btn-increase"><i class="fa fa-plus"></i></button>
+                                        @Html.TextBox("quantity-text", Model[i].sQuantity)
+                                        <button class="btn cart-btn-decrease"><i class="fa fa-minus"></i></button>
+                                    </div>
+                                }
                                 <p>@Model[i].sPrice VND</p>
                             </div>
-                            <p class="delete-cart__item"><i class="fa fa-times"></i></p>
+                            <p class="delete-cart__item">
+                                @using (Html.BeginForm("DeleteCart", "Cart", new { @id_book = Model[i].sID_Book, @Strurl = Request.Url.ToString() }))
+                                {
+                                    <button class="fa fa-times"></button>
+                                }
+                            </p>
                         </div>
                     }
                 }
             </div>
-                <p class="total">Total: <span>@ViewBag.TotalPrice</span></p>
-                <div class="cart__detail-ctrl row">
-                    <button class="btn btn-secondary">Thanh Toán</button>
+            <p class="total">Total: <span>@ViewBag.TotalPrice VND</span></p>
+            <div class="cart__detail-ctrl row">
+                <button class="btn btn-secondary">Thanh Toán</button>
+                @using (Html.BeginForm("ClearAllCart", "Cart", new { @Strurl = Request.Url.ToString() }))
+                {
                     <button class="btn btn-danger">Xóa tất cả</button>
-                </div>
+                }
             </div>
+        </div>
     }
 }
 

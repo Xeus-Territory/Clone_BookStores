@@ -52,7 +52,7 @@ namespace WebBookStore.Controllers
 
         }
         // Cập nhật giỏ hàng
-        public ActionResult UpdateCart(string id_book, FormCollection f)
+        public ActionResult UpdateCart(string id_book, string Strurl, FormCollection f)
         {
             Book book = db.Books.SingleOrDefault(x => x.Id_Book == id_book);
             if (book == null)
@@ -64,14 +64,14 @@ namespace WebBookStore.Controllers
             Cart cart = listcart.Find(x => x.sID_Book == id_book);
             if (cart != null)
             {
-                cart.sQuantity = Convert.ToInt32(f["Quantity"].ToString());
+                cart.sQuantity = int.Parse(f["quantity-text"].ToString());
             }
-            return View("Cart");
+            return Redirect(Strurl);
 
         }
 
         // Xóa giỏ hàng 
-        public ActionResult DeleteCart(string id_book)
+        public ActionResult DeleteCart(string id_book, string Strurl)
         {
             Book book = db.Books.SingleOrDefault(x => x.Id_Book == id_book);
             if (book == null)
@@ -89,7 +89,7 @@ namespace WebBookStore.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Cart");
+            return Redirect(Strurl);
         }
         //Trả lại View Giỏ hàng
         public ActionResult ViewCart()
@@ -150,6 +150,10 @@ namespace WebBookStore.Controllers
             ViewBag.TotalPrice = TotalPrice();
             return PartialView();
         }
-            
+        public ActionResult ClearAllCart(string Strurl)
+        {
+            ClearAll();
+            return Redirect(Strurl);
+        }    
     }
 }

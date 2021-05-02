@@ -5,11 +5,6 @@ if(carousel) {
     carousel.setAttribute("style", "padding-top: " + header.offsetHeight + "px");
 }
 
-const search = document.querySelector(".search");
-if (search) {
-    search.setAttribute("style", "padding-top: " + header.offsetHeight*2 + "px");
-}
-
 let currentScrollY = 0;
 window.addEventListener("scroll", () => {
     let y = window.scrollY;

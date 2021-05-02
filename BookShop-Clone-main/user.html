@@ -357,33 +357,7 @@
         </div>
     </section>
 
-    <script type="text/javascript">
-        const ctrlItems = document.querySelectorAll(".user-ctrl__item");
-        for(let i = 0; i < ctrlItems.length; i++) {
-            ctrlItems[i].addEventListener("click", function () {
-                document.querySelector(".user-ctrl__item.active").classList.remove("active");
-                this.classList.add("active");
-            })
-        }
-
-        const ctrlItemEdit = document.querySelector(".user-ctrl__item.edit");
-        ctrlItemEdit.addEventListener("click", function() {
-            document.querySelector(".modal-user-infor").classList.add("open")
-        });
-
-        const ctrlCloses = document.querySelectorAll(".close");
-        const overlayModal = document.querySelector(".overlay");
-        overlayModal.addEventListener("click", close);
-        for(let i = 0; i < ctrlCloses.length; i++) {
-            ctrlCloses[i].addEventListener("click", close);
-        }
-
-        function close() {
-            document.querySelector(".modal-user-infor.open").classList.remove("open")
-            document.querySelector(".user-ctrl__item.edit").classList.remove("active")
-            ctrlItems[0].classList.add("active");
-        }
-    </script>
+    <script src="./js/modal.js" type="text/javascript"></script>
 </body>
 
 </html>

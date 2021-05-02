@@ -1,0 +1,17 @@
+Nội dung demo ngày mai:
++ Chức năng đăng nhập, đăng ký
++ Chức năng search ở các trang
++ View trang chủ
++ View detail sản phẩm
++ Load full category
++ Add to Cart
+
+spring 3:
+Dự kiến hoàn thành trong tuần:
++ Các Method Button trong Cart(đang thực hiện)
++ Sang form check out sản phẩm (đang thực hiện)
++ Update profile user (đang thực hiện)
++ Làm lại trang admin (đang thực hiện)
+
+spring 4 
+...

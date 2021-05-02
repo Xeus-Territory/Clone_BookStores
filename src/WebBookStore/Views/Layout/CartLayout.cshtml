@@ -151,14 +151,14 @@
                 <div class="footer-item">
                     <h5><img src="~/Asset/img/logo-white.png" /></h5>
                     <p>
-                     BookStores
+                        BookStores
                     </p>
                     <a href="">Thông tin về chúng tôi</a>
                 </div>
                 <div class="footer-item">
                     <h5 class="row">
                         <img src="~/Asset/img/icon-7webp.png" />
-                        Địa chỉ cửa hàng 
+                        Địa chỉ cửa hàng
                     </h5>
                     <p>San Francisco, California, US P.O. BOX: 553204</p>
                     <p>Phone: (+1) 998 3384</p>
@@ -231,5 +231,21 @@
         </div>
     </section>
     <script src="~/Asset/js/index.js"></script>
+    <script>
+        function btnIncreaseCartClick() {
+            var i = parseInt(document.getElementById('quantity-text').value);
+            i = isNaN(i) ? 0 : i;
+            document.getElementById('quantity-text').value = ++i;
+        }
+    </script>
+    <script>
+        function btnDecreaseCartClick() {
+            var i = parseInt(document.getElementById('quantity-text').value);
+            i = isNaN(i) ? 0 : i;
+            if (i > 0) {
+                document.getElementById('quantity-text').value = --i;
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="./style/reset.css">
+    <!-- SLICK SLIDER -->
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- STYLES -->
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+    <!-- MODAL BOOK -->
+    <div class="modal-user-infor modal-book">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="form-container modal">
+                <div class="modal-header row--base">
+                    <h2>Add New Book</h2>
+                    <span class="close"><i class="fa fa-times"></i></span>
+                </div>
+                <div class="form-login ">
+                    <div class="form-group row">
+                        <p>Name</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Image Link</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Description</p>
+                        <textarea class="form__input" ></textarea>
+                    </div>
+                    <div class="form-group row">
+                        <p>Price</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Author</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="modal-ctrl row">
+                        <p class="close">Cancel</p>
+                        <button class="btn btn-modal">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- MODAL CUSTOMER -->
+     <div class="modal-user-infor modal-customer">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="form-container modal">
+                <div class="modal-header row--base">
+                    <h2>Add New Book</h2>
+                    <span class="close"><i class="fa fa-times"></i></span>
+                </div>
+                <div class="form-login ">
+                    <div class="form-group row">
+                        <p>Name</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>User Name</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Password</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Address</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Phone Number</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="modal-ctrl row">
+                        <p class="close">Cancel</p>
+                        <button class="btn btn-modal">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN -->
+    <section class="admin">
+        <div class="sidebar">
+            <img src="./img/logo-white.png" alt="">
+            <ul class="sidebar__list">
+                <div data-tab="book" class="sidebar__item active row">
+                    <div class="border-top">
+                        <div class="border-top-box"></div>
+                    </div>
+                    <div class="sidebar__item-content row">
+                        <i class="fas fa-th-large"></i>
+                        <p>Dashboard</p>
+                    </div>
+                    <div class="border-bottom">
+                        <div class="border-bottom-box"></div>
+                    </div>
+                </div>
+                <div class="sidebar__item row">
+                    <div class="border-top">
+                        <div class="border-top-box"></div>
+                    </div>
+                    <div class="sidebar__item-content row">
+                        <i class="fa fa-shopping-cart"></i>
+                        <p>Order</p>
+                    </div>
+                    <div class="border-bottom">
+                        <div class="border-bottom-box"></div>
+                    </div>
+                </div>
+                <div data-tab="customer" class="sidebar__item row">
+                    <div class="border-top">
+                        <div class="border-top-box"></div>
+                    </div>
+                    <div class="sidebar__item-content row">
+                        <i class="fa fa-user"></i>
+                        <p>Customer</p>
+                    </div>
+                    <div class="border-bottom">
+                        <div class="border-bottom-box"></div>
+                    </div>
+                </div>
+                <div class="sidebar__item row">
+                    <div class="border-top">
+                        <div class="border-top-box"></div>
+                    </div>
+                    <div class="sidebar__item-content row">
+                        <i class="fas fa-dolly"></i>
+                        <p>Stock</p>
+                    </div>
+                    <div class="border-bottom">
+                        <div class="border-bottom-box"></div>
+                    </div>
+                </div>
+                <div class="sidebar__item row">
+                    <div class="border-top">
+                        <div class="border-top-box"></div>
+                    </div>
+                    <div class="sidebar__item-content row">
+                        <i class="fas fa-tags"></i>
+                        <p>Offer</p>
+                    </div>
+                    <div class="border-bottom">
+                        <div class="border-bottom-box"></div>
+                    </div>
+                </div>
+            </ul>
+            <div class="social row">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Google</a>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main-header row">
+                <h2>Book</h2>
+                <div class="main-search">
+                    <div class="main-search-content">
+                        <i class="fa fa-search"></i>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="main-header-user row">
+                    <img src="https://ui-avatars.com/api/?name=Nghia" alt="">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+            <!-- TAB-BOOK -->
+            <div class="tab active tab-book">
+                <p class="create-btn newbook"><i class="fa fa-plus"></i> New Book</p>
+                <div class="data__list">
+                    <div class="data__header row">
+                        <div class="col-1">ID</div>
+                        <div class="col-1">Image</div>
+                        <div class="col-3">Name</div>
+                        <div class="col-2">Author</div>
+                        <div class="col-1">Price</div>
+                        <div class="col-1">Quantity</div>
+                        <div class="col-1">Action</div>
+                    </div>
+                    <div class="data__body">
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-1">
+                                <img src="./img/book-1.jpg" alt="">
+                            </div>
+                            <div class="col-3">Digital Download Product Example</div>
+                            <div class="col-2">Nicholas Spark</div>
+                            <div class="col-1">$2.00</div>
+                            <div class="col-1">5</div>
+                            <div class="col-1">
+                                <button class="admin-edit-book edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-1">
+                                <img src="./img/book-1.jpg" alt="">
+                            </div>
+                            <div class="col-3">Digital Download Product Example</div>
+                            <div class="col-2">Nicholas Spark</div>
+                            <div class="col-1">$2.00</div>
+                            <div class="col-1">5</div>
+                            <div class="col-1">
+                                <button class="edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-1">
+                                <img src="./img/book-1.jpg" alt="">
+                            </div>
+                            <div class="col-3">Digital Download Product Example</div>
+                            <div class="col-2">Nicholas Spark</div>
+                            <div class="col-1">$2.00</div>
+                            <div class="col-1">5</div>
+                            <div class="col-1">
+                                <button class="edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-1">
+                                <img src="./img/book-1.jpg" alt="">
+                            </div>
+                            <div class="col-3">Digital Download Product Example</div>
+                            <div class="col-2">Nicholas Spark</div>
+                            <div class="col-1">$2.00</div>
+                            <div class="col-1">5</div>
+                            <div class="col-1">
+                                <button class="edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-1">
+                                <img src="./img/book-1.jpg" alt="">
+                            </div>
+                            <div class="col-3">Digital Download Product Example</div>
+                            <div class="col-2">Nicholas Spark</div>
+                            <div class="col-1">$2.00</div>
+                            <div class="col-1">5</div>
+                            <div class="col-1">
+                                <button class="edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-1">
+                                <img src="./img/book-1.jpg" alt="">
+                            </div>
+                            <div class="col-3">Digital Download Product Example</div>
+                            <div class="col-2">Nicholas Spark</div>
+                            <div class="col-1">$2.00</div>
+                            <div class="col-1">5</div>
+                            <div class="col-1">
+                                <button class="edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-1">
+                                <img src="./img/book-1.jpg" alt="">
+                            </div>
+                            <div class="col-3">Digital Download Product Example</div>
+                            <div class="col-2">Nicholas Spark</div>
+                            <div class="col-1">$2.00</div>
+                            <div class="col-1">5</div>
+                            <div class="col-1">
+                                <button class="edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-1">
+                                <img src="./img/book-1.jpg" alt="">
+                            </div>
+                            <div class="col-3">Digital Download Product Example</div>
+                            <div class="col-2">Nicholas Spark</div>
+                            <div class="col-1">$2.00</div>
+                            <div class="col-1">5</div>
+                            <div class="col-1">
+                                <button class="edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- TAB-CUSTOMER -->
+            <div class="tab tab-customer">
+                <p class="create-btn newcustomer"><i class="fa fa-plus"></i> New Customer</p>
+                <div class="data__list">
+                    <div class="data__header row">
+                        <div class="col-1">ID</div>
+                        <div class="col-2">Name</div>
+                        <div class="col-3-2">User Name</div>
+                        <div class="col-3-2">Phone Number</div>
+                        <div class="col-2">Address</div>
+                        <div class="col-1">Birthday</div>
+                        <div class="col-1">Action</div>
+                    </div>
+                    <div class="data__body">
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <img class="avatar" src="https://ui-avatars.com/api/?name=Nghia&background=random" alt="">
+                                    Nguyen Duc Nghia
+                                </div>
+                            </div>
+                            <div class="col-3-2">Đặng Công Toàn</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-1">30/2/2001</div>
+                            <div class="col-1">
+                                <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <img class="avatar" src="https://ui-avatars.com/api/?name=Nghia&background=random" alt="">
+                                    Nguyen Duc Nghia
+                                </div>
+                            </div>
+                            <div class="col-3-2">Đặng Công Toàn</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-1">30/2/2001</div>
+                            <div class="col-1">
+                                <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <img class="avatar" src="https://ui-avatars.com/api/?name=Nghia&background=random" alt="">
+                                    Nguyen Duc Nghia
+                                </div>
+                            </div>
+                            <div class="col-3-2">Đặng Công Toàn</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-1">30/2/2001</div>
+                            <div class="col-1">
+                                <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <img class="avatar" src="https://ui-avatars.com/api/?name=Nghia&background=random" alt="">
+                                    Nguyen Duc Nghia
+                                </div>
+                            </div>
+                            <div class="col-3-2">Đặng Công Toàn</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-1">30/2/2001</div>
+                            <div class="col-1">
+                                <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <img class="avatar" src="https://ui-avatars.com/api/?name=Nghia&background=random" alt="">
+                                    Nguyen Duc Nghia
+                                </div>
+                            </div>
+                            <div class="col-3-2">Đặng Công Toàn</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-1">30/2/2001</div>
+                            <div class="col-1">
+                                <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <img class="avatar" src="https://ui-avatars.com/api/?name=Tue&background=random" alt="">
+                                    Nguyen Duc Nghia
+                                </div>
+                            </div>
+                            <div class="col-3-2">Đặng Công Toàn</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-1">30/2/2001</div>
+                            <div class="col-1">
+                                <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <img class="avatar" src="https://ui-avatars.com/api/?name=Toan&background=random" alt="">
+                                    Nguyen Duc Nghia
+                                </div>
+                            </div>
+                            <div class="col-3-2">Đặng Công Toàn</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-1">30/2/2001</div>
+                            <div class="col-1">
+                                <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <img class="avatar" src="https://ui-avatars.com/api/?name=Kim&background=random" alt="">
+                                    Nguyen Duc Nghia
+                                </div>
+                            </div>
+                            <div class="col-3-2">Đặng Công Toàn</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-1">30/2/2001</div>
+                            <div class="col-1">
+                                <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <img class="avatar" src="https://ui-avatars.com/api/?name=Nghia&background=random" alt="">
+                                    Nguyen Duc Nghia
+                                </div>
+                            </div>
+                            <div class="col-3-2">Đặng Công Toàn</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-1">30/2/2001</div>
+                            <div class="col-1">
+                                <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/modal.js"></script>
+    <script src="./js/tab-admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+1. sản phẩm mới là theo trường ngày xuất bản trong danh mục đầu sách, bổ sung chức năng nhập ngày xuất bản khi thêm mới đầu sách
+khi view là lấy theo ngày xuất bản gần nhất so với hiện tại
+2. Sách nổi bật là clone từ bản danh mục sách, bổ sung thêm trường counter tự động tăng khi lượt view lượt sách tăng, sắp xếp theo orderby
+từ nhỏ đến lớn lượt view
+3.Lựa chon nhân viên cho random theo danh mục sách 
+4. số lượng chi nhánh thì lấy theo số lượng tác giả để view lên home page
+5 Chuyển edit phía dưới menu thông tin người dùng 
+6. Làm manage order giống kiểu tiki
+7. Thêm theo dõi tình trang chi tiết đơn hàng được giao 

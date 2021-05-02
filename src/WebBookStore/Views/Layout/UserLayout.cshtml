@@ -3,6 +3,7 @@
     BookStoreEntities db = new BookStoreEntities();
     int countkh = db.Accounts.Count();
     int countsach = db.Books.Count();
+    int counttacgia = db.Authors.Count();
 }
 
 <!DOCTYPE html>
@@ -229,82 +230,13 @@
         <div class="container">
             <div class="bookshelves-list row">
                 <div class="bookshelves-item">
-                    <h4>Sản phẩm mới</h4>
-                    <ul>
-                        <li class="row">
-                            <img src="~/Asset/img/book-1.jpg" />
-                            <div class="bookshelves-item-content">
-                                <h5>The Best Investment</h5>
-                                <p>$360.00</p>
-                            </div>
-                        </li>
-                        <li class="row">
-                            <img src="~/Asset/img/book-1.jpg" />
-                            <div class="bookshelves-item-content">
-                                <h5>The Best Investment</h5>
-                                <p>$360.00</p>
-                            </div>
-                        </li>
-                        <li class="row">
-                            <img src="~/Asset/img/book-2.jpg" />
-                            <div class="bookshelves-item-content">
-                                <h5>The Best Investment</h5>
-                                <p>$360.00</p>
-                            </div>
-                        </li>
-                    </ul>
+                    @Html.Action("DateExpUpdate", "Book")
                 </div>
                 <div class="bookshelves-item">
-                    <h4>Sản phẩm nổi bật</h4>
-                    <ul>
-                        <li class="row">
-                            <img src="~/Asset/img/book-1.jpg" />
-                            <div class="bookshelves-item-content">
-                                <h5>The Best Investment</h5>
-                                <p>$360.00</p>
-                            </div>
-                        </li>
-                        <li class="row">
-                            <img src="~/Asset/img/book-1.jpg" />
-                            <div class="bookshelves-item-content">
-                                <h5>The Best Investment</h5>
-                                <p>$360.00</p>
-                            </div>
-                        </li>
-                        <li class="row">
-                            <img src="~/Asset/img/book-2.jpg" />
-                            <div class="bookshelves-item-content">
-                                <h5>The Best Investment</h5>
-                                <p>$360.00</p>
-                            </div>
-                        </li>
-                    </ul>
+                    @Html.Action("CountViewBook", "Book")
                 </div>
                 <div class="bookshelves-item">
-                    <h4>Lựa chọn bởi nhân viên</h4>
-                    <ul>
-                        <li class="row">
-                            <img src="~/Asset/img/book-1.jpg" />
-                            <div class="bookshelves-item-content">
-                                <h5>The Best Investment</h5>
-                                <p>$360.00</p>
-                            </div>
-                        </li>
-                        <li class="row">
-                            <img src="~/Asset/img/book-1.jpg" />
-                            <div class="bookshelves-item-content">
-                                <h5>The Best Investment</h5>
-                                <p>$360.00</p>
-                            </div>
-                        </li>
-                        <li class="row">
-                            <img src="~/Asset/img/book-2.jpg" />
-                            <div class="bookshelves-item-content">
-                                <h5>The Best Investment</h5>
-                                <p>$360.00</p>
-                            </div>
-                        </li>
-                    </ul>
+                    @Html.Action("RandomBook", "Book")
                 </div>
             </div>
         </div>
@@ -325,9 +257,9 @@
                     <p class="caption">Số lượng đầu sách</p>
                 </div>
                 <div class="collection-item">
-                    <img src="~/Asset/img/icon-6.png" />
-                    <p class="number">1</p>
-                    <p class="caption">Số lượng chi nhánh</p>
+                    <img src="~/Asset/img/writer (1).png" />
+                    <p class="number">@counttacgia</p>
+                    <p class="caption">Số lượng tác giả</p>
                 </div>
             </div>
         </div>

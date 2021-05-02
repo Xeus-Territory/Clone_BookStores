@@ -153,14 +153,14 @@
                                 </p>
                                 <div class="ctrl__list">
                                     <div class="numeric">
-                                        <button class="numeric__button">+</button>
-                                        <input />
-                                        <button class="numeric__button">-</button>
+                                        <button class="numeric__button" onclick="btnIncreaseClick()">+</button>
+                                        <input type="text" id="inc" value="0"/>
+                                        <button class="numeric__button" onclick="btnDecreaseClick()">-</button>
                                     </div>
                                     @using (Html.BeginForm("AddToCart", "Cart", new { @id_book = Model.Id_Book, @Strurl = Request.Url.ToString() }))
                                     {
                                         <button class="ctrl--add-to-cart btn">
-                                            ADD TO CART
+                                            Thêm vào giỏ hàng
                                         </button>
                                     }
                                 </div>
@@ -188,7 +188,7 @@
                         <tbody>
                             <tr>
                                 <td class="title">
-                                    Book Title
+                                    Tựa đề sách
                                 </td>
                                 <td>
                                     @Model.Title
@@ -196,7 +196,7 @@
                             </tr>
                             <tr>
                                 <td class="title">
-                                    Author
+                                    Tác giả
                                 </td>
                                 <td>
                                     @Model.Author.Name
@@ -204,7 +204,7 @@
                             </tr>
                             <tr>
                                 <td class="title">
-                                    Type
+                                    Thể loại
                                 </td>
                                 <td>
                                     @Model.Category.NameCatelogy
@@ -212,7 +212,7 @@
                             </tr>
                             <tr>
                                 <td class="title">
-                                    Condition
+                                    Tình trạng
                                 </td>
                                 <td>
                                     @if (Model.Condition == true)
@@ -227,7 +227,7 @@
                             </tr>
                             <tr>
                                 <td class="title">
-                                    Description
+                                    Mô tả
                                 </td>
                                 <td>
                                     @Model.Description
@@ -237,7 +237,7 @@
                     </table>
                 </div>
                 <div class="book-related">
-                    <h4>Related Books</h4>
+                    <h4>Sách liên quan</h4>
                     <div class="book-related__list">
                         @{
                             foreach (var i in item)
@@ -256,6 +256,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     @*------------------------FOOTER------------------------------*@
@@ -358,5 +359,21 @@
     </section>
     <script src="~/Asset/js/index.js"></script>
     <script src="~/Asset/js/detail.js"></script>
+    <script>
+        function btnIncreaseClick() {
+            var i = parseInt(document.getElementById('inc').value);
+            i = isNaN(i) ? 0 : i;
+            document.getElementById('inc').value = ++i;
+        }
+    </script>
+    <script>
+        function btnDecreaseClick() {
+            var i = parseInt(document.getElementById('inc').value);
+            i = isNaN(i) ? 0 : i;
+            if (i > 0) {
+                document.getElementById('inc').value = --i;
+            }
+        }
+    </script>
 </body>
 </html>

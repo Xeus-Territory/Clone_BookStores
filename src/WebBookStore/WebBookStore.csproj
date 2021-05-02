@@ -126,6 +126,7 @@
     <Content Include="Asset\img\special-bg-1.png" />
     <Content Include="Asset\img\special-bg-2.png" />
     <Content Include="Asset\img\special-bg-3.png" />
+    <Content Include="Asset\img\writer %281%29.png" />
     <Content Include="Asset\js\detail.js" />
     <Content Include="Asset\js\index.js" />
     <Content Include="Asset\js\login.js" />
@@ -235,6 +236,9 @@
     <Content Include="Views\Layout\CartLayout.cshtml" />
     <Content Include="Views\Cart\ViewCart.cshtml" />
     <Content Include="Views\Cart\PartialCart.cshtml" />
+    <Content Include="Views\Book\RandomBook.cshtml" />
+    <Content Include="Views\Book\CountViewBook.cshtml" />
+    <Content Include="Views\Book\DateExpUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

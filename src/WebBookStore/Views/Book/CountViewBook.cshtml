@@ -1,0 +1,18 @@
+﻿@using WebBookStore.Models;
+@model List<Book>
+
+<h4>Sản phẩm nổi bật</h4>
+<ul>
+    @{
+        foreach (var item in Model)
+        {
+            <li class="row">
+                <a href="@Url.Action("DetailBook","Book", new {@idbook = item.Id_Book })"><img src="@item.Images" /></a>
+                <div class="bookshelves-item-content">
+                    <h5>@item.Title.Substring(0, 13)...</h5>
+                    <p>@item.Price VND</p>
+                </div>
+            </li>
+        }
+    }
+</ul>

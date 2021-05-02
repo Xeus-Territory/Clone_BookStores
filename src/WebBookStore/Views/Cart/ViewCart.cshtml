@@ -27,22 +27,25 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td><img src="@item.sImages" /></td>
+                    <td><a href="@Url.Action("DetailBook", "Book", new { @idbook = item.sID_Book})"><img src="@item.sImages" /></a></td>
                     <td>
                         <h4>@item.sTitle</h4>
                         <p>@item.sAuthor</p>
                     </td>
                     <td>@String.Format("{0:0,0}", item.sPrice.ToString()) VND</td>
                     <td>
-                        <div class="cart-quantity">
-                            <i class="fa fa-chevron-down"></i>
-                            <span>@item.sQuantity</span>
-                            <i class="fa fa-chevron-up"></i>
-                        </div>
+                        @using (Html.BeginForm("UpdateCart", "Cart", new { @id_book = item.sID_Book, @Strurl = Request.Url.ToString() }))
+                        {
+                            <div class="cart-quantity">
+                                <button class="fa fa-chevron-up"></button>
+                                <span>@Html.TextBox("quantity-text", item.sQuantity)</span>
+                                <button class="fa fa-chevron-down"></button>
+                            </div>
+                        }
                     </td>
                     <td>
                         @String.Format("{0:0,0}", item.Total.ToString()) VND
-                        <p class="cart-remove"><i class="fa fa-trash"></i> Remove</p>
+                        <p class="cart-remove"><i class="fa fa-trash"></i>@Html.ActionLink("Xóa sản phẩm", "DeleteCart", new { @id_book = item.sID_Book, @Strurl = Request.Url.ToString() })</p>
                     </td>
                 </tr>
 
@@ -54,7 +57,10 @@
         {
             <button class="btn">Tiếp tục mua sắm</button>
         }
-        <button class="btn btn-danger">Xóa tất cả</button>
+        @using (Html.BeginForm("ClearAllCart", "Cart", new { @Strurl = Request.Url.ToString() }))
+        {
+            <button class="btn btn-danger">Xóa tất cả</button>
+        }
     </div>
 </div>
 <div class="check-out">
