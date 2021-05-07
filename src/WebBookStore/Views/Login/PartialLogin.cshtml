@@ -3,7 +3,7 @@
 @{
     if (@ViewBag.Login == 0)
     {
-        <a href="@Url.Action("Index", "Login", new { @Strurl = Request.Url.ToString()})"><i class="fa fa-user-alt account"></i></a>
+        <a href="@Url.Action("Index", "Login")"><i class="fa fa-user-alt account"></i></a>
     }
     if(@ViewBag.Login == 1)
     {

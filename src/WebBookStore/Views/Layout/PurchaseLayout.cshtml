@@ -22,32 +22,8 @@
 <body>
 
     <section class="purchase row--base">
-        <div class="order-info">
-            <a href="@Url.Action("Index", "Home")">
-                <img src="~/Asset/img/logo.png" />
-            </a>
-            <div class="purchase-info__item">
-                <p>Địa chỉ mail liên lạc</p>
-                <input type="text" placeholder="Email or mobile phone number">
-            </div>
-            <div class="purchase-info__item">
-                <p>Địa chỉ giao hàng</p>
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Address">
-                <input type="text" placeholder="City">
-            </div>
-            <div class="order-ctrl">
-                <button class="btn btn-secondary">
-                    Đặt hàng
-                </button>
-                <a href="@Url.Action("ViewCart", "Cart")">Trở về giỏ hàng</a>
-            </div>
-        </div>
-        <div class="order-detail">
-            @RenderBody()
-        </div>
+        @RenderBody()
     </section>
-
     <script src="~/Asset/js/index.js"></script>
 </body>
 </html>

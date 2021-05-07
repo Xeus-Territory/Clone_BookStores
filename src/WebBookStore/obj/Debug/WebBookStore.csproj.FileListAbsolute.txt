@@ -150,3 +150,7 @@ E:\Code\PBL3BookStores\src\WebBookStore\bin\System.Web.Helpers.xml
 E:\Code\PBL3BookStores\src\WebBookStore\bin\System.Web.Mvc.xml
 E:\Code\PBL3BookStores\src\WebBookStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\Code\PBL3BookStores\src\WebBookStore\obj\Debug\WebBookStore.csproj.CopyComplete
+E:\Code\PBL3BookStores\src\WebBookStore\bin\PagedList.dll
+E:\Code\PBL3BookStores\src\WebBookStore\bin\PagedList.Mvc.dll
+E:\Code\PBL3BookStores\src\WebBookStore\bin\PagedList.xml
+E:\Code\PBL3BookStores\src\WebBookStore\bin\PagedList.Mvc.xml

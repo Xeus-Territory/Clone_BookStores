@@ -1,39 +1,64 @@
 ﻿@using WebBookStore.Models;
 @model List<Cart>
-
-
 @{
     Layout = "~/Views/Layout/PurchaseLayout.cshtml";
 }
-<div class="order__list">
-    @{
-        foreach (var item in Model)
-        {
-            <div class="order__item row">
-                <div class="order__item-img">
-                    <img src="@item.sImages" alt="">
-                    <span>@item.sQuantity</span>
+
+<div class="order-info">
+    <a href="@Url.Action("Index", "Home")">
+        <img src="~/Asset/img/logo.png" />
+    </a>
+    @using (Html.BeginForm("OrderCart", "Cart"))
+    {
+        <div class="purchase-info__item">
+            <p>Địa chỉ mail liên lạc</p>
+            <input type="text" name="Contact" placeholder="Địa chỉ Mail hoặc Số Điện Thoại">
+        </div>
+        <div class="purchase-info__item">
+            <p>Địa chỉ giao hàng</p>
+            <input type="text" name="Name" placeholder="Tên">
+            <input type="text" name="Address" placeholder="Địa chỉ">
+            <input type="text" name="City" placeholder="Thành phố">
+        </div>
+        <div class="order-ctrl">
+            <button class="btn btn-secondary">
+                Đặt hàng
+            </button>
+            <a href="@Url.Action("ViewCart", "Cart")">Trở về giỏ hàng</a>
+        </div>
+    }
+</div>
+<div class="order-detail">
+    <div class="order__list">
+        @{
+            foreach (var item in Model)
+            {
+                <div class="order__item row">
+                    <div class="order__item-img">
+                        <img src="@item.sImages" alt="">
+                        <span>@item.sQuantity</span>
+                    </div>
+                    <h3 class="name">@item.sTitle</h3>
+                    <p class="order__item-price">
+                        @item.Total VND
+                    </p>
                 </div>
-                <h3 class="name">@item.sTitle</h3>
-                <p class="order__item-price">
-                    @item.Total VND
-                </p>
-            </div>
+            }
         }
-    }
-</div>
-@using (Html.BeginForm("GetDiscount", "Cart", new { @Strurl = Request.Url.ToString() }))
-{
-    <div class="order-discount row">
-        <input type="text" name="discount" placeholder="Mã giảm giá">
-        <button class="btn btn-secondary">Apply</button>
     </div>
-}
-<div class="order-total">
-    @{
-        <p class="row">Tổng tiền: <span>@ViewBag.TotalPrice VND</span></p>
-        <p class="row">Giảm giá: <span>@ViewBag.Discount%</span></p>
-        <p class="row">Thành tiền: <span>@ViewBag.AccessMoney VND</span></p>
+    @using (Html.BeginForm("GetDiscount", "Cart"))
+    {
+        <div class="order-discount row">
+            <input type="text" name="discount" placeholder="Mã giảm giá">
+            <button class="btn btn-secondary">Áp dụng</button>
+        </div>
     }
+    <div class="order-total">
+        @{
+            <p class="row">Tổng tiền: <span>@ViewBag.TotalPrice VND</span></p>
+            <p class="row">Giảm giá: <span>@ViewBag.Discount%</span></p>
+            <p class="row">Thành tiền: <span>@ViewBag.ApproveDiscount VND</span></p>
+        }
+    </div>
+    <img src="~/Asset/img/payment-method.png" />
 </div>
-<img src="~/Asset/img/payment-method.png" />

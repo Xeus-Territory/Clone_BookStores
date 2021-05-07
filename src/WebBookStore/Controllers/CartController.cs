@@ -164,6 +164,7 @@ namespace WebBookStore.Controllers
             return Redirect(Strurl);
         }
         #endregion
+        #region Order sản phẩm
         [HttpPost]
         public ActionResult ViewOrderDetail()
         {
@@ -181,7 +182,7 @@ namespace WebBookStore.Controllers
             ViewBag.TotalPrice = TotalPrice();
             return View(listCart);
         }
-        public ActionResult GetDiscount(string Strurl, FormCollection f)
+        public int ApproveDiscount(string Id_discount)
         {
             int total = 0;
             List<Cart> listCart = Session["Cart"] as List<Cart>;
@@ -190,36 +191,60 @@ namespace WebBookStore.Controllers
             {
                 foreach (var i in listdiscount)
                 {
-                    if (f["discount"].ToString() == i.id_Discount && item.sID_Book == i.id_Book)
+                    if (Id_discount == i.id_Discount && item.sID_Book == i.id_Book)
                     {
-                        total += (item.sPrice - (item.sPrice * (int.Parse(i.DiscountDetail))) / 100);
-                        ViewBag.Discount = i.DiscountDetail;
+                        total += (item.sPrice - (item.sPrice * (int.Parse(i.DiscountDetail))) / 100) * item.sQuantity;
                     }
                     else
                     {
-                        if (f["discount"].ToString() != i.id_Discount)
+                        if (Id_discount != i.id_Discount)
                         {
                             total += 0;
                         }
                         else
                         {
-                            total += item.sPrice;
+                            total += item.sPrice * item.sQuantity;
                         }
                     }
                 }
             }
+            return total;
+        }
+        public ActionResult GetDiscount(FormCollection f)
+        {
+            string iddiscount = f["discount"].ToString();
+            List<Cart> listCart = Session["Cart"] as List<Cart>;
+            if (ApproveDiscount(f["discount"].ToString()) == TotalPrice())
+            {
+                ViewBag.Discount = 0;
+                ViewBag.TotalPrice = TotalPrice();
+                return View(listCart);
+            }
             ViewBag.TotalPrice = TotalPrice();
-            ViewBag.AccessMoney = total;
+            ViewBag.ApproveDiscount = ApproveDiscount(f["discount"].ToString());
+            var discount = db.Discounts.Where(x => x.id_Discount == iddiscount).FirstOrDefault();
+            Session["discount"] = discount;
+            ViewBag.Discount = discount.DiscountDetail;
             return View(listCart);
         }
         public ActionResult OrderCart(FormCollection f)
         {
             Order order = new Order();
             List<Cart> listCart = TakeCartToView();
-            Account acc = (Account)Session[CommonConstant.USER_SESSION];
+            Account acc = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
+            Discount discount = (Discount)Session["discount"];
             order.Id_Customer = acc.Id_Customer;
             order.OrderDate = DateTime.Now;
-            order.Totalbill = TotalPrice();
+            order.Paymethod = "Trả bằng tiền mặt khi giao hàng";
+            //Kiểm tra có áp dụng discount không
+            if(Session["discount"] == null)
+            {
+                order.Totalbill = TotalPrice();
+            }
+            else
+            {
+                order.Totalbill = ApproveDiscount(discount.id_Discount);
+            }    
             order.AddressShipping = f["Address"].ToString() + ", " + f["City"].ToString();
             //Add don hang vao de co id don hang
             db.Orders.Add(order);
@@ -231,8 +256,12 @@ namespace WebBookStore.Controllers
                 detail.id_Book = item.sID_Book;
                 detail.Quantity = item.sQuantity;
                 detail.Price = item.Total;
+                db.OrderDetails.Add(detail);
             }
-            return View();
+            db.SaveChanges();
+            Session["Cart"] = null;
+            return View(acc);
         }
     }
+    #endregion
 }

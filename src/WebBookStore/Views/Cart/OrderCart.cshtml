@@ -1,0 +1,16 @@
+﻿@using WebBookStore.Models;
+@model Account
+
+@{
+    Layout = "~/Views/Layout/RespondLayout.cshtml";
+}
+
+<div class="container">
+    <div class="success-icon">
+        <i class="fa fa-check"></i>
+    </div>
+    <p>Bạn đã đặt hàng thành công! Cảm ơn đã sử dụng dịch vụ của chúng tôi</p>
+    <a href="https://mail.google.com/mail/u/?authuser=@Model.Email">Vui lòng Checkmail <i class="fa fa-arrow-right"></i></a>
+    <p><a href="@Url.Action("Index", "Home")">Quay về trang chủ <i class="fa fa-arrow-right"></i></a></p>
+</div>
+
