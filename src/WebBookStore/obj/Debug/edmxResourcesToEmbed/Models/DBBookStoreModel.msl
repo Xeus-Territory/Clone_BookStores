@@ -15,6 +15,10 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Access" ColumnName="Access" />
           <ScalarProperty Name="FavoriteCategory" ColumnName="FavoriteCategory" />
+          <ScalarProperty Name="ConfirmEmail" ColumnName="ConfirmEmail" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+          <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -30,8 +34,6 @@
     <EntitySetMapping Name="Books">
       <EntityTypeMapping TypeName="BookStoreModel.Book">
         <MappingFragment StoreEntitySet="Book">
-          <ScalarProperty Name="DateExpUpdate" ColumnName="DateExpUpdate" />
-          <ScalarProperty Name="CountView" ColumnName="CountView" />
           <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -43,6 +45,8 @@
           <ScalarProperty Name="Condition" ColumnName="Condition" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="Id_Category" ColumnName="Id_Category" />
+          <ScalarProperty Name="CountView" ColumnName="CountView" />
+          <ScalarProperty Name="DateExpUpdate" ColumnName="DateExpUpdate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -77,7 +81,8 @@
           <ScalarProperty Name="Paymethod" ColumnName="Paymethod" />
           <ScalarProperty Name="ExpDeliveryDate" ColumnName="ExpDeliveryDate" />
           <ScalarProperty Name="Totalbill" ColumnName="Totalbill" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+          <ScalarProperty Name="AddressShipping" ColumnName="AddressShipping" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -97,6 +102,14 @@
           <ScalarProperty Name="Id_Publisher" ColumnName="Id_Publisher" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusOrders">
+      <EntityTypeMapping TypeName="BookStoreModel.StatusOrder">
+        <MappingFragment StoreEntitySet="StatusOrder">
+          <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+          <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

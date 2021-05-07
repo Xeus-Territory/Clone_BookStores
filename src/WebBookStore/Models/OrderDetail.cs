@@ -15,7 +15,7 @@ namespace WebBookStore.Models
     public partial class OrderDetail
     {
         public string id_Book { get; set; }
-        public string id_Order { get; set; }
+        public int id_Order { get; set; }
         public int Quantity { get; set; }
         public Nullable<int> Price { get; set; }
     

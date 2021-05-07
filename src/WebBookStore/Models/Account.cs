@@ -20,17 +20,21 @@ namespace WebBookStore.Models
             this.Orders = new HashSet<Order>();
         }
     
-        public string Id_Customer { get; set; }
+        public int Id_Customer { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public bool Gender { get; set; }
+        public Nullable<bool> Gender { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string Password { get; set; }
         public Nullable<bool> Access { get; set; }
         public string FavoriteCategory { get; set; }
+        public Nullable<bool> ConfirmEmail { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<System.Guid> ActivationCode { get; set; }
+        public string ResetPasswordCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

@@ -34,6 +34,9 @@ body, html {
 .col-3 {
     width: 30%;
 }
+.col-5 {
+    width: 50%;
+}
 
 .row--base {
     display: flex;
@@ -1554,7 +1557,7 @@ header.header-up {
 }
 
 .user-infor-left {
-    width: calc(25% - 2rem);
+    width: calc(22% - 1.5rem);
 }
 
 .user-infor-left__header {
@@ -1632,7 +1635,15 @@ header.header-up {
 }
 
 .user-infor-right {
-    width: calc(75% - 2rem);
+    width: calc(78% - 1.5rem);
+}
+
+.user-infor-right > .user-tab.active {
+    display: block;
+}
+
+.user-infor-right > .user-tab {
+    display: none;
 }
 
 .user-infor-detail {
@@ -1655,6 +1666,56 @@ header.header-up {
     font-size: 1.6rem;
     font-weight: 500;
     color: #666666;
+}
+
+.tab-order .col {
+    padding: 0 0.5rem;
+}
+
+.tab-order-header {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #666666;
+    padding-bottom: 1.5rem;
+    border-bottom: 1.5px solid #f1f1f1;
+}
+
+.tab-order-list {
+    max-height: 50rem;
+    overflow-y: scroll;
+}
+
+.tab-order-list::-webkit-scrollbar {
+    width: 0.6rem;
+}
+   
+.tab-order-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+.tab-order-list::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e;
+    border-radius: 20px
+}
+
+.tab-order-item {
+    padding: 1.5rem 0;
+    border-bottom: 1.5px solid #f1f1f1;
+
+    font-size: 1.4rem;
+    color: #666666;
+}
+
+.tab-order-item > div:last-child {
+    text-align: center;
+}
+
+.tab-order-item-id {
+    color: #1B8BCC;
+}
+
+.tab-order-item .btn {
+    padding: 0.6rem 1.2rem;
 }
 
 /* --------------------------------------MODAL-USER-INFOR------------------------------ */
@@ -1904,7 +1965,7 @@ header.header-up {
 /* ------------------------------------------------PURCHASE-------------------------------------------- */
 .purchase {}
 
-.order-info {
+.purchase .order-info {
     width: 60%;
     height: 100vh;
     padding-top: 6rem;
@@ -1920,7 +1981,7 @@ header.header-up {
     cursor: pointer;
 }
 
-.order-info__item p {
+.purchase .order-info__item p {
     font-size: 2rem;
     font-weight: 300;
     color: #333333;
@@ -2044,16 +2105,20 @@ header.header-up {
 }
 
 .order-total {
+    border-bottom: 1.5px solid #E1E1E1;
+    padding-bottom: 1rem; 
+}
+
+.order-total p {
     width: 90%;
     margin-top: 4rem;
     font-size: 1.8rem;
     justify-content: space-between;
-    padding-bottom: 2rem;
-    border-bottom: 1.5px solid #E1E1E1;
+    padding-bottom: 0.5rem;
 }
 
-.order-total span {
-    font-size: 3rem;
+.order-total p span {
+    font-size: 2.2rem;
     color: #1B8BCC;
 }
 
@@ -2356,4 +2421,208 @@ header.header-up {
     background-color: rgb(173, 11, 11);
 }
 
+
+/* -------------------------------------------------ORDER-DETAIL------------------------------------------------------ */
+.order {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+}
+
+.order-header {
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    font-size: 1.6rem;
+    color: #666666;
+}
+
+.order-header > p:first-child {
+    color: #1B8BCC;
+}
+
+.order-info__item {
+    margin-bottom: 3rem;
+}
+
+.order-info__item > p {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.order-content-box {
+    background-color: white;
+    border: 1px solid #F2F2F2;
+    border-radius: 10px;
+    padding: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #666666;
+    line-height: 2rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px rgba(0,0,0, 0.1);
+}
+
+.order-notify-content {
+    justify-content: space-between;
+}
+
+.order-notify-content > p:first-child {
+    width: 20%;
+}
+
+.order .order-info {
+    justify-content: space-between;
+}
+
+.order .order-info .order-info__item {
+    width: calc(33.33% - 1rem);
+    height: 100%;
+}
+
+.order .order-info .order-info__item h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #373A3B;
+    margin-bottom: 1.5rem;
+}
+
+.order .order-info .order-info__item p {
+    margin-bottom: 1.5rem;
+}
+
+.order-goods-header {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #373737;
+    padding: 1rem 0 2rem;
+    border-bottom: 1.5px solid #F2F2F2;
+}
+
+.order-goods-header > div:last-child {
+    text-align: left;
+}
+
+.order-goods__item {
+    width: 100%;
+    padding: 2rem 0;
+    border-bottom: 1.5px solid #F2F2F2;
+}
+
+.order-goods__item img {
+    width: 6rem;
+}
+
+.order-goods__item > div:last-child {
+    text-align: left;
+}
+
+
+.goods-info {
+    margin-left: 2rem;
+    font-size: 1.4rem;
+}
+
+.goods-info p {
+    line-height: 2rem;
+}
+
+.goods-info a {
+    color: #1B8BCC;
+}
+
+
+.order-finalization {
+    padding-top: 3rem;
+}
+
+.order-finalization > .row--base {
+    margin-left: auto;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+    color: #666666;
+}
+
+.order-finalization > .row--base > span {
+    color: #1B8BCC;
+    text-align: left;
+    margin-left: 10%;
+}
+
+.order-finalization > .row--base:last-child > span {
+    color: rgb(224, 94, 94);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.order-status {
+    margin-bottom: 0;
+}
+
+.order-status .order-content-box  {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.order-status-left {
+    font-size: 1.6rem;
+    width: 30%;
+}
+
+.order-status-right {
+    display: flex;
+    flex-flow: column-reverse wrap;
+    border-left: 1.5px solid #dbdbdb;
+
+    padding: 1rem 0;
+}
+
+.order-status-right .row {
+    font-size: 1.5rem;
+    color: #aaaaaa;
+    margin-bottom: 2rem;
+}
+
+.order-status-right .row:first-child {
+    margin-bottom: 0;
+}
+
+.order-status-right .row:last-child {
+    color: #333333;
+}
+
+.order-status-right .dot{
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background-color: rgb(216, 216, 216);
+    margin-left: 4rem;
+    margin-right: 1rem;
+
+    position: relative;
+}
+
+.order-status-right .dot::before {
+    display: block;
+    content: "";
+    height: 3.5rem;
+    width: 1.5px;
+    background-color: rgb(216, 216, 216);
+
+    position: absolute;
+    top: -3.1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.order-status-right .row:last-child .dot::before {
+    display: none;
+}
+
+.order-status-right .time {
+    margin-right: 1rem;
+}
+
+.order-status-right .row:last-child .dot {
+    background-color: #1B8BCC;
+}
 

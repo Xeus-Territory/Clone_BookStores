@@ -71,9 +71,12 @@
         <div class="subtotal">
             <p class="row">Tất cả: <span>@Model.Count</span></p>
             <p class="row">Tổng tiền: <span>@tongtien VND</span></p>
-            <button class="btn btn-secondary">
-                Thanh toán
-            </button>
+            @using (Html.BeginForm("ViewOrderDetail", "Cart"))
+            {
+                <button class="btn btn-secondary">
+                    Thanh toán
+                </button>
+            }
         </div>
     </div>
     <div class="payment-method">

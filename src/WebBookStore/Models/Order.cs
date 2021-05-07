@@ -14,17 +14,19 @@ namespace WebBookStore.Models
     
     public partial class Order
     {
-        public string Id_Order { get; set; }
-        public string Id_Customer { get; set; }
+        public int Id_Order { get; set; }
+        public int Id_Customer { get; set; }
         public string Note { get; set; }
         public System.DateTime OrderDate { get; set; }
-        public System.DateTime DeliveryDate { get; set; }
+        public Nullable<System.DateTime> DeliveryDate { get; set; }
         public string Paymethod { get; set; }
         public Nullable<System.DateTime> ExpDeliveryDate { get; set; }
         public Nullable<int> Totalbill { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public Nullable<int> Id_Status { get; set; }
+        public string AddressShipping { get; set; }
     
         public virtual Account Account { get; set; }
+        public virtual StatusOrder StatusOrder { get; set; }
         public virtual OrderDetail OrderDetail { get; set; }
     }
 }

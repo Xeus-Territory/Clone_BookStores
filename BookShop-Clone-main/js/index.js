@@ -5,6 +5,16 @@ if(carousel) {
     carousel.setAttribute("style", "padding-top: " + header.offsetHeight + "px");
 }
 
+const userInfo = document.querySelector(".user-infor");
+if(userInfo) {
+    userInfo.setAttribute("style", "padding-top: " + header.offsetHeight*2 + "px");
+}
+
+const order = document.querySelector(".order");
+if(order) {
+    order.setAttribute("style", "padding-top: " + header.offsetHeight*1.5 + "px");
+}
+
 let currentScrollY = 0;
 window.addEventListener("scroll", () => {
     let y = window.scrollY;
@@ -27,7 +37,6 @@ window.addEventListener("scroll", () => {
 const quantitys = document.querySelectorAll(".cart__item-quantity > p");
 const increaseBtns = document.querySelectorAll(".btn.cart-btn-increase");
 const decreaseBtns = document.querySelectorAll(".btn.cart-btn-decrease");
-console.log(increaseBtns)
 for(let i = 0; i < increaseBtns.length; i++) {
     increaseBtns[i].addEventListener("click", () => {
         console.log(i);

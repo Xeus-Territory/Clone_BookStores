@@ -39,7 +39,10 @@
             </div>
             <p class="total">Total: <span>@ViewBag.TotalPrice VND</span></p>
             <div class="cart__detail-ctrl row">
-                <button class="btn btn-secondary">Thanh Toán</button>
+                @using (Html.BeginForm("ViewOrderDetail", "Cart"))
+                {
+                    <button class="btn btn-secondary">Thanh Toán</button>
+                }
                 @using (Html.BeginForm("ClearAllCart", "Cart", new { @Strurl = Request.Url.ToString() }))
                 {
                     <button class="btn btn-danger">Xóa tất cả</button>

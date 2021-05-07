@@ -4,22 +4,26 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BookStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BookStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="Id_Customer" />
           </Key>
-          <Property Name="Id_Customer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Customer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="bit" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserName" Type="nchar" MaxLength="100" Nullable="false" />
-          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Access" Type="bit" />
           <Property Name="FavoriteCategory" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConfirmEmail" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" />
+          <Property Name="ResetPasswordCode" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Author">
           <Key>
@@ -69,22 +73,23 @@
           <Key>
             <PropertyRef Name="Id_Order" />
           </Key>
-          <Property Name="Id_Order" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Id_Customer" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Note" Type="text" Nullable="false" />
+          <Property Name="Id_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Customer" Type="int" Nullable="false" />
+          <Property Name="Note" Type="text" />
           <Property Name="OrderDate" Type="datetime" Nullable="false" />
-          <Property Name="DeliveryDate" Type="datetime" Nullable="false" />
+          <Property Name="DeliveryDate" Type="datetime" />
           <Property Name="Paymethod" Type="nvarchar" MaxLength="100" />
           <Property Name="ExpDeliveryDate" Type="datetime" />
           <Property Name="Totalbill" Type="int" />
-          <Property Name="Status" Type="bit" />
+          <Property Name="Id_Status" Type="int" />
+          <Property Name="AddressShipping" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
             <PropertyRef Name="id_Order" />
           </Key>
           <Property Name="id_Book" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="id_Order" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_Order" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" />
         </EntityType>
@@ -95,6 +100,13 @@
           <Property Name="Id_Publisher" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="StatusOrder">
+          <Key>
+            <PropertyRef Name="Id_Status" />
+          </Key>
+          <Property Name="Id_Status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusDetail" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Book_Author">
           <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
@@ -153,6 +165,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="Id_Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_StatusOrder">
+          <End Role="StatusOrder" Type="Self.StatusOrder" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOrder">
+              <PropertyRef Name="Id_Status" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Id_Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -189,6 +213,7 @@
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusOrder" EntityType="Self.StatusOrder" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
             <End Role="Author" EntitySet="Author" />
             <End Role="Book" EntitySet="Book" />
@@ -209,6 +234,10 @@
             <End Role="Account" EntitySet="Account" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_StatusOrder" Association="Self.FK_Order_StatusOrder">
+            <End Role="StatusOrder" EntitySet="StatusOrder" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Book" Association="Self.FK_OrderDetail_Book">
             <End Role="Book" EntitySet="Book" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
@@ -218,7 +247,8 @@
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BookStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -226,17 +256,21 @@
           <Key>
             <PropertyRef Name="Id_Customer" />
           </Key>
-          <Property Name="Id_Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_Customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Access" Type="Boolean" />
           <Property Name="FavoriteCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConfirmEmail" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ActivationCode" Type="Guid" />
+          <Property Name="ResetPasswordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Account" FromRole="Account" ToRole="Order" />
         </EntityType>
         <EntityType Name="Author">
@@ -263,13 +297,13 @@
           <Property Name="Condition" Type="Boolean" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="Id_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountView" Type="Int32" />
+          <Property Name="DateExpUpdate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Author" Relationship="Self.FK_Book_Author" FromRole="Book" ToRole="Author" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Book_Category" FromRole="Book" ToRole="Category" />
           <NavigationProperty Name="Publisher" Relationship="Self.FK_Book_Publisher" FromRole="Book" ToRole="Publisher" />
           <NavigationProperty Name="Discounts" Relationship="Self.FK_Discount_Book" FromRole="Book" ToRole="Discount" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Book" FromRole="Book" ToRole="OrderDetail" />
-          <Property Name="CountView" Type="Int32" />
-          <Property Name="DateExpUpdate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -295,16 +329,18 @@
           <Key>
             <PropertyRef Name="Id_Order" />
           </Key>
-          <Property Name="Id_Order" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Id_Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Customer" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
           <Property Name="Paymethod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ExpDeliveryDate" Type="DateTime" Precision="3" />
           <Property Name="Totalbill" Type="Int32" />
-          <Property Name="Status" Type="Boolean" />
+          <Property Name="Id_Status" Type="Int32" />
+          <Property Name="AddressShipping" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Order_Account" FromRole="Order" ToRole="Account" />
+          <NavigationProperty Name="StatusOrder" Relationship="Self.FK_Order_StatusOrder" FromRole="Order" ToRole="StatusOrder" />
           <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="OrderDetail">
@@ -312,7 +348,7 @@
             <PropertyRef Name="id_Order" />
           </Key>
           <Property Name="id_Book" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="id_Order" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_Order" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" />
           <NavigationProperty Name="Book" Relationship="Self.FK_OrderDetail_Book" FromRole="OrderDetail" ToRole="Book" />
@@ -326,6 +362,14 @@
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Books" Relationship="Self.FK_Book_Publisher" FromRole="Publisher" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="StatusOrder">
+          <Key>
+            <PropertyRef Name="Id_Status" />
+          </Key>
+          <Property Name="Id_Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_StatusOrder" FromRole="StatusOrder" ToRole="Order" />
         </EntityType>
         <Association Name="FK_Order_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="1" />
@@ -399,6 +443,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_StatusOrder">
+          <End Role="StatusOrder" Type="Self.StatusOrder" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOrder">
+              <PropertyRef Name="Id_Status" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Id_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderDetail_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="0..1" />
@@ -420,6 +476,7 @@
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Publishers" EntityType="Self.Publisher" />
+          <EntitySet Name="StatusOrders" EntityType="Self.StatusOrder" />
           <AssociationSet Name="FK_Order_Account" Association="Self.FK_Order_Account">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Order" EntitySet="Orders" />
@@ -443,6 +500,10 @@
           <AssociationSet Name="FK_OrderDetail_Book" Association="Self.FK_OrderDetail_Book">
             <End Role="Book" EntitySet="Books" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_StatusOrder" Association="Self.FK_Order_StatusOrder">
+            <End Role="StatusOrder" EntitySet="StatusOrders" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
             <End Role="Order" EntitySet="Orders" />
@@ -469,6 +530,10 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Access" ColumnName="Access" />
                 <ScalarProperty Name="FavoriteCategory" ColumnName="FavoriteCategory" />
+                <ScalarProperty Name="ConfirmEmail" ColumnName="ConfirmEmail" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -484,8 +549,6 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="BookStoreModel.Book">
               <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="DateExpUpdate" ColumnName="DateExpUpdate" />
-                <ScalarProperty Name="CountView" ColumnName="CountView" />
                 <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -497,6 +560,8 @@
                 <ScalarProperty Name="Condition" ColumnName="Condition" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Id_Category" ColumnName="Id_Category" />
+                <ScalarProperty Name="CountView" ColumnName="CountView" />
+                <ScalarProperty Name="DateExpUpdate" ColumnName="DateExpUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -531,7 +596,8 @@
                 <ScalarProperty Name="Paymethod" ColumnName="Paymethod" />
                 <ScalarProperty Name="ExpDeliveryDate" ColumnName="ExpDeliveryDate" />
                 <ScalarProperty Name="Totalbill" ColumnName="Totalbill" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+                <ScalarProperty Name="AddressShipping" ColumnName="AddressShipping" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -551,6 +617,14 @@
                 <ScalarProperty Name="Id_Publisher" ColumnName="Id_Publisher" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusOrders">
+            <EntityTypeMapping TypeName="BookStoreModel.StatusOrder">
+              <MappingFragment StoreEntitySet="StatusOrder">
+                <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

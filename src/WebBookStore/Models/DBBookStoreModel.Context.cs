@@ -33,5 +33,6 @@ namespace WebBookStore.Models
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Publisher> Publishers { get; set; }
+        public virtual DbSet<StatusOrder> StatusOrders { get; set; }
     }
 }

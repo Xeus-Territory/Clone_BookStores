@@ -1,15 +1,5 @@
 // ------------------------------KICH HOAT MODAL CHO TRANG USER
 
-const ctrlItems = document.querySelectorAll(".user-ctrl__item");
-if(ctrlItems) {
-    for (let i = 0; i < ctrlItems.length; i++) {
-        ctrlItems[i].addEventListener("click", function () {
-            document.querySelector(".user-ctrl__item.active").classList.remove("active");
-            this.classList.add("active");
-        })
-    }
-}
-
 const ctrlItemEdit = document.querySelector(".user-ctrl__item.edit");
 if(ctrlItemEdit) {
     ctrlItemEdit.addEventListener("click", function () {
@@ -59,7 +49,13 @@ function close() {
     document.querySelector(".modal-user-infor.open").classList.remove("open")
     if(ctrlItems.length) {
         document.querySelector(".user-ctrl__item.edit").classList.remove("active")
-        ctrlItems[0].classList.add("active");
+        const ctrlItems = document.querySelectorAll(".user-ctrl__item");
+        const tabActive = document.querySelector(".user-tab.active");
+        ctrlItems.forEach(ctrlItem => {
+            if(ctrlItem.getAttribute("data-tab") == tabActive.getAttribute("data-content")) {
+                ctrlItem.classList.add("active");
+            }
+        });
     }
 
 }

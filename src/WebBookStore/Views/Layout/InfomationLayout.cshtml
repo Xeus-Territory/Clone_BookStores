@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link href="~/Asset/style/reset.css" rel="stylesheet" />
+    <!-- STYLES -->
+    <link href="~/Asset/style/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- MODAL -->
+    <div class="modal-user-infor">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="form-container modal">
+                <div class="modal-header row--base">
+                    <h2>Edit Information</h2>
+                    <span class="close"><i class="fa fa-times"></i></span>
+                </div>
+                <div class="form-login ">
+                    <div class="form-group row">
+                        <p>User name</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Password</p>
+                        <input class="form__input" type="password" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Password</p>
+                        <input class="form__input" type="password" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Password</p>
+                        <input class="form__input" type="password" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Password</p>
+                        <input class="form__input" type="password" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Password</p>
+                        <input class="form__input" type="password" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Password</p>
+                        <input class="form__input" type="password" />
+                    </div>
+                    <div class="modal-ctrl row">
+                        <p class="close">Cancel</p>
+                        <button class="btn ctrl--add-to-cart">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="header-content row">
+                <div class="header-left row">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Asset/img/logo.png" />
+                    </a>
+                    <div class="categories">
+                        <i class="fa fa-list-ul"></i>
+                        <span>Thể loại</span>
+                        <div class="categories-content row">
+                            <ul class="categories-item">
+                                <h5>Tất cả thể loại</h5>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 1 })">Công nghệ thông tin</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 10 })">Văn Học</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 11 })">Tôn Giáo</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 12 })">Truyện Tranh</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 13 })">Từ Điển Ngoại Ngữ</a>
+                                </li>
+                            </ul>
+                            <ul class="categories-item">
+                                <h5>Tất cả thể loại</h5>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 14 })">Y Học</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 2 })">Khoa Học Kĩ Thuật</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 3 })">Giáo Khoa</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 4 })">Kiến Thức</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 5 })">Kĩ Năng</a>
+                                </li>
+                            </ul>
+                            <ul class="categories-item">
+                                <h5>Tất cả thể loại</h5>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 6 })">Kinh Tế</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 7 })">Lịch Sử Địa Lý</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 8 })">Sách Tham Khảo</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BookByCategory", "Category" ,new { @id_category = 9 })">Sách Thiếu Nhi</a>
+                                </li>
+                            </ul>
+                            <div class="categories-item">
+                                <h5>Ảnh Banner</h5>
+                                <img src="~/Asset/img/categories-img.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-mid">
+                    <form method="get" class="header-search row" action="~/Searching/ResultSearchingInLayoutSearching">
+                        <i class="fa fa-search"></i>
+                        <input type="text" name="Keyword" placeholder="Tìm kiếm">
+                        <button type="submit" class="btn-search"></button>
+                    </form>
+                </div>
+                <div class="header-right row">
+                    <div class="cart">
+                        <a href="@Url.Action("ViewCart", "Cart")">
+                            <i class="fa fa-shopping-cart cart"></i>
+                        </a>
+                        @Html.Action("PartialCart", "Cart")
+                    </div>
+                    <div class="login-status">
+                        @Html.Action("PartialLogin", "Login")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- USER-INFOR -->
+    <section class="user-infor">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="footer">
+        <div class="container">
+            <div class="mailling">
+                <div class="mailling-content">
+                    <h3>
+                        Đăng ký thông báo mới
+                    </h3>
+                    <div class="form-group row">
+                        <input type="text" placeholder="Enter yout e-mail address">
+                        <button class="btn">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content row">
+                <div class="footer-item">
+                    <h5><img src="~/Asset/img/logo-white.png" /></h5>
+                    <p>
+                        BookStore
+                    </p>
+                    <a href="">Thông tin về trang web</a>
+                </div>
+                <div class="footer-item">
+                    <h5 class="row">
+                        <img src="~/Asset/img/icon-7webp.png" />
+                        Văn phòng cửa hàng chính
+                    </h5>
+                    <p>San Francisco, California, US P.O. BOX: 553204</p>
+                    <p>Số điện thoại: (+1) 998 3384</p>
+                    <p>Mail: admin@bookshop.com</p>
+                </div>
+                <div class="footer-item">
+                    <h5 class="row">
+                        <img src="~/Asset/img/icon-8.png" />
+                        Địa chỉ Facebook
+                    </h5>
+
+                    <ul>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-item">
+                    <h5 class="row">
+                        <img src="~/Asset/img/icon-8.png" />
+                        Thông tin
+                    </h5>
+                    <ul>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <script src="~/Asset/js/index.js"></script>
+    <script src="~/Asset/js/Modal.js" type="text/javascript"></script>
+    <script src="~/Asset/js/User.js"></script>
+</body>
+</html>

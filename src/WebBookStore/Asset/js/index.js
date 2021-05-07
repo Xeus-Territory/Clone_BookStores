@@ -10,6 +10,16 @@ if (search) {
     search.setAttribute("style", "padding-top: " + header.offsetHeight*2 + "px");
 }
 
+const userInfo = document.querySelector(".user-infor");
+if (userInfo) {
+    userInfo.setAttribute("style", "padding-top: " + header.offsetHeight * 2 + "px");
+}
+
+const order = document.querySelector(".order");
+if (order) {
+    order.setAttribute("style", "padding-top: " + header.offsetHeight * 1.5 + "px");
+}
+
 const shoppingCart = document.querySelector(".shopping-cart");
 if (shoppingCart) {
     shoppingCart.setAttribute("style", "padding-top: " + header.offsetHeight*1.5 + "px");
@@ -52,9 +62,6 @@ for (let i = 0; i < increaseBtns.length; i++) {
         }
     })
 }
-
-
-
 
 // -------------------------PRODUCT-ITEM-----------------------------
 

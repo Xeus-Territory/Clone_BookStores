@@ -1,0 +1,70 @@
+﻿@using WebBookStore.Models;
+@model Account
+
+@{
+    Layout = "~/Views/Layout/InfomationLayout.cshtml";
+}
+
+<div class="user-infor-content row--base">
+    <div class="user-infor-left">
+        <div class="user-infor-left__header">
+
+            <div class="avartar">
+                <img src="https://ui-avatars.com/api/?name=@Model.Name&background=random">
+            </div>
+            <h4>@Model.Name</h4>
+            <p>Customer</p>
+        </div>
+        <ul class="user-ctrl">
+            <li class="user-ctrl__item active">
+                <p>Thông tin</p>
+            </li>
+
+            <a href="@Url.Action("Edit", "User")">
+                <li class="user-ctrl__item ">
+                    <p>Sửa thông tin</p>
+                </li>
+            </a>
+            <li class="user-ctrl__item">
+                <p>Quản lí đơn hàng</p>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="user-infor-right">
+        <div class="user-infor-detail">
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(model => model.Id_Customer)
+
+                <div class="user-infor-detail__item row--base">
+                    <p>Name:</p>
+                    <span>@Html.DisplayTextFor(model => model.Name) </span>
+                </div>
+                <div class="user-infor-detail__item row--base">
+                    <p>Email:</p>
+                    <span>@Html.DisplayTextFor(model => model.Email)</span>
+                </div>
+                <div class="user-infor-detail__item row--base">
+                    <p>Phone Number:</p>
+                    <span>@Html.DisplayTextFor(model => model.Phone)</span>
+                </div>
+                <div class="user-infor-detail__item row--base">
+                    <p>Address:</p>
+                    <span>@Html.DisplayTextFor(model => model.Address)</span>
+                </div>
+                <div class="user-infor-detail__item row--base">
+                    <p>Favourite:</p>
+                    <span>@Html.DisplayTextFor(model => model.FavoriteCategory)</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+       
+
+   

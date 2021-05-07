@@ -130,13 +130,17 @@
     <Content Include="Asset\js\detail.js" />
     <Content Include="Asset\js\index.js" />
     <Content Include="Asset\js\login.js" />
+    <Content Include="Asset\js\Modal.js" />
+    <Content Include="Asset\js\order.js" />
+    <Content Include="Asset\js\tab-admin.js" />
+    <Content Include="Asset\js\User.js" />
     <Content Include="Asset\style\reset.css" />
     <Content Include="Asset\style\style.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\DBBookStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBBookStoreModel.Context.cs</LastGenOutput>
       <DependentUpon>DBBookStoreModel.edmx</DependentUpon>
+      <LastGenOutput>DBBookStoreModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\DBBookStoreModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -147,25 +151,28 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\SearchingController.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\Author.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Book.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Common\CommonConstant.cs" />
+    <Compile Include="Common\Encryptor.cs" />
+    <Compile Include="Common\UserLogin.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\SearchingController.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\DBBookStoreModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -184,9 +191,15 @@
     <Compile Include="Models\Discount.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
+    <Compile Include="Models\UserDao.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
@@ -195,6 +208,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Publisher.cs">
+      <DependentUpon>DBBookStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatusOrder.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -239,6 +255,16 @@
     <Content Include="Views\Book\RandomBook.cshtml" />
     <Content Include="Views\Book\CountViewBook.cshtml" />
     <Content Include="Views\Book\DateExpUpdate.cshtml" />
+    <Content Include="Views\Layout\LogRegLayout.cshtml" />
+    <Content Include="Views\Layout\PurchaseLayout.cshtml" />
+    <Content Include="Views\Cart\ViewOrderDetail.cshtml" />
+    <Content Include="Views\Cart\GetDiscount.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\PartialLogin.cshtml" />
+    <Content Include="Views\Layout\InfomationLayout.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

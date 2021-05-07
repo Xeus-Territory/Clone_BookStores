@@ -1,0 +1,39 @@
+﻿@using WebBookStore.Models;
+@model List<Cart>
+
+
+@{
+    Layout = "~/Views/Layout/PurchaseLayout.cshtml";
+}
+<div class="order__list">
+    @{
+        foreach (var item in Model)
+        {
+            <div class="order__item row">
+                <div class="order__item-img">
+                    <img src="@item.sImages" alt="">
+                    <span>@item.sQuantity</span>
+                </div>
+                <h3 class="name">@item.sTitle</h3>
+                <p class="order__item-price">
+                    @item.Total VND
+                </p>
+            </div>
+        }
+    }
+</div>
+@using (Html.BeginForm("GetDiscount", "Cart", new { @Strurl = Request.Url.ToString() }))
+{
+    <div class="order-discount row">
+        <input type="text" name="discount" placeholder="Mã giảm giá">
+        <button class="btn btn-secondary">Apply</button>
+    </div>
+}
+<div class="order-total">
+    @{
+        <p class="row">Tổng tiền: <span>@ViewBag.TotalPrice VND</span></p>
+        <p class="row">Giảm giá: <span>@ViewBag.Discount%</span></p>
+        <p class="row">Thành tiền: <span>@ViewBag.AccessMoney VND</span></p>
+    }
+</div>
+<img src="~/Asset/img/payment-method.png" />

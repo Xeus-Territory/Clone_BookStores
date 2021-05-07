@@ -1,0 +1,79 @@
+﻿@using WebBookStore.Models
+@model Account
+@{
+    Layout = "~/Views/Layout/InfomationLayout.cshtml";
+}
+<section class="login-register">
+    <div class="form-container row--base">
+        <div class="form-login">
+
+            @using (Html.BeginForm("Edit", "User", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "wrong-input" })
+
+                @Html.HiddenFor(model => model.Id_Customer, new { @class = "form__input" })
+
+                @Html.HiddenFor(model => model.ActivationCode, new { @class = "form__input" })
+
+                @Html.HiddenFor(model => model.Access, new { @class = "form__input" })
+
+                @Html.HiddenFor(model => model.CreatedDate, new { @class = "form__input" })
+
+                @Html.HiddenFor(model => model.ConfirmEmail, new { @class = "form__input" })
+
+                @Html.HiddenFor(model => model.ResetPasswordCode, new { @class = "form__input" })
+
+                @Html.HiddenFor(model => model.UserName, new { @class = "form__input" })
+
+                @Html.HiddenFor(model => model.Password, new { @class = "form__input" })
+
+
+                <div class="form-group">
+                    <p>Họ tên</p>
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form__input", @disabled = "disabled" })
+                </div>
+
+                <div class="form-group">
+                    <p>Email</p>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form__input", @disabled = "disabled" })
+                </div>
+
+                <div class="form-group">
+                    <p>Địa chỉ</p>
+                    @Html.TextBoxFor(model => model.Address, new { @class = "form__input" })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "wrong-input" })
+                </div>
+
+
+                <div class="form-group">
+                    <p>Số điện thoại</p>
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form__input", })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "wrong-input" })
+
+                </div>
+                <div class="form-group">
+                    <p>Sở thích</p>
+                    @Html.TextBoxFor(model => model.FavoriteCategory, new { @class = "form__input" })
+                    @Html.ValidationMessageFor(model => model.FavoriteCategory, "", new { @class = "wrong-input" })
+
+                </div>
+
+                <div class="modal-ctrl row">
+                    <button class="btn ctrl--add-to-cart" type="submit" href="Index">
+                        <a href="@Url.Action("Index", "User")">
+                            Trở về
+                        </a>
+                    </button>
+                    <button class="btn ctrl--add-to-cart" type="submit">Cập nhật</button>
+                </div>
+            }
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.Message
+                </div>
+            }
+        </div>
+        </div>
+</section>

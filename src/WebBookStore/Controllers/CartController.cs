@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebBookStore.Common;
 using WebBookStore.Models;
 
 namespace WebBookStore.Controllers
@@ -11,6 +12,7 @@ namespace WebBookStore.Controllers
     {
         BookStoreEntities db = new BookStoreEntities();
         // GET: Session Cart
+        #region Giỏ hàng
         public List<Cart> TakeCartToView()
         {
             List<Cart> listcart = Session["Cart"] as List<Cart>;
@@ -160,6 +162,77 @@ namespace WebBookStore.Controllers
         {
             ClearAll();
             return Redirect(Strurl);
-        }    
+        }
+        #endregion
+        [HttpPost]
+        public ActionResult ViewOrderDetail()
+        {
+            //Kiểm tra đăng nhập
+            if (Session[CommonConstant.USER_SESSION] == null || Session[CommonConstant.USER_SESSION].ToString() == "")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            //Kiểm tra giỏ hàng
+            List<Cart> listCart = Session["Cart"] as List<Cart>;
+            if (listCart.Count == 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.TotalPrice = TotalPrice();
+            return View(listCart);
+        }
+        public ActionResult GetDiscount(string Strurl, FormCollection f)
+        {
+            int total = 0;
+            List<Cart> listCart = Session["Cart"] as List<Cart>;
+            List<Discount> listdiscount = db.Discounts.ToList();
+            foreach (var item in listCart)
+            {
+                foreach (var i in listdiscount)
+                {
+                    if (f["discount"].ToString() == i.id_Discount && item.sID_Book == i.id_Book)
+                    {
+                        total += (item.sPrice - (item.sPrice * (int.Parse(i.DiscountDetail))) / 100);
+                        ViewBag.Discount = i.DiscountDetail;
+                    }
+                    else
+                    {
+                        if (f["discount"].ToString() != i.id_Discount)
+                        {
+                            total += 0;
+                        }
+                        else
+                        {
+                            total += item.sPrice;
+                        }
+                    }
+                }
+            }
+            ViewBag.TotalPrice = TotalPrice();
+            ViewBag.AccessMoney = total;
+            return View(listCart);
+        }
+        public ActionResult OrderCart(FormCollection f)
+        {
+            Order order = new Order();
+            List<Cart> listCart = TakeCartToView();
+            Account acc = (Account)Session[CommonConstant.USER_SESSION];
+            order.Id_Customer = acc.Id_Customer;
+            order.OrderDate = DateTime.Now;
+            order.Totalbill = TotalPrice();
+            order.AddressShipping = f["Address"].ToString() + ", " + f["City"].ToString();
+            //Add don hang vao de co id don hang
+            db.Orders.Add(order);
+            //Them chi tiet don hang
+            foreach (var item in listCart)
+            {
+                OrderDetail detail = new OrderDetail();
+                detail.id_Order = order.Id_Order;
+                detail.id_Book = item.sID_Book;
+                detail.Quantity = item.sQuantity;
+                detail.Price = item.Total;
+            }
+            return View();
+        }
     }
 }
