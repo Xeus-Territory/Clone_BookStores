@@ -89,6 +89,8 @@
     <EntitySetMapping Name="OrderDetails">
       <EntityTypeMapping TypeName="BookStoreModel.OrderDetail">
         <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="Id_Detail" ColumnName="Id_Detail" />
           <ScalarProperty Name="id_Book" ColumnName="id_Book" />
           <ScalarProperty Name="id_Order" ColumnName="id_Order" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />

@@ -19,6 +19,26 @@ body, html {
     align-items: center;
 }
 
+.col-1 {
+    width: 10%;
+}
+
+.col-3-2 {
+    width: 15%;
+}
+
+.col-2 {
+    width: 20%;
+}
+
+.col-3 {
+    width: 30%;
+}
+
+.col-5 {
+    width: 50%;
+}
+
 .row--base {
     display: flex;
     align-items: flex-start;
@@ -1530,7 +1550,7 @@ header {
 }
 
 .user-infor-left {
-    width: calc(25% - 2rem);
+    width: calc(22% - 1.5rem);
 }
 
 .user-infor-left__header {
@@ -1600,8 +1620,16 @@ header {
     }
 
 .user-infor-right {
-    width: calc(75% - 2rem);
+    width: calc(78% - 1.5rem);
 }
+
+    .user-infor-right > .user-tab.active {
+        display: block;
+    }
+
+    .user-infor-right > .user-tab {
+        display: none;
+    }
 
 .user-infor-detail {
     width: 50%;
@@ -1624,6 +1652,54 @@ header {
         color: #666666;
     }
 
+.tab-order .col {
+    padding: 0 0.5rem;
+}
+
+.tab-order-header {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #666666;
+    padding-bottom: 1.5rem;
+    border-bottom: 1.5px solid #f1f1f1;
+}
+
+.tab-order-list {
+    max-height: 50rem;
+    overflow-y: scroll;
+}
+
+    .tab-order-list::-webkit-scrollbar {
+        width: 0.6rem;
+    }
+
+    .tab-order-list::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .tab-order-list::-webkit-scrollbar-thumb {
+        background-color: #9e9e9e;
+        border-radius: 20px
+    }
+
+.tab-order-item {
+    padding: 1.5rem 0;
+    border-bottom: 1.5px solid #f1f1f1;
+    font-size: 1.4rem;
+    color: #666666;
+}
+
+    .tab-order-item > div:last-child {
+        text-align: center;
+    }
+
+.tab-order-item-id {
+    color: #1B8BCC;
+}
+
+.tab-order-item .btn {
+    padding: 0.6rem 1.2rem;
+}
 /* --------------------------------------MODAL-USER-INFOR------------------------------ */
 .modal-user-infor.open {
     position: absolute;

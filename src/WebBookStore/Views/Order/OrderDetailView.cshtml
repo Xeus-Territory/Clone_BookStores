@@ -1,0 +1,107 @@
+﻿@using WebBookStore.Models;
+@using System;
+@model List<OrderDetail>
+
+@{
+    Layout = "~/Views/Layout/OrderDetailLayout.cshtml";
+}
+
+<div class="order-header row">
+    <p>Xem hóa đơn</p>
+    <p>Ngày đặt hàng: @ViewBag.TimeOrderDate @ViewBag.DayOrderDate/@ViewBag.MonthOrderDate/@ViewBag.YearOrderDate</p>
+</div>
+<div class="order-info__item order-notify">
+    <p>THÔNG BÁO</p>
+    <div class="order-content-box order-notify-content row--base">
+        <p> @ViewBag.TimeNotify </p>
+        <p>
+            Đơn hàng @ViewBag.OrderID đã sẵn sàng giao đến quý khách. Chúng tôi vừa bàn giao đơn hàng
+            của quy khác cho đơn vị vận chuẩn. Đơn hàng sẽ được giao @ViewBag.TimeExdeliveryDate @ViewBag.DayExdeliveryDate/@ViewBag.MonthExdeliveryDate/@ViewBag.YearExdeliveryDate
+        </p>
+    </div>
+</div>
+<div class="order-info row--base">
+    <div class="order-info__item">
+        <p>ĐỊA CHỈ NGƯỜI NHẬN</p>
+        <div class="order-content-box">
+            <h4>@ViewBag.Name</h4>
+            <p>
+                Địa chỉ: @ViewBag.AddressShipping
+            </p>
+            <p>Dien thoai: @ViewBag.Phone</p>
+        </div>
+    </div>
+    <div class="order-info__item">
+        <p>HÌNH THỨC GIAO HÀNG</p>
+        <div class="order-content-box">
+            <p>Giao trước @ViewBag.TimeExdeliveryDate Ngày @ViewBag.DayExdeliveryDate/@ViewBag.MonthExdeliveryDate/@ViewBag.YearExdeliveryDate
+</div>
+    </div>
+    <div class="order-info__item">
+        <p>HÌNH THỨC THANH TOÁN</p>
+        <div class="order-content-box">
+            <p>@ViewBag.PayMethod</p>
+        </div>
+    </div>
+</div>
+<div class="order-info__item order-content-box order-goods">
+    <div class="order-goods-header row--base">
+        <div class="col-5">Sản phẩm</div>
+        <div class="col-3-2">Số lượng</div>
+        <div class="col-3-2">Đơn giá</div>
+        <div class="col-2">Thành tiền</div>
+    </div>
+    @{
+        foreach (var item in Model)
+        {
+            <div class="order-goods-detail">
+                <div class="order-goods__item row--base">
+                    <div class="col-5 row--base">
+                        <img src="@item.Book.Images" alt="">
+                        <div class="goods-info">
+                            <p>@item.Book.Title</p>
+                            <a href="@Url.Action("DetailBook", "Book", new { @idbook = item.id_Book})">Xem sản phẩm</a>
+                        </div>
+                    </div>
+                    <div class="col-3-2">@item.Quantity</div>
+                    <div class="col-3-2">@item.Book.Price VND</div>
+                    <div class="col-2">@item.Price VND</div>
+                </div>
+            </div>
+        }
+    }
+    <div class="order-finalization">
+        <p class="row--base">Tạm tính: <span class="col-2">@ViewBag.Total VND</span></p>
+        <p class="row--base">Phí vận chuyển: <span class="col-2">@ViewBag.ShippingTax VND</span></p>
+        <p class="row--base">Tổng cộng: <span class="col-2">@ViewBag.AllPrice VND</span></p>
+    </div>
+</div>
+<div class="order-info__item order-status">
+    <p>TRẠNG THÁI ĐƠN HÀNG</p>
+    <div class="order-content-box">
+        <div class="row--base">
+            <div class="order-status-left">
+                <p>Mã đơn hàng: @ViewBag.OrderID</p>
+            </div>
+            <div class="order-status-right">
+                <p class="row">
+                    <span class="dot"></span>
+                    <span class="time">12:18 01-02-2021</span>
+                    <span class="status">Dang chuan bi don hang</span>
+                </p>
+                <p class="row">
+                    <span class="dot"></span>
+                    <span class="time">12:18 01-02-2021</span>
+                    <span class="status">Dang giao hang</span>
+                </p>
+                <p class="row">
+                    <span class="dot"></span>
+                    <span class="time">12:18 01-02-2021</span>
+                    <span class="status">Giao hang thanh cong</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

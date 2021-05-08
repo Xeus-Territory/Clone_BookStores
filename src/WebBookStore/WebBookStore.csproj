@@ -170,6 +170,7 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Common\CommonConstant.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\UserLogin.cs" />
@@ -274,6 +275,9 @@
     <Content Include="Views\Cart\GetDiscount.cshtml" />
     <Content Include="Views\Layout\RespondLayout.cshtml" />
     <Content Include="Views\Cart\OrderCart.cshtml" />
+    <Content Include="Views\Layout\OrderDetailLayout.cshtml" />
+    <Content Include="Views\Order\GetOrderByAcc.cshtml" />
+    <Content Include="Views\Order\OrderDetailView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

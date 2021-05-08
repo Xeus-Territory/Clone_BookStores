@@ -89,18 +89,20 @@
     <Property Name="AddressShipping" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Account" Relationship="Self.FK_Order_Account" FromRole="Order" ToRole="Account" />
     <NavigationProperty Name="StatusOrder" Relationship="Self.FK_Order_StatusOrder" FromRole="Order" ToRole="StatusOrder" />
-    <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
   </EntityType>
   <EntityType Name="OrderDetail">
     <Key>
-      <PropertyRef Name="id_Order" />
+      <PropertyRef Name="Id_Detail" />
     </Key>
+    <Property Name="Id_Detail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_Book" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="id_Order" Type="Int32" Nullable="false" />
     <Property Name="Quantity" Type="Int32" Nullable="false" />
     <Property Name="Price" Type="Int32" />
     <NavigationProperty Name="Book" Relationship="Self.FK_OrderDetail_Book" FromRole="OrderDetail" ToRole="Book" />
     <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+    <Property Name="TotalPrice" Type="Int32" />
   </EntityType>
   <EntityType Name="Publisher">
     <Key>
@@ -205,7 +207,7 @@
   </Association>
   <Association Name="FK_OrderDetail_Order">
     <End Role="Order" Type="Self.Order" Multiplicity="1" />
-    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Order">
         <PropertyRef Name="Id_Order" />

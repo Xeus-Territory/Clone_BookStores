@@ -16,16 +16,13 @@
             <p>Customer</p>
         </div>
         <ul class="user-ctrl">
-            <li class="user-ctrl__item active">
+            <li data-tab="info" class="user-ctrl__item active">
                 <p>Thông tin</p>
             </li>
-
-            <a href="@Url.Action("Edit", "User")">
-                <li class="user-ctrl__item ">
-                    <p>Sửa thông tin</p>
-                </li>
-            </a>
-            <li class="user-ctrl__item">
+            <li class="user-ctrl__item ">
+                <a href="@Url.Action("Edit", "User")"><p>Sửa thông tin</p></a>
+            </li>
+            <li data-tab="order" class="user-ctrl__item">
                 <p>Quản lí đơn hàng</p>
             </li>
         </ul>
@@ -33,13 +30,13 @@
 
 
     <div class="user-infor-right">
-        <div class="user-infor-detail">
+        <div data-cotent="info" class="user-infor-detail user-tab tab-info active">
             @using (Html.BeginForm())
             {
                 @Html.HiddenFor(model => model.Id_Customer)
 
                 <div class="user-infor-detail__item row--base">
-                    <p>Name:</p>
+                    <p>Tên người dùng:</p>
                     <span>@Html.DisplayTextFor(model => model.Name) </span>
                 </div>
                 <div class="user-infor-detail__item row--base">
@@ -47,24 +44,35 @@
                     <span>@Html.DisplayTextFor(model => model.Email)</span>
                 </div>
                 <div class="user-infor-detail__item row--base">
-                    <p>Phone Number:</p>
+                    <p>Số điện thoại:</p>
                     <span>@Html.DisplayTextFor(model => model.Phone)</span>
                 </div>
                 <div class="user-infor-detail__item row--base">
-                    <p>Address:</p>
+                    <p>Địa chỉ:</p>
                     <span>@Html.DisplayTextFor(model => model.Address)</span>
                 </div>
                 <div class="user-infor-detail__item row--base">
-                    <p>Favourite:</p>
+                    <p>Sở thích:</p>
                     <span>@Html.DisplayTextFor(model => model.FavoriteCategory)</span>
                 </div>
             }
+        </div>
+        <div data-content="order" class="user-tab tab-order">
+            <div class="row tab-order-header">
+                <div class="col-3-2">ID_Order</div>
+                <div class="col-3-2">Ngày mua</div>
+                <div class="col-3">Địa chỉ giao hàng</div>
+                <div class="col-3-2">Tổng tiền</div>
+                <div class="col-3-2">Trạng thái</div>
+                <div class="col-1"></div>
+            </div>
+            @Html.Action("GetOrderByAcc", "Order")
         </div>
     </div>
 </div>
 
 
 
-       
 
-   
+
+

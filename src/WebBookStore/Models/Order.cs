@@ -14,6 +14,12 @@ namespace WebBookStore.Models
     
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
+    
         public int Id_Order { get; set; }
         public int Id_Customer { get; set; }
         public string Note { get; set; }
@@ -27,6 +33,7 @@ namespace WebBookStore.Models
     
         public virtual Account Account { get; set; }
         public virtual StatusOrder StatusOrder { get; set; }
-        public virtual OrderDetail OrderDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
