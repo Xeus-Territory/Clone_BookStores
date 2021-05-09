@@ -17,8 +17,7 @@ namespace WebBookStore.Controllers
         {
             string UserFullName = UserDao.Instance.GetUserFullName(UserDao.Instance.GetUserId());
             ViewBag.UserFullName = UserFullName;
-            var dao = new UserDao();
-            var user = dao.ViewDetails(dao.GetUserId());
+            var user = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
             return View(user);
         }
 
@@ -26,8 +25,7 @@ namespace WebBookStore.Controllers
         {
             string UserFullName = UserDao.Instance.GetUserFullName(UserDao.Instance.GetUserId());
             ViewBag.UserFullName = UserFullName;
-            var dao = new UserDao();
-            var user = dao.ViewDetails(dao.GetUserId());
+            var user = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
             return View(user);
         }
 
@@ -36,8 +34,7 @@ namespace WebBookStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var dao = new UserDao();
-                var result = dao.Update(user);
+                var result = UserDao.Instance.Update(user);
                 if (result)
                 {
                     ModelState.AddModelError("", "Cap nhat thanh cong");
@@ -67,14 +64,13 @@ namespace WebBookStore.Controllers
             //Model Validation
             if (ModelState.IsValid)
             {
-                var dao = new UserDao();
                 //username already exists
-                if (dao.CheckUserName(model.UserName))
+                if (UserDao.Instance.CheckUserName(model.UserName))
                 {
                     ModelState.AddModelError("", "*Tên đăng nhập tồn tại!");
                 }
                 //email already exists
-                else if (dao.CheckUserEmail(model.Email))
+                else if (UserDao.Instance.CheckUserEmail(model.Email))
                 {
                     ModelState.AddModelError("", "*Email đã tồn tại !");
                 }
@@ -91,7 +87,7 @@ namespace WebBookStore.Controllers
                     user.Name = model.Name;
                     user.Access = true;
                     user.CreatedDate = DateTime.Now;
-                    var result = dao.Insert(user);
+                    var result = UserDao.Instance.Insert(user);
                     if (result > 0)
                     {
                         SendVerificationLinkEmail(user.Email, user.ActivationCode.ToString());
@@ -136,7 +132,7 @@ namespace WebBookStore.Controllers
         [NonAction]
         public void SendVerificationLinkEmail(string Email, string activationCode, string emailFor = "VerifyAccount")
         {
-            var verifyUrl = "/NewAdmin1/User/" + emailFor + "/" + activationCode;
+            var verifyUrl = "/User/" + emailFor + "/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
             var fromEmail = new MailAddress("nguyenhoangkim120201@gmail.com");
@@ -177,7 +173,7 @@ namespace WebBookStore.Controllers
             })
                 smtp.Send(message);
         }
-
+        [HttpGet]
         public ActionResult ForgotPassword()
         {
             return View();
@@ -213,7 +209,7 @@ namespace WebBookStore.Controllers
             ViewBag.Message = message;
             return View();
         }
-
+        [HttpGet]
         public ActionResult ResetPassword(string id)
         {
             //verify the reset password link
