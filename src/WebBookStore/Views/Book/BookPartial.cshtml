@@ -15,7 +15,7 @@
             </div>
             <div>
                 <p class="book-name">@Model[i].Title</p>
-                <p class="book-price">@Model[i].Price VND</p>
+                <p class="book-price"><span class="price-number">@Model[i].Price</span> VND</p>
                 @using (Html.BeginForm("AddToCart", "Cart", new { @id_book = Model[i].Id_Book, @Strurl = Request.Url.ToString() }))
                 {
                     <button class="add-to-cart">
@@ -40,7 +40,7 @@
         </div>
         <div>
             <p class="book-name">@Model[i].Title</p>
-            <p class="book-price">@Model[i].Price VND</p>
+            <p class="book-price"><span class="price-number">@Model[i].Price</span> VND</p>
             @using (Html.BeginForm("AddToCart", "Cart", new { @id_book = Model[i].Id_Book, @Strurl = Request.Url.ToString() }))
             {
                 <button class="add-to-cart">

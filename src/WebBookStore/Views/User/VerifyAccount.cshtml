@@ -2,19 +2,19 @@
     ViewBag.Title = "VerifyAccount";
 }
 
-<h2>Verify Account</h2>
+<h2>Xác thực tài khoảng</h2>
 
 
 
 @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
 {
     <div class="alert alert-success">
-        <strong>Success!</strong> Your account has been activated successfully. Click here to back to <a href="@Url.Action("Index", "Login")">Login</a>
+        <strong>Thành Công!</strong> Tài khoảng của bạn đã được kích hoạt thành công. Bạn có thể nhấn vào đây để <a href="@Url.Action("Index", "Login")">Đăng nhập</a>
     </div>
 }
 else
 {
     <div class="alert alert-danger">
-        <strong>Error!</strong> @ViewBag.Message
+        <strong>Có lỗi!</strong> @ViewBag.Message
     </div>
 }

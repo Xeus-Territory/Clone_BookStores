@@ -53,6 +53,53 @@ namespace WebBookStore.Controllers
             }
 
         }
+        // Thêm giỏ hàng từ trang detail
+        public ActionResult AddToCartMany(string id_book, string Strurl, FormCollection f)
+        {
+            //Conver f ra thành số liệu
+            int re = Convert.ToInt32(f["value-item"].ToString());
+            //Kiểm tra sách có tồn tại hay không
+            Book book = db.Books.SingleOrDefault(x => x.Id_Book == id_book);
+            if (book == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            //Take Session giỏ hàng 
+            List<Cart> listcart = TakeCartToView();
+            //Kiểm tra sách đã tồn tại trong session chưa
+            Cart cart = listcart.Find(x => x.sID_Book == id_book);
+            if (cart == null)
+            {
+                if (re > 0)
+                {
+                    //Chưa tồn tại thì thêm mới
+                    cart = new Cart(id_book);
+                    for(int i = 0; i < re; i++)
+                    {
+                        listcart.Add(cart);
+                    }
+                    return Redirect(Strurl);
+                }
+                else
+                {
+                    return Redirect(Strurl);
+                }    
+            }
+            else
+            {
+                if (re > 0)
+                {
+                    //Đã tồn tại thì tăng đúng thêm số lượng
+                    cart.sQuantity += re;
+                    return Redirect(Strurl);
+                }
+                else
+                {
+                    return Redirect(Strurl);
+                }    
+            }    
+        }
         // Cập nhật giỏ hàng
         public ActionResult UpdateCart(string id_book, string Strurl, FormCollection f)
         {

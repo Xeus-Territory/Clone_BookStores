@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Layout/SearchLayout.cshtml";
+}
+
+@using WebBookStore.Models;
+@model List<Book>
+<h3>@ViewBag.Thongbao</h3>
+@{
+    foreach (var item in Model)
+    {
+        <a class="best-sell-item" href="@Url.Action("DetailBook", new { @idbook = item.Id_Book })">
+            <div class="img-container">
+                <img src=@item.Images>
+            </div>
+            <div>
+                <p class="book-name">@item.Title</p>
+                <p class="book-price"><span class="price-number">@item.Price</span> VND</p>
+                @using (Html.BeginForm("AddToCart", "Cart", new { @id_book = item.Id_Book, @Strurl = Request.Url.ToString() }))
+                {
+                    <button class="add-to-cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <div class="tooltip">Add To Cart</div>
+                    </button>
+                }
+                <button class="quick-view">
+                    <i class="fa fa-search"></i>
+                    <div class="tooltip">Quick View</div>
+                </button>
+            </div>
+        </a>
+    }
+}

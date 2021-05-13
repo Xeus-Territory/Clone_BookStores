@@ -56,5 +56,17 @@ namespace WebBookStore.Controllers
             var date = db.Books.Where(n => n.DateExpUpdate == min).Take(3).ToList();
             return PartialView(date);
         }
+        public PartialViewResult BestSellList()
+        {
+            var item = db.Books.Join(db.OrderDetails, x => x.Id_Book, y => y.id_Book, 
+                        (x, y) => new { x.Id_Book ,x.Images, x.Title, x.Price, y.Quantity })
+                       .OrderByDescending(x => x.Quantity).Take(20).ToList();
+            return PartialView(item);
+        }
+        public ViewResult ViewAll()
+        {
+            var listbook = db.Books.Take(20).ToList();
+            return View(listbook);
+        }
     }
 }

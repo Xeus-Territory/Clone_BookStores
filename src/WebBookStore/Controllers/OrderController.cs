@@ -28,8 +28,8 @@ namespace WebBookStore.Controllers
 
             // Trả về Update
             ViewBag.OrderID = result.Id_Order; ViewBag.TimeNotify = DateTime.Now;
-            ViewBag.TimeExdeliveryDate = result.ExpDeliveryDate.Value.TimeOfDay; ViewBag.DayExdeliveryDate = result.ExpDeliveryDate.Value.Day;
-            ViewBag.MonthExdeliveryDate = result.ExpDeliveryDate.Value.Month; ViewBag.YearExdeliveryDate = result.ExpDeliveryDate.Value.Year;
+            //ViewBag.TimeExdeliveryDate = result.ExpDeliveryDate.Value.TimeOfDay; ViewBag.DayExdeliveryDate = result.ExpDeliveryDate.Value.Day;
+            //ViewBag.MonthExdeliveryDate = result.ExpDeliveryDate.Value.Month; ViewBag.YearExdeliveryDate = result.ExpDeliveryDate.Value.Year;
 
             // Trả về Người nhận
             ViewBag.Name = result.Account.Name; ViewBag.AddressShipping = result.AddressShipping; 

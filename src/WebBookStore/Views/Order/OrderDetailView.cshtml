@@ -15,8 +15,8 @@
     <div class="order-content-box order-notify-content row--base">
         <p> @ViewBag.TimeNotify </p>
         <p>
-            Đơn hàng @ViewBag.OrderID đã sẵn sàng giao đến quý khách. Chúng tôi vừa bàn giao đơn hàng
-            của quy khác cho đơn vị vận chuẩn. Đơn hàng sẽ được giao @ViewBag.TimeExdeliveryDate @ViewBag.DayExdeliveryDate/@ViewBag.MonthExdeliveryDate/@ViewBag.YearExdeliveryDate
+            @*Đơn hàng @ViewBag.OrderID đã sẵn sàng giao đến quý khách. Chúng tôi vừa bàn giao đơn hàng
+            của quy khác cho đơn vị vận chuẩn. Đơn hàng sẽ được giao @ViewBag.TimeExdeliveryDate @ViewBag.DayExdeliveryDate/@ViewBag.MonthExdeliveryDate/@ViewBag.YearExdeliveryDate*@
         </p>
     </div>
 </div>
@@ -28,13 +28,13 @@
             <p>
                 Địa chỉ: @ViewBag.AddressShipping
             </p>
-            <p>Dien thoai: @ViewBag.Phone</p>
+            <p>Điện thoại: @ViewBag.Phone</p>
         </div>
     </div>
     <div class="order-info__item">
         <p>HÌNH THỨC GIAO HÀNG</p>
         <div class="order-content-box">
-            <p>Giao trước @ViewBag.TimeExdeliveryDate Ngày @ViewBag.DayExdeliveryDate/@ViewBag.MonthExdeliveryDate/@ViewBag.YearExdeliveryDate
+            <p>Giao hàng đến tận nơi</p>
 </div>
     </div>
     <div class="order-info__item">
@@ -51,10 +51,10 @@
         <div class="col-3-2">Đơn giá</div>
         <div class="col-2">Thành tiền</div>
     </div>
-    @{
-        foreach (var item in Model)
-        {
-            <div class="order-goods-detail">
+    <div class="order-goods-detail">
+        @{
+            foreach (var item in Model)
+            {
                 <div class="order-goods__item row--base">
                     <div class="col-5 row--base">
                         <img src="@item.Book.Images" alt="">
@@ -64,18 +64,18 @@
                         </div>
                     </div>
                     <div class="col-3-2">@item.Quantity</div>
-                    <div class="col-3-2">@item.Book.Price VND</div>
-                    <div class="col-2">@item.Price VND</div>
+                    <div class="col-3-2"><span class="price-number">@item.Book.Price</span> VND</div>
+                    <div class="col-2"><span class="price-number">@item.Price</span> VND</div>
                 </div>
-            </div>
+            }
         }
-    }
-    <div class="order-finalization">
-        <p class="row--base">Tạm tính: <span class="col-2">@ViewBag.Total VND</span></p>
-        <p class="row--base">Phí vận chuyển: <span class="col-2">@ViewBag.ShippingTax VND</span></p>
-        <p class="row--base">Tổng cộng: <span class="col-2">@ViewBag.AllPrice VND</span></p>
     </div>
-</div>
+        <div class="order-finalization">
+            <p class="row--base">Tạm tính: <span class="col-2"><span class="price-number">@ViewBag.Total</span> VND</span></p>
+            <p class="row--base">Phí vận chuyển: <span class="col-2"><span class="price-number">@ViewBag.ShippingTax</span> VND</span=""></p>
+            <p class="row--base">Tổng cộng: <span class="col-2"><span class="price-number">@ViewBag.AllPrice</span> VND</span></p>
+        </div>
+    </div>
 <div class="order-info__item order-status">
     <p>TRẠNG THÁI ĐƠN HÀNG</p>
     <div class="order-content-box">

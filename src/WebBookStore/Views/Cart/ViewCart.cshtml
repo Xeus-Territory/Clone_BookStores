@@ -32,7 +32,7 @@
                         <h4 class="name">@item.sTitle</h4>
                         <p>@item.sAuthor</p>
                     </td>
-                    <td>@String.Format("{0:0,0}", item.sPrice.ToString()) VND</td>
+                    <td><span class="price-number">@item.sPrice.ToString()</span> VND</td>
                     <td>
                         @using (Html.BeginForm("UpdateCart", "Cart", new { @id_book = item.sID_Book, @Strurl = Request.Url.ToString() }, FormMethod.Post))
                         {
@@ -44,7 +44,7 @@
                         }
                     </td>
                     <td>
-                        @String.Format("{0:0,0}", item.Total.ToString()) VND
+                        <span class="price-number">@item.Total.ToString()</span> VND
                         <p class="cart-remove"><i class="fa fa-trash"></i>@Html.ActionLink("Xóa sản phẩm", "DeleteCart", new { @id_book = item.sID_Book, @Strurl = Request.Url.ToString() })</p>
                     </td>
                 </tr>
@@ -70,7 +70,7 @@
         </h3>
         <div class="subtotal">
             <p class="row">Tất cả: <span>@Model.Count</span></p>
-            <p class="row">Tổng tiền: <span>@tongtien VND</span></p>
+            <p class="row">Tổng tiền: <span><span class="price-number">@tongtien</span> VND</span></p>
             @using (Html.BeginForm("ViewOrderDetail", "Cart"))
             {
                 <button class="btn btn-secondary">

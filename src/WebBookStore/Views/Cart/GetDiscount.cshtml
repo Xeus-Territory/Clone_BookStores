@@ -40,7 +40,7 @@
                     </div>
                     <h3 class="name">@item.sTitle</h3>
                     <p class="order__item-price">
-                        @item.Total VND
+                        <span class="price-number">@item.Total</span> VND
                     </p>
                 </div>
             }
@@ -55,9 +55,16 @@
     }
     <div class="order-total">
         @{
-            <p class="row">Tổng tiền: <span>@ViewBag.TotalPrice VND</span></p>
+            <p class="row">Tổng tiền: <span><span class="price-number">@ViewBag.TotalPrice</span> VND</span></p>
             <p class="row">Giảm giá: <span>@ViewBag.Discount%</span></p>
-            <p class="row">Thành tiền: <span>@ViewBag.ApproveDiscount VND</span></p>
+            if (@ViewBag.ApproveDiscount == null)
+            {
+                <p class="row">Thành tiền: <span><span class="price-number">@ViewBag.TotalPrice</span> VND</span></p>
+            }
+            else
+            {
+                <p class="row">Thành tiền: <span><span class="price-number">@ViewBag.ApproveDiscount</span> VND</span></p>
+            }
         }
     </div>
     <img src="~/Asset/img/payment-method.png" />

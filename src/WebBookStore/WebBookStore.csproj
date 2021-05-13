@@ -102,6 +102,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\img\address.png" />
     <Content Include="Asset\img\advantage-icon-1.png" />
     <Content Include="Asset\img\advantage-icon-2.png" />
     <Content Include="Asset\img\advantage-icon-3.png" />
@@ -120,19 +121,28 @@
     <Content Include="Asset\img\Document_files\slick-theme.css" />
     <Content Include="Asset\img\Document_files\slick.css" />
     <Content Include="Asset\img\Document_files\style.css" />
+    <Content Include="Asset\img\gmail.png" />
     <Content Include="Asset\img\icon-4.png" />
     <Content Include="Asset\img\icon-5.png" />
     <Content Include="Asset\img\icon-6.png" />
     <Content Include="Asset\img\icon-7webp.png" />
     <Content Include="Asset\img\icon-8.png" />
+    <Content Include="Asset\img\id-card.png" />
+    <Content Include="Asset\img\info %281%29.png" />
+    <Content Include="Asset\img\info.png" />
+    <Content Include="Asset\img\information.png" />
+    <Content Include="Asset\img\location.png" />
     <Content Include="Asset\img\logo-white.png" />
     <Content Include="Asset\img\logo.png" />
     <Content Include="Asset\img\payment-method.png" />
+    <Content Include="Asset\img\pen.png" />
+    <Content Include="Asset\img\phone.png" />
     <Content Include="Asset\img\slider-1_aca44fb2-95e2-43ce-b840-ac3c62a0bf9c_1170x.jpg" />
     <Content Include="Asset\img\special-bg-1.png" />
     <Content Include="Asset\img\special-bg-2.png" />
     <Content Include="Asset\img\special-bg-3.png" />
     <Content Include="Asset\img\writer %281%29.png" />
+    <Content Include="Asset\img\writer.png" />
     <Content Include="Asset\js\detail.js" />
     <Content Include="Asset\js\index.js" />
     <Content Include="Asset\js\login.js" />
@@ -281,6 +291,8 @@
     <Content Include="Views\User\VerifyAccount.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\User\ResetPassword.cshtml" />
+    <Content Include="Views\Book\BestSellList.cshtml" />
+    <Content Include="Views\Book\ViewAll.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

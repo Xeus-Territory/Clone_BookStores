@@ -25,7 +25,7 @@
                                         <button type="submit" class="btn cart-btn-decrease" name="btninc" value="-1"><i class="fa fa-minus"></i></button>
                                     </div>
                                 }
-                                <p>@Model[i].sPrice VND</p>
+                                <p><span class="price-number">@Model[i].sPrice</span> VND</p>
                             </div>
                             <p class="delete-cart__item">
                                 @using (Html.BeginForm("DeleteCart", "Cart", new { @id_book = Model[i].sID_Book, @Strurl = Request.Url.ToString() }))
@@ -37,7 +37,7 @@
                     }
                 }
             </div>
-            <p class="total">Total: <span>@ViewBag.TotalPrice VND</span></p>
+            <p class="total">Tất cả: <span class="price-number">@ViewBag.TotalPrice</span> VND</p>
             <div class="cart__detail-ctrl row">
                 @using (Html.BeginForm("ViewOrderDetail", "Cart"))
                 {

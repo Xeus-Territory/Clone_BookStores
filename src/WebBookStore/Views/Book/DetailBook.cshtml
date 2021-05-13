@@ -136,14 +136,14 @@
                                     @Model.Title
                                 </h3>
                                 <p class="author">@Model.Author.Name</p>
-                                <p class="price">@Model.Price VND</p>
+                                <p class="price"><span class="price-number">@Model.Price</span> VND</p>
                                 <p class="description">
                                     @Model.Description
                                 </p>
                                 <div class="ctrl__list">
                                     <div class="numeric">
                                         <button class="numeric__button" onclick="btnIncreaseClick()">+</button>
-                                        <input type="text" id="inc" value="0"/>
+                                        <input type="text" id="inc" name="value-item" value="0" />
                                         <button class="numeric__button" onclick="btnDecreaseClick()">-</button>
                                     </div>
                                     @using (Html.BeginForm("AddToCart", "Cart", new { @id_book = Model.Id_Book, @Strurl = Request.Url.ToString() }))
@@ -237,7 +237,7 @@
                                     </a>
                                     <div class="book-related__info">
                                         <a href="@Url.Action("DetailBook", new { @idbook = i.Id_Book})">@i.Title</a>
-                                        <p>@i.Price VND</p>
+                                        <p><span class="price-number">@i.Price</span> VND</p>
                                     </div>
                                 </div>
                             }
@@ -249,103 +249,116 @@
     </section>
 
     @*------------------------FOOTER------------------------------*@
-    <section class="footer">
-        <div class="container">
-            <div class="mailling">
-                <div class="mailling-content">
-                    <h3>
-                        Đăng ký để nhận thông tin
-                    </h3>
-                    <div class="form-group row">
-                        <input type="text" placeholder="Enter yout e-mail address">
-                        <button class="btn">Đăng ký</button>
-                    </div>
+<section class="footer">
+    <div class="container">
+        <div class="mailling">
+            <div class="mailling-content">
+                <h3>
+                    Đăng ký thông báo mới
+                </h3>
+                <div class="form-group row">
+                    <input type="text" placeholder="Enter yout e-mail address">
+                    <button class="btn">Đăng ký</button>
                 </div>
-            </div>
-            <div class="footer-content row">
-                <div class="footer-item">
-                    <h5><img src="~/Asset/img/logo-white.png" /></h5>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipisci
-                        ng elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.
-                    </p>
-                    <a href="">Thông tin về chúng tôi</a>
-                </div>
-                <div class="footer-item">
-                    <h5 class="row">
-                        <img src="~/Asset/img/icon-7webp.png" />
-                        Địa chỉ cửa hàng
-                    </h5>
-                    <p>San Francisco, California, US P.O. BOX: 553204</p>
-                    <p>Phone: (+1) 998 3384</p>
-                    <p>Mail: admin@bookshop.com</p>
-                </div>
-                <div class="footer-item">
-                    <h5 class="row">
-                        <img src="~/Asset/img/icon-8.png" />
-                        Fanpage liên lạc
-                    </h5>
-
-                    <ul>
-                        <li>
-                            <a href="">
-                                <i class="fab fa-facebook-f"></i>
-                                Facebook
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fab fa-facebook-f"></i>
-                                Facebook
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fab fa-facebook-f"></i>
-                                Facebook
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fab fa-facebook-f"></i>
-                                Facebook
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer-item">
-                    <h5 class="row">
-                        <img src="~/Asset/img/icon-8.png" />
-                        Thông tin về chúng tôi
-                    </h5>
-                    <ul>
-                        <li>
-                            <a href="">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                About Us
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
-
             </div>
         </div>
-    </section>
+        <div class="footer-content row">
+            <div class="footer-item">
+                <h5><img src="~/Asset/img/logo-white.png" /></h5>
+                <p>
+                    Cửa hàng sách
+                </p>
+                <a href="">Thông tin về trang web</a>
+            </div>
+            <div class="footer-item">
+                <h5 class="row">
+                    <img src="~/Asset/img/icon-7webp.png" />
+                    Địa chỉ
+                </h5>
+                <p>
+                    <i class="fa fa-location-arrow"></i>
+                    54 Nguyễn Lương Bằng, Đà Nẵng
+                </p>
+                <p>
+                    <i class="fa fa-phone"></i>
+                    Số điện thoại: (+84) 935 237 732
+                </p>
+                <p>
+                    <i class="fa fa-envelope"></i>
+                    Mail: admin@bookshop.com
+                </p>
+            </div>
+            <div class="footer-item">
+                <h5 class="row">
+                    <img src="~/Asset/img/pen.png" />
+                    Người thực hiện
+                </h5>
+
+                <ul>
+                    <li>
+                        <a href="https://www.facebook.com/congtoan.dn">
+                            <i class="fab fa-facebook-f"></i>
+                            Đặng Công Toàn
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/Xeusssssssss/">
+                            <i class="fab fa-facebook-f"></i>
+                            Nguyễn Đức Nghĩa
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/kim.nguyenhoang.9404">
+                            <i class="fab fa-facebook-f"></i>
+                            Nguyễn Hoàng Kim
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/CapitalisticComrade">
+                            <i class="fab fa-facebook-f"></i>
+                            Trần Thanh Tuệ
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-item">
+                <h5 class="row">
+                    <img src="~/Asset/img/icon-8.png" />
+                    Thông tin
+                </h5>
+                <ul>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-id-card"></i>
+                            Đặng Công Toàn
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://app.resumecoach.com/editor/resume/3daff097-0b2c-4a0c-aca4-f78d7b8ca802/finish">
+                            <i class="fa fa-id-card"></i>
+                            Nguyễn Đức Nghĩa
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-id-card"></i>
+                            Nguyễn Hoàng Kim
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-id-card"></i>
+                            Trần Thanh Tuệ
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
     <script src="~/Asset/js/index.js"></script>
     <script src="~/Asset/js/detail.js"></script>
     <script>

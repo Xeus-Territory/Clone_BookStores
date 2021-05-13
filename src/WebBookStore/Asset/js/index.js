@@ -79,6 +79,11 @@ bookNamess.forEach((bookName) => {
     }
 });
 
+const prices = document.querySelectorAll(".price-number");
+prices.forEach(price => {
+    price.innerHTML = Number(price.innerHTML).toLocaleString("en-US");
+})
+
 
 
 

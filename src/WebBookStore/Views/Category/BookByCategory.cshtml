@@ -12,7 +12,7 @@
     <a class="best-sell-item" href="@Url.Action("DetailBook", "Book", new { @idbook = item.Id_Book})">
         <img src="@item.Images" alt="">
         <p class="book-name">@item.Title</p>
-        <p class="book-price">@item.Price VND</p>
+        <p class="book-price"><span class="price-number">@item.Price</span> VND</p>
 
         @using (Html.BeginForm("AddToCart", "Cart", new { @id_book = item.Id_Book, @Strurl = Request.Url.ToString() }))
         {

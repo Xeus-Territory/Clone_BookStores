@@ -753,6 +753,7 @@ header {
     font-weight: 300;
     color: #666666;
     margin-bottom: 1.5rem;
+    line-height: 2.5rem;
 }
 
 .book-price {
@@ -1108,7 +1109,7 @@ header {
 }
 
 .footer-item {
-    width: 25%;
+    width: 100%;
 }
 
     .footer-item h5 {
@@ -1161,6 +1162,18 @@ header {
         .footer-item a:hover i {
             background-color: #4aa8df;
         }
+
+        .footer-item p img{
+            text-align: center;
+            line-height: 2.5rem;
+            margin-right: 2.5rem;
+        }
+
+    .footer-item a img {
+        text-align: center;
+        line-height: 2.5rem;
+        margin-right: 2.5rem;
+    }
 
 
 /* --------------------------------------------BOOK------------------------------------*/

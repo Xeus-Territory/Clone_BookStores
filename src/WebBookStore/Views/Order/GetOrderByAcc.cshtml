@@ -5,19 +5,19 @@
     @{
         foreach (var item in Model)
         {
-        <div class="row tab-order-item">
-            <div class="col-3-2 tab-order-item-id">@item.Id_Order</div>
-            <div class="col-3-2">@item.OrderDate.Day/@item.OrderDate.Month/@item.OrderDate.Year</div>
-            <div class="col-3">@item.AddressShipping</div>
-            <div class="col-3-2">@item.Totalbill VND</div>
-            <div class="col-3-2">Giao hang thanh cong</div>
-            @using (Html.BeginForm("OrderDetailView", "Order", new { @Id_Order = item.Id_Order}))
-            {
-                <div class="col-1">
-                    <button class="btn"><i class="fa fa-eye"></i></button>
-                </div>
-            }
-        </div>
+            <div class="row tab-order-item">
+                <div class="col-3-2 tab-order-item-id">@item.Id_Order</div>
+                <div class="col-3-2">@item.OrderDate.Day/@item.OrderDate.Month/@item.OrderDate.Year</div>
+                <div class="col-3">@item.AddressShipping</div>
+                <div class="col-3-2"><span class="price-number">@item.Totalbill</span> VND</div>
+                <div class="col-3-2">Giao hang thanh cong</div>
+                @using (Html.BeginForm("OrderDetailView", "Order", new { @Id_Order = item.Id_Order }))
+                {
+                    <div class="col-1">
+                        <button class="btn"><i class="fa fa-eye"></i></button>
+                    </div>
+                }
+            </div>
         }
     }
 </div>
