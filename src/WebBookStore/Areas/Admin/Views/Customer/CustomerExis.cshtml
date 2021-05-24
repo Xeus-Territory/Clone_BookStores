@@ -1,0 +1,50 @@
+﻿@using WebBookStore.Models;
+@model List<Account>
+
+
+
+
+<div class="data__header row">
+    <div class="col-1">ID</div>
+    <div class="col-2">Tên người dùng</div>
+    <div class="col-3-2">User Name</div>
+    <div class="col-3-2">Số điện thoại</div>
+    <div class="col-2">Địa chỉ</div>
+    <div class="col-1">Sinh nhật</div>
+</div>
+<div class="data__body">
+    @{
+        foreach (var item in Model)
+        {
+            string Phone = "";
+            string Address = "";
+            string DateOfBirth = "";
+            if (item.Phone != null)
+            {
+                Phone += item.Phone;
+            }
+            if (item.Address != null)
+            {
+                Address += item.Address;
+            }
+            if (item.DateOfBirth != null)
+            {
+                DateOfBirth += item.DateOfBirth;
+            }
+
+            <div class="data__item row">
+                <div class="col-1">#2021-@item.Id_Customer</div>
+                <div class="col-2">
+                    <div class="row">
+                        <img class="avatar" src="https://ui-avatars.com/api/?name=@item.Name&background=random" alt="">
+                        @item.Name
+                    </div>
+                </div>
+                <div class="col-3-2">@item.UserName</div>
+                <div class="col-3-2">@Phone</div>
+                <div class="col-2">@Address</div>
+                <div class="col-1">@DateOfBirth</div>
+            </div>
+        }
+    }
+</div>

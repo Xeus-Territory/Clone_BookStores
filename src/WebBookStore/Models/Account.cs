@@ -35,6 +35,7 @@ namespace WebBookStore.Models
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.Guid> ActivationCode { get; set; }
         public string ResetPasswordCode { get; set; }
+        public string GroupID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

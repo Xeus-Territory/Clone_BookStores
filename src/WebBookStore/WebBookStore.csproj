@@ -121,6 +121,7 @@
     <Content Include="Asset\img\Document_files\slick-theme.css" />
     <Content Include="Asset\img\Document_files\slick.css" />
     <Content Include="Asset\img\Document_files\style.css" />
+    <Content Include="Asset\img\ezgif-7-b8ef7da860ab.jpg" />
     <Content Include="Asset\img\gmail.png" />
     <Content Include="Asset\img\icon-4.png" />
     <Content Include="Asset\img\icon-5.png" />
@@ -154,6 +155,7 @@
     <Content Include="Asset\style\style.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
     <Content Include="Models\DBBookStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBBookStoreModel.edmx</DependentUpon>
@@ -165,12 +167,22 @@
       <LastGenOutput>DBBookStoreModel.cs</LastGenOutput>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Models\SearchModel.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomePageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageOrderController.cs" />
+    <Compile Include="Areas\Admin\Models\EditOrderModel.cs" />
+    <Compile Include="Areas\Admin\Models\OrderDao.cs" />
     <Compile Include="Models\Author.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
@@ -180,6 +192,7 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Common\HasCredentialAttribute.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Common\CommonConstant.cs" />
     <Compile Include="Common\Encryptor.cs" />
@@ -191,6 +204,9 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\SearchingController.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\Credential.cs">
+      <DependentUpon>DBBookStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DBBookStoreModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,7 +244,13 @@
     <Compile Include="Models\Publisher.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>DBBookStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\StatusOrder.cs">
+      <DependentUpon>DBBookStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserGroup.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -249,6 +271,10 @@
     <Content Include="Asset\img\special-bg-2.webp" />
     <Content Include="Asset\img\special-bg-3.webp" />
     <Content Include="Asset\img\special-book-1.webp" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\AdminLogin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\LogRegLayout.cshtml" />
     <EntityDeploy Include="Models\DBBookStoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBBookStoreModel.Designer.cs</LastGenOutput>
@@ -256,6 +282,12 @@
     <Content Include="Models\DBBookStoreModel.edmx.diagram">
       <DependentUpon>DBBookStoreModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\ManageOrder\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomePage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageOrder\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageOrder\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\CustomerExis.cshtml" />
+    <Content Include="Areas\Admin\Views\HomePage\resultSomething.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -293,6 +325,7 @@
     <Content Include="Views\User\ResetPassword.cshtml" />
     <Content Include="Views\Book\BestSellList.cshtml" />
     <Content Include="Views\Book\ViewAll.cshtml" />
+    <Content Include="Views\Shared\404.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

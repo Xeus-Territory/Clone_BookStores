@@ -87,6 +87,7 @@ namespace WebBookStore.Controllers
                     user.Name = model.Name;
                     user.Access = true;
                     user.CreatedDate = DateTime.Now;
+                    user.GroupID = "CUSTOMER";
                     var result = UserDao.Instance.Insert(user);
                     if (result > 0)
                     {

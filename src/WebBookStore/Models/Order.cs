@@ -30,6 +30,7 @@ namespace WebBookStore.Models
         public Nullable<int> Totalbill { get; set; }
         public Nullable<int> Id_Status { get; set; }
         public string AddressShipping { get; set; }
+        public string PhoneNumber { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual StatusOrder StatusOrder { get; set; }

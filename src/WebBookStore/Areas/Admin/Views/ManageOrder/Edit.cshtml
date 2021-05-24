@@ -1,0 +1,102 @@
+﻿@using WebBookStore.Areas.Admin.Models;
+@model EditOrderModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link href="~/Asset/style/reset.css" rel="stylesheet" />
+    <!-- SLICK SLIDER -->
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- STYLES -->
+    <link href="~/Asset/style/style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <section class="login-register">
+        <div class="form-container row--base">
+            <div class="form-login">
+                <div class="form-header row">
+
+                </div>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(false, "", new { @class = "wrong-input" })
+
+                    @Html.HiddenFor(model => model.Id_Customer)
+                    @Html.HiddenFor(model => model.PhoneNumber)
+                    @Html.HiddenFor(model => model.AddressShipping)
+
+                    <div class="form-group">
+                        <p>THÔNG TIN ĐƠN HÀNG</p>
+                    </div>
+
+                    @*<div class="form-group ">
+                <p>ID</p>
+                @Html.TextBoxFor(model => model.Id_Order, new { @class = "form__input", @disabled = "disabled" })
+            </div>*@
+
+                    <div class="form-group ">
+                        <p>Ngày vận chuyển</p>
+                        @Html.TextBoxFor(model => model.DeliveryDate, new { @class = "form__input date-picker", @type = "date" })
+                    </div>
+
+                    <div class="form-group ">
+                        <p>Hạn chót giao hàng</p>
+                        @Html.TextBoxFor(model => model.ExpDeliveryDate, new { @class = "form__input date-picker", @type = "date" })
+                    </div>
+
+
+                    <div class="form-group ">
+                        <p>Trạng thái</p>
+                        @Html.DropDownListFor(model => model.Id_Status, new SelectList(Model.Statuses, "Id_Status", "StatusDetail", "Select"))
+                    </div>
+
+                    @*<div class="form-group ">
+                        <p>Số điện thoại</p>
+                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form__input", @disabled = "disabled" })
+                    </div>
+
+                    <div class="form-group ">
+                        <p>Địa chỉ nhận hàng</p>
+                        @Html.TextBoxFor(model => model.AddressShipping, new { @class = "form__input", @disabled = "disabled" })
+                    </div>*@
+
+                    <div class="form-group ">
+                        <p>Ghi chú</p>
+                        @*@Html.TextBoxFor(model => model.Note, new { @class = "form__input" })*@
+                        @Html.TextAreaFor(model => model.Note, new { @class = "form__input", @placeholder = "Nhập gì đó ..."})
+                    </div>
+
+                    <div class="modal-ctrl row" style="justify-content: flex-end">
+
+                        <div class="back-home">
+                            @Html.ActionLink("Quay về", "Index", "HomePage")
+                        </div>
+
+                        <button class="btn btn-modal" type="submit"> Cập nhật</button>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </section>
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+
+</body>
+</html>

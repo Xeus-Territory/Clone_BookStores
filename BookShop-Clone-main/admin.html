@@ -98,6 +98,51 @@
         </div>
     </div>
 
+    <!-- MODAL ORDER -->
+    <div class="modal-user-infor modal-order">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="form-container modal">
+                <div class="modal-header row--base">
+                    <h2>Add New Order</h2>
+                    <span class="close"><i class="fa fa-times"></i></span>
+                </div>
+                <div class="form-login ">
+                    <div class="form-group row">
+                        <p>Ngay van chuyen</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Ngay het han</p>
+                        <input class="form__input" />
+                    </div>
+                    <div class="form-group row">
+                        <p>Status</p>
+                        <select class="form__input">
+                            <option value="1">
+                                Dang chuan bi
+                            </option>
+                            <option value="2">
+                                Dang giao
+                            </option>
+                            <option value="3">
+                                Da giao
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <p>Thong bao</p>
+                        <textarea placeholder="Type something..." class="form__input"></textarea>
+                    </div>
+                    <div class="modal-ctrl row">
+                        <p class="close">Cancel</p>
+                        <button class="btn btn-modal">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ADMIN -->
     <section class="admin">
         <div class="sidebar">
@@ -115,7 +160,7 @@
                         <div class="border-bottom-box"></div>
                     </div>
                 </div>
-                <div class="sidebar__item row">
+                <div data-tab="order" class="sidebar__item row">
                     <div class="border-top">
                         <div class="border-top-box"></div>
                     </div>
@@ -176,7 +221,7 @@
                 <div class="main-search">
                     <div class="main-search-content">
                         <i class="fa fa-search"></i>
-                        <input type="text">
+                        <input placeholder="Type something..." type="text">
                     </div>
                 </div>
                 <div class="main-header-user row">
@@ -222,7 +267,7 @@
                             <div class="col-1">$2.00</div>
                             <div class="col-1">5</div>
                             <div class="col-1">
-                                <button class="edit"><i class="fa fa-edit"></i></button>
+                                <button class="admin-edit-book edit"><i class="fa fa-edit"></i></button>
                                 <button class="remove"><i class="fa fa-trash"></i></button>
                             </div>
                         </div>
@@ -477,6 +522,113 @@
                             <div class="col-1">30/2/2001</div>
                             <div class="col-1">
                                 <button class="admin-edit-customer edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- TAB-ORDER -->
+            <div class="tab tab-order">
+                <p class="create-btn"></p>
+                <div class="data__list">
+                    <div class="data__header row">
+                        <div class="col-1">ID</div>
+                        <div class="col-3-2">Ngay van chuyen</div>
+                        <div class="col-3-2">Ngay het han</div>
+                        <div class="col-3-2">Phone Number</div>
+                        <div class="col-2">Address</div>
+                        <div class="col-3-2">Status</div>
+                        <div class="col-1">Action</div>
+                    </div>
+                    <div class="data__body">
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-3-2">
+                                <div class="row">
+                                    20/05/2021
+                                </div>
+                            </div>
+                            <div class="col-3-2">23/05/2021</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-3-2">
+                                <div class="brand preparing">Đang chuan bi</div>
+                            </div>
+                            <div class="col-1">
+                                <button class="admin-edit-order edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-3-2">
+                                <div class="row">
+                                    20/05/2021
+                                </div>
+                            </div>
+                            <div class="col-3-2">23/05/2021</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-3-2">
+                                <div class="brand processing">Đang giao hang</div>
+                            </div>
+                            <div class="col-1">
+                                <button class="admin-edit-order edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-3-2">
+                                <div class="row">
+                                    20/05/2021
+                                </div>
+                            </div>
+                            <div class="col-3-2">23/05/2021</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-3-2">
+                                <div class="brand finish">Da giao</div>
+                            </div>
+                            <div class="col-1">
+                                <button class="admin-edit-order edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-3-2">
+                                <div class="row">
+                                    20/05/2021
+                                </div>
+                            </div>
+                            <div class="col-3-2">23/05/2021</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-3-2">
+                                <div class="brand preparing">Đang chuan bi</div>
+                            </div>
+                            <div class="col-1">
+                                <button class="admin-edit-order edit"><i class="fa fa-edit"></i></button>
+                                <button class="remove"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="data__item row">
+                            <div class="col-1">#101115521</div>
+                            <div class="col-3-2">
+                                <div class="row">
+                                    20/05/2021
+                                </div>
+                            </div>
+                            <div class="col-3-2">23/05/2021</div>
+                            <div class="col-3-2">090999999</div>
+                            <div class="col-2">89 Ton Duc Thang</div>
+                            <div class="col-3-2">
+                                <div class="brand preparing">Đang chuan bi</div>
+                            </div>
+                            <div class="col-1">
+                                <button class="admin-edit-order edit"><i class="fa fa-edit"></i></button>
                                 <button class="remove"><i class="fa fa-trash"></i></button>
                             </div>
                         </div>

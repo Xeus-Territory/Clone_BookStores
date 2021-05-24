@@ -31,6 +31,10 @@ body, html {
     width: 20%;
 }
 
+.col-5-2 {
+    width: 25%;
+}
+
 .col-3 {
     width: 30%;
 }
@@ -88,6 +92,30 @@ a {
 .btn.btn-danger:hover {
     background-color: rgb(131, 32, 32);
     border-color: rgb(131, 32, 32);
+}
+
+.brand {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 15px;
+    border: 1.5px solid #5f5f5f;
+    transition: all 0.3s ease-in;
+}
+
+.brand.finish {
+    border-color: #25A842;
+    color: #25A842;
+}
+
+.brand.processing {
+    border-color: #1B8BCC;
+    color: #1B8BCC;
+}
+
+.brand.preparing {
+    border-color: rgba(212, 14, 14, 0.842);
+    color: rgba(212, 14, 14, 0.842);
 }
 
 @keyframes fadeDown {
@@ -1114,6 +1142,21 @@ header.header-up {
     margin-right: 2rem;
 }
 
+.form-group select {
+    width: 50%;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #666666;
+    border-radius: 1.2rem;
+    border: 1px solid #B9B9B9;
+    margin-right: 2rem;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
 .form-group input:focus {
     outline: none;
 }
@@ -2111,7 +2154,7 @@ header.header-up {
 
 .order-total p {
     width: 90%;
-    margin-top: 4rem;
+    margin-top: 2rem;
     font-size: 1.8rem;
     justify-content: space-between;
     padding-bottom: 0.5rem;
@@ -2252,6 +2295,7 @@ header.header-up {
 }
 
 .create-btn {
+    display: inline-block;
     font-size: 1.6rem;
     font-weight: 300;
     color: #0046FE;
@@ -2372,6 +2416,24 @@ header.header-up {
     border-color: #0046FE;
     color: white;
     box-shadow: 0px 5px 53px 7px rgba(0,0,0, 0.3);
+}
+
+.data__item:hover .brand.finish {
+    border-color: #25A842;
+    background-color: #25A842;
+    color: white;
+}
+
+.data__item:hover .brand.processing {
+    border-color: #1B8BCC;
+    background-color: #1B8BCC;
+    color: white;
+}
+
+.data__item:hover .brand.preparing {
+    border-color: rgba(212, 14, 14, 0.842);
+    background-color: rgba(212, 14, 14, 0.842);
+    color: white;
 }
 
 .data__item > div {

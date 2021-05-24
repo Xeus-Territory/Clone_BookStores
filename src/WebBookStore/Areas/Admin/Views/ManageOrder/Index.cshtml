@@ -1,0 +1,88 @@
+﻿@using WebBookStore.Models;
+@model List<Order>
+
+
+<div class="data__header row">
+    <div class="col-1">ID</div>
+    <div class="col-3-2">Ngày vận chuyển</div>
+    <div class="col-3-2">Ngày hết hạn</div>
+    <div class="col-3-2">Số điện thoại</div>
+    <div class="col-2">Địa chỉ nhận hàng</div>
+    <div class="col-3-2">Trạng thái</div>
+    <div class="col-1">Action</div>
+</div>
+<div class="data__body">
+
+    @{
+        foreach (var item in Model)
+        {
+            string classBrand = "brand ";
+            string deliverydate = "";
+            string expdeliverydate = "";
+            if (item.Id_Status == 1)
+            {
+                classBrand += "preparing";
+            }
+            if (item.Id_Status == 2)
+            {
+                classBrand += "processing";
+            }
+            if (item.Id_Status == 3)
+            {
+                classBrand += "finish";
+            }
+            if (item.DeliveryDate == null)
+            {
+
+            }
+            else
+            {
+                deliverydate += item.DeliveryDate.Value.Day.ToString() + "/" + item.DeliveryDate.Value.Month.ToString() + "/" + item.DeliveryDate.Value.Year.ToString();
+            }
+            if (item.ExpDeliveryDate == null)
+            {
+
+            }
+            else
+            {
+                expdeliverydate += item.ExpDeliveryDate.Value.Day.ToString() + "/" + item.ExpDeliveryDate.Value.Month.ToString() + "/" + item.ExpDeliveryDate.Value.Year.ToString();
+            }
+            <div class="data__item row">
+                <div class="col-1">#@item.Id_Order</div>
+                <div class="col-3-2">
+                    <div class="row">
+                        @deliverydate
+                    </div>
+                </div>
+                <div class="col-3-2">@expdeliverydate</div>
+                <div class="col-3-2">@item.PhoneNumber</div>
+                <div class="col-2">@item.AddressShipping</div>
+                <div class="col-3-2">
+                    <div class="@classBrand">@item.StatusOrder.StatusDetail.ToString()</div>
+                </div>
+                <div class="col-1 row">
+
+                    @*@Html.ActionLink("Edit", "Edit", new { @Id_Order = item.Id_Order })
+                        @Html.ActionLink("Delete", "Delete", new { @Id_Order = item.Id_Order })
+
+                        @using (Html.BeginForm("Edit", "ManageOrder", new { @Id_Order = item.Id_Order }))
+                        {
+                            <button class="admin-edit-order edit"><i class="fa fa-edit"></i></button>
+                        }
+                        @using (Html.BeginForm("Delete", "ManageOrder", new { @Id_Order = item.Id_Order }))
+                        {
+                            <button class="remove"><i class="fa fa-trash"></i></button>
+                        }*@
+                    <a href="@Url.Action("Edit", "ManageOrder", new { @Id_Order = item.Id_Order })">
+                        <button class="admin-edit-order edit"><i class="fa fa-edit"></i></button>
+                    </a>
+                    <a href="@Url.Action("Delete", "ManageOrder", new { @Id_Order = item.Id_Order })">
+                        <button class="remove"><i class="fa fa-trash"></i></button>
+                    </a>
+                </div>
+            </div>
+        }
+    }
+</div>
+@*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+

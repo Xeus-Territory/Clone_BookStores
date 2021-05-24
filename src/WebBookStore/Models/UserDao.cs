@@ -68,7 +68,8 @@ namespace WebBookStore.Models
         {
             return db.Accounts.Find(id);
         }
-        public int Login(string UserName, string Password)
+
+        public int Login(string UserName, string Password, bool isLoginAdmin = false)
         {
             var result = db.Accounts.SingleOrDefault(x => x.UserName == UserName);
             if (result == null)
@@ -77,19 +78,67 @@ namespace WebBookStore.Models
             }
             else
             {
-                if (result.Access == false)
+                if (isLoginAdmin == true)
                 {
-                    return -1;
+                    if (result.GroupID == Common.CommonConstant.ADMIN_GROUP)
+                    {
+                        if (result.Access == false)
+                        {
+                            return -1;
+                        }
+                        else
+                        {
+                            if (result.Password == Password)
+                                return 1;
+                            else
+                                return -2;
+                        }
+                    }
+                    else
+                        return -4;
                 }
                 else
                 {
-                    if (result.Password == Password)
-                        return 1;
+                    if (result.Access == false)
+                    {
+                        return -1;
+                    }
+                    else if (result.ConfirmEmail == false)
+                    {
+                        return -3;
+                    }
                     else
-                        return -2;
+                    {
+                        if (result.Password == Password)
+                            return 1;
+                        else
+                            return -2;
+                    }
                 }
+
+
             }
         }
+        public List<string> GetListCredentials(string userName)
+        {
+            var user = db.Accounts.SingleOrDefault(x => x.UserName == userName);
+            var data = (from a in db.Credentials
+                        join b in db.UserGroups on a.UserGroupID equals b.ID
+                        join c in db.Roles on a.RoleID equals c.ID
+                        where b.ID == user.GroupID
+                        select new
+                        {
+                            RoleID = a.RoleID,
+                            UserGroupID = a.UserGroupID
+                        }).AsEnumerable().Select(x => new Credential()
+                        {
+                            RoleID = x.RoleID,
+                            UserGroupID = x.UserGroupID
+                        });
+            return data.Select(x => x.RoleID).ToList();
+        }
+
+
         public bool CheckUserName(string userName)
         {
             return db.Accounts.Count(x => x.UserName == userName) > 0;

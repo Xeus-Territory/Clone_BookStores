@@ -10,7 +10,7 @@
                 <div class="col-3-2">@item.OrderDate.Day/@item.OrderDate.Month/@item.OrderDate.Year</div>
                 <div class="col-3">@item.AddressShipping</div>
                 <div class="col-3-2"><span class="price-number">@item.Totalbill</span> VND</div>
-                <div class="col-3-2">Giao hang thanh cong</div>
+                <div class="col-3-2">@item.StatusOrder.StatusDetail.ToString()</div>
                 @using (Html.BeginForm("OrderDetailView", "Order", new { @Id_Order = item.Id_Order }))
                 {
                     <div class="col-1">

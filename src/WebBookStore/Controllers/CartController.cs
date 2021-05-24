@@ -54,10 +54,10 @@ namespace WebBookStore.Controllers
 
         }
         // Thêm giỏ hàng từ trang detail
-        public ActionResult AddToCartMany(string id_book, string Strurl, FormCollection f)
+        public ActionResult AddToCartMany(string id_book, string Strurl, string result)
         {
             //Conver f ra thành số liệu
-            int re = Convert.ToInt32(f["value-item"].ToString());
+            int re = Convert.ToInt32(result);
             //Kiểm tra sách có tồn tại hay không
             Book book = db.Books.SingleOrDefault(x => x.Id_Book == id_book);
             if (book == null)
@@ -75,10 +75,8 @@ namespace WebBookStore.Controllers
                 {
                     //Chưa tồn tại thì thêm mới
                     cart = new Cart(id_book);
-                    for(int i = 0; i < re; i++)
-                    {
-                        listcart.Add(cart);
-                    }
+                    cart.sQuantity = re;
+                    listcart.Add(cart);
                     return Redirect(Strurl);
                 }
                 else
@@ -98,7 +96,7 @@ namespace WebBookStore.Controllers
                 {
                     return Redirect(Strurl);
                 }    
-            }    
+            }
         }
         // Cập nhật giỏ hàng
         public ActionResult UpdateCart(string id_book, string Strurl, FormCollection f)
@@ -281,8 +279,10 @@ namespace WebBookStore.Controllers
             Account acc = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
             Discount discount = (Discount)Session["discount"];
             order.Id_Customer = acc.Id_Customer;
+            order.PhoneNumber = f["Contact"].ToString();
             order.OrderDate = DateTime.Now;
             order.Paymethod = "Trả bằng tiền mặt khi giao hàng";
+            order.Id_Status = 1;
             //Kiểm tra có áp dụng discount không
             if(Session["discount"] == null)
             {
@@ -295,6 +295,11 @@ namespace WebBookStore.Controllers
             order.AddressShipping = f["Address"].ToString() + ", " + f["City"].ToString();
             //Add don hang vao de co id don hang
             db.Orders.Add(order);
+
+            //add current order to session
+            Session.Add(CommonConstant.ORDER_DETAIL, order);
+
+
             //Them chi tiet don hang
             foreach (var item in listCart)
             {

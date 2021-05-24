@@ -22,7 +22,7 @@ if (order) {
 
 const shoppingCart = document.querySelector(".shopping-cart");
 if (shoppingCart) {
-    shoppingCart.setAttribute("style", "padding-top: " + header.offsetHeight*1.5 + "px");
+    shoppingCart.setAttribute("style", "padding-top: " + header.offsetHeight*2 + "px");
 }
 
 let currentScrollY = 0;
