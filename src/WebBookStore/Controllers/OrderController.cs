@@ -11,12 +11,14 @@ namespace WebBookStore.Controllers
     {
         BookStoreEntities db = new BookStoreEntities();
         // GET: Order
+        // Lấy list order tài khoảng đăng nhập hiện tại
         public ActionResult GetOrderByAcc()
         {
             Account acc = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
             var item = db.Orders.Where(x => x.Id_Customer == acc.Id_Customer).ToList();
             return View(item);
         }
+        // Trả về View Detail Order
         public ActionResult OrderDetailView(int Id_Order)
         {
             Account acc = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
@@ -41,6 +43,11 @@ namespace WebBookStore.Controllers
 
             // Trả về View
             return View(item);
+        }
+        public PartialViewResult StatusOrder(int Id_Order)
+        {
+            var item = db.Orders.Where(x => x.Id_Order == Id_Order).FirstOrDefault();
+            return PartialView(item);
         }
     }
 }

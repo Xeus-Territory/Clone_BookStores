@@ -84,21 +84,7 @@
                 <p>Mã đơn hàng: @ViewBag.OrderID</p>
             </div>
             <div class="order-status-right">
-                <p class="row">
-                    <span class="dot"></span>
-                    <span class="time">12:18 01-02-2021</span>
-                    <span class="status">Dang chuan bi don hang</span>
-                </p>
-                <p class="row">
-                    <span class="dot"></span>
-                    <span class="time">12:18 01-02-2021</span>
-                    <span class="status">Dang giao hang</span>
-                </p>
-                <p class="row">
-                    <span class="dot"></span>
-                    <span class="time">12:18 01-02-2021</span>
-                    <span class="status">Giao hang thanh cong</span>
-                </p>
+                @Html.Action("StatusOrder", "Order")
             </div>
         </div>
     </div>

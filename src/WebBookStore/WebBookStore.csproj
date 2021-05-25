@@ -326,6 +326,7 @@
     <Content Include="Views\Book\BestSellList.cshtml" />
     <Content Include="Views\Book\ViewAll.cshtml" />
     <Content Include="Views\Shared\404.cshtml" />
+    <Content Include="Views\Order\StatusOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
