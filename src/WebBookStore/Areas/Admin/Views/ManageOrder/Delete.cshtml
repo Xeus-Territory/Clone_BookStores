@@ -25,7 +25,7 @@
     <section class="login-register">
         <div class="form-container row--base">
             <div class="form-login">
-                @using (Html.BeginForm("Delete", "ManageOrder", FormMethod.Post))
+                @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(model => model.Id_Customer, new { @class = "form__input" })
@@ -74,7 +74,7 @@
                             @Html.ActionLink("Quay về", "Index", "HomePage")
                         </div>
 
-                        <button class="btn btn-modal" type="submit"> Xác nhận xóa ?</button>
+                        <button class="btn btn-modal" type="submit"> Xác nhận xóa </button>
                     </div>
                 }
 

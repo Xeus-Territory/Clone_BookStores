@@ -25,6 +25,11 @@ if (shoppingCart) {
     shoppingCart.setAttribute("style", "padding-top: " + header.offsetHeight*2 + "px");
 }
 
+const bookSection = document.querySelector(".book");
+if (bookSection) {
+    bookSection.setAttribute("style", "padding-top: " + header.offsetHeight * 2 + "px");
+}
+
 let currentScrollY = 0;
 window.addEventListener("scroll", () => {
     let y = window.scrollY;

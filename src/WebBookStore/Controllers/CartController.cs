@@ -259,9 +259,14 @@ namespace WebBookStore.Controllers
         {
             string iddiscount = f["discount"].ToString();
             List<Cart> listCart = Session["Cart"] as List<Cart>;
-            if (ApproveDiscount(f["discount"].ToString()) == TotalPrice())
+            ViewBag.Phone = f["contact-hidden"].ToString();
+            ViewBag.Name = f["name-hidden"].ToString();
+            ViewBag.Address = f["address-hidden"].ToString();
+            ViewBag.City = f["city-hidden"].ToString();
+            ViewBag.Discountid = iddiscount;
+            if (ApproveDiscount(f["discount"].ToString()) == TotalPrice() || ApproveDiscount(f["discount"].ToString()) == 0)
             {
-                ViewBag.Discount = 0;
+                ViewBag.Discount = "0";
                 ViewBag.TotalPrice = TotalPrice();
                 return View(listCart);
             }

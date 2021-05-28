@@ -16,6 +16,10 @@ namespace WebBookStore.Controllers
         {
             Account acc = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
             var item = db.Orders.Where(x => x.Id_Customer == acc.Id_Customer).ToList();
+            foreach(var i in item)
+            {
+                i.Totalbill += 20000;
+            }    
             return View(item);
         }
         // Trả về View Detail Order
@@ -35,7 +39,11 @@ namespace WebBookStore.Controllers
 
             // Trả về Người nhận
             ViewBag.Name = result.Account.Name; ViewBag.AddressShipping = result.AddressShipping; 
-            ViewBag.Phone = result.Account.Phone; ViewBag.PayMethod = result.Paymethod;
+            ViewBag.Phone = result.PhoneNumber; ViewBag.PayMethod = result.Paymethod;
+            if(result.Note != null)
+            {
+                ViewBag.Noti = result.Note;
+            }    
 
             // Trả về Tính tổng
             int Shippingtax = 20000;

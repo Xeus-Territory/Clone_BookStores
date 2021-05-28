@@ -15,6 +15,14 @@
     <div class="order-content-box order-notify-content row--base">
         <p> @ViewBag.TimeNotify </p>
         <p>
+            @if(ViewBag.Noti == null)
+            {
+
+            }
+             else
+            {
+                @ViewBag.noti
+            }    
             @*Đơn hàng @ViewBag.OrderID đã sẵn sàng giao đến quý khách. Chúng tôi vừa bàn giao đơn hàng
             của quy khác cho đơn vị vận chuẩn. Đơn hàng sẽ được giao @ViewBag.TimeExdeliveryDate @ViewBag.DayExdeliveryDate/@ViewBag.MonthExdeliveryDate/@ViewBag.YearExdeliveryDate*@
         </p>

@@ -11,9 +11,9 @@
                 <div class="col-3">@item.AddressShipping</div>
                 <div class="col-3-2"><span class="price-number">@item.Totalbill</span> VND</div>
                 <div class="col-3-2">@item.StatusOrder.StatusDetail.ToString()</div>
-                @using (Html.BeginForm("OrderDetailView", "Order", new { @Id_Order = item.Id_Order }))
+                @using (Html.BeginForm("OrderDetailView", "Order",new { @Id_Order = item.Id_Order}))
                 {
-                    <div class="col-1">
+                    <div style="padding-left: 2rem">
                         <button class="btn"><i class="fa fa-eye"></i></button>
                     </div>
                 }

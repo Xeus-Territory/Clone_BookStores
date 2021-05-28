@@ -12,15 +12,17 @@
     </a>
     @using (Html.BeginForm("OrderCart", "Cart"))
     {
-        <div class="purchase-info__item">
-            <p>Địa chỉ mail liên lạc</p>
-            <input type="text" name="Contact" placeholder="Số Điện Thoại">
+        <div class="order-info__item">
+            <p>Số điện thoại liên lạc</p>
+            <input class="contact-input" type="text" name="Contact" placeholder="Số Điện Thoại">
         </div>
-        <div class="purchase-info__item">
+        <div class="order-info__item">
             <p>Địa chỉ giao hàng</p>
-            <input type="text" name="Name" placeholder="Tên">
-            <input type="text" name="Address" placeholder="Địa chỉ">
-            <input type="text" name="City" placeholder="Thành phố">
+            <input class="name-input" type="text" name="Name" placeholder="Tên">
+            <input class="address-input" type="text" name="Address" placeholder="Địa chỉ">
+            <select class="city-input" type="text" name="City">
+                <option selected disabled hidden>Thành phố</option>
+            </select>
         </div>
         <div class="order-ctrl">
             <button class="btn btn-secondary">
@@ -50,6 +52,10 @@
     </div>
     @using (Html.BeginForm("GetDiscount", "Cart"))
     {
+        <input style="display: none" class="contact-hidden" name="contact-hidden" />
+        <input style="display: none" class="name-hidden" name="name-hidden"/>
+        <input style="display: none" class="address-hidden" name="address-hidden" />
+        <input style="display: none" class="city-hidden" name="city-hidden"/>
         <div class="order-discount row">
             <input type="text" name="discount" placeholder="Mã giảm giá">
             <button class="btn btn-secondary">Áp dụng</button>
@@ -64,3 +70,33 @@
     </div>
     <img src="~/Asset/img/payment-method.png" />
 </div>
+
+<script type="text/javascript">
+    const contactInput = document.querySelector(".contact-input");
+    contactInput.addEventListener("change", (e) => {
+        const contactInputHidden = document.querySelector(".contact-hidden");
+        contactInputHidden.value = e.target.value;
+        //console.log(contactInputHidden.value);
+    });
+
+    const nameInput = document.querySelector(".name-input");
+    nameInput.addEventListener("change", (e) => {
+        const nameInputHidden = document.querySelector(".name-hidden");
+        nameInputHidden.value = e.target.value;
+        //console.log(nameInputHidden.value);
+    });
+
+    const addressInput = document.querySelector(".address-input");
+    addressInput.addEventListener("change", (e) => {
+        const addressInputHidden = document.querySelector(".address-hidden");
+        addressInputHidden.value = e.target.value;
+        //console.log(addressInputHidden.value);
+    });
+
+    const cityInput = document.querySelector(".city-input");
+    cityInput.addEventListener("change", (e) => {
+        const cityInputHidden = document.querySelector(".city-hidden");
+        cityInputHidden.value = e.target.value;
+        console.log(cityInputHidden.value);
+    });
+</script>

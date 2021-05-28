@@ -5,7 +5,7 @@
 {
     <p class="row">
         <span class="dot"></span>
-        <span class="time">@Model.OrderDate.Day/@Model.OrderDate.Month/@Model.OrderDate.Year</span>
+        <span class="time">@Model.OrderDate.ToString("dd/MM/yyyy")</span>
         <span class="status">Chuẩn bị giao hàng</span>
     </p>
 }
@@ -13,12 +13,12 @@ else if (Model.DeliveryDate != null && Model.Id_Status == 2)
 {
     <p class="row">
         <span class="dot"></span>
-        <span class="time">@Model.OrderDate.Day/@Model.OrderDate.Month/@Model.OrderDate.Year</span>
+        <span class="time">@Model.OrderDate.ToString("dd/MM/yyyy")</span>
         <span class="status">Chuẩn bị giao hàng</span>
     </p>
     <p class="row">
         <span class="dot"></span>
-        <span class="time">@Model.DeliveryDate.Value.Day/@Model.DeliveryDate.Value.Month/@Model.DeliveryDate.Value.Year</span>
+        <span class="time">@Model.DeliveryDate.Value.ToString("dd/MM/yyyy")</span>
         <span class="status">Đang giao hàng</span>
     </p>
 }
@@ -26,17 +26,17 @@ else
 {
     <p class="row">
         <span class="dot"></span>
-        <span class="time">@Model.OrderDate.Day/@Model.OrderDate.Month/@Model.OrderDate.Year</span>
+        <span class="time">@Model.OrderDate.ToString("dd/MM/yyyy")</span>
         <span class="status">Chuẩn bị giao hàng</span>
     </p>
     <p class="row">
         <span class="dot"></span>
-        <span class="time">@Model.DeliveryDate.Value.Day/@Model.DeliveryDate.Value.Month/@Model.DeliveryDate.Value.Year</span>
+        <span class="time">@Model.DeliveryDate.Value.ToString("dd/MM/yyyy")</span>
         <span class="status">Đang giao hàng</span>
     </p>
     <p class="row">
         <span class="dot"></span>
-        <span class="time">@Model.ExpDeliveryDate.Value.Day/@Model.ExpDeliveryDate.Value.Month/@Model.ExpDeliveryDate.Value.Year</span>
+        <span class="time">@Model.ExpDeliveryDate.Value.ToString("dd/MM/yyyy")</span>
         <span class="status">Đã giao hàng</span>
     </p>
 }

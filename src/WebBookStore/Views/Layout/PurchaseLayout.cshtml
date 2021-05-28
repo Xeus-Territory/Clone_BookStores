@@ -24,7 +24,22 @@
     <section class="purchase row--base">
         @RenderBody()
     </section>
-    <script src="~/Asset/js/index.js"></script>
+    <script>
+    fetch('https://vapi.vnappmob.com/api/province')
+        .then(response => response.json())
+        .then(({ results }) => {
+            let content = '';
+            console.log(results);
+            results.forEach(city => {
+                if (cityInput.value === city.province_name) return;
+                    
+                content += `
+                        <option value="${city.province_name}">${city.province_name}</option>
+                    `
+            });
+            cityInput.innerHTML += content;
+        })
+    </script>
 </body>
 </html>
 
