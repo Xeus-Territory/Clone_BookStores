@@ -49,7 +49,6 @@ namespace WebBookStore.Models
 
         public long Insert(Account entity)
         {
-
             db.Accounts.Add(entity);
             SaveChanges();
             return entity.Id_Customer;

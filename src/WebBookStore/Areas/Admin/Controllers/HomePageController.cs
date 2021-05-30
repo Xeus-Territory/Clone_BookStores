@@ -18,6 +18,8 @@ namespace WebBookStore.Areas.Admin.Controllers
         { 
             return View();
         }
+
+        [HasCredential(RoleID = "VIEW_BOOK")]
         public PartialViewResult resultSomething(string searchsomething)
         {
             SearchModel result = new SearchModel

@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="BookStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AccessOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__Access__70DDC3D8" FromRole="AccessOrder" ToRole="Order" />
+  </EntityType>
   <EntityType Name="Account">
     <Key>
       <PropertyRef Name="Id_Customer" />
@@ -20,7 +28,7 @@
     <Property Name="ActivationCode" Type="Guid" />
     <Property Name="ResetPasswordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="GroupID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Orders" Relationship="BookStoreModel.FK_Order_Account" FromRole="Account" ToRole="Order" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Account" FromRole="Account" ToRole="Order" />
   </EntityType>
   <EntityType Name="Author">
     <Key>
@@ -82,18 +90,37 @@
     <Property Name="ExpDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Book" Relationship="Self.FK_Discount_Book" FromRole="Discount" ToRole="Book" />
   </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id_Order" />
+    </Key>
+    <Property Name="Id_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Customer" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+    <Property Name="Paymethod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ExpDeliveryDate" Type="DateTime" Precision="3" />
+    <Property Name="Totalbill" Type="Int32" />
+    <Property Name="AddressShipping" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_Status" Type="Int32" />
+    <Property Name="Id_Access" Type="Int32" />
+    <NavigationProperty Name="AccessOrder" Relationship="Self.FK__Order__Access__70DDC3D8" FromRole="Order" ToRole="AccessOrder" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Order_Account" FromRole="Order" ToRole="Account" />
+    <NavigationProperty Name="StatusOrder" Relationship="Self.FK__Order__Id_Status__4BAC3F29" FromRole="Order" ToRole="StatusOrder" />
+    <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+  </EntityType>
   <EntityType Name="OrderDetail">
     <Key>
-      <PropertyRef Name="Id_Detail" />
+      <PropertyRef Name="id_Order" />
     </Key>
-    <Property Name="Id_Detail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_Book" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="id_Order" Type="Int32" Nullable="false" />
     <Property Name="Quantity" Type="Int32" Nullable="false" />
     <Property Name="Price" Type="Int32" />
-    <Property Name="TotalPrice" Type="Int32" />
     <NavigationProperty Name="Book" Relationship="Self.FK_OrderDetail_Book" FromRole="OrderDetail" ToRole="Book" />
-    <NavigationProperty Name="Order" Relationship="BookStoreModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
   </EntityType>
   <EntityType Name="Publisher">
     <Key>
@@ -108,16 +135,16 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="StatusOrder">
     <Key>
       <PropertyRef Name="Id_Status" />
     </Key>
-    <Property Name="Id_Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Status" Type="Int32" Nullable="false" />
     <Property Name="StatusDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Orders" Relationship="BookStoreModel.FK_Order_StatusOrder" FromRole="StatusOrder" ToRole="Order" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__Id_Status__4BAC3F29" FromRole="StatusOrder" ToRole="Order" />
   </EntityType>
   <EntityType Name="UserGroup">
     <Key>
@@ -126,6 +153,30 @@
     <Property Name="ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
+  <Association Name="FK__Order__Access__70DDC3D8">
+    <End Role="AccessOrder" Type="Self.AccessOrder" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccessOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Id_Access" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id_Customer" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Id_Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Book_Author">
     <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
     <End Role="Book" Type="Self.Book" Multiplicity="*" />
@@ -186,18 +237,52 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Order__Id_Status__4BAC3F29">
+    <End Role="StatusOrder" Type="Self.StatusOrder" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusOrder">
+        <PropertyRef Name="Id_Status" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Id_Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id_Order" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="id_Order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="BookStoreEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AccessOrders" EntityType="Self.AccessOrder" />
     <EntitySet Name="Accounts" EntityType="Self.Account" />
     <EntitySet Name="Authors" EntityType="Self.Author" />
     <EntitySet Name="Books" EntityType="Self.Book" />
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="Credentials" EntityType="Self.Credential" />
     <EntitySet Name="Discounts" EntityType="Self.Discount" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
     <EntitySet Name="Publishers" EntityType="Self.Publisher" />
     <EntitySet Name="Roles" EntityType="Self.Role" />
     <EntitySet Name="StatusOrders" EntityType="Self.StatusOrder" />
     <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
+    <AssociationSet Name="FK__Order__Access__70DDC3D8" Association="Self.FK__Order__Access__70DDC3D8">
+      <End Role="AccessOrder" EntitySet="AccessOrders" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Account" Association="Self.FK_Order_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
     <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
       <End Role="Author" EntitySet="Authors" />
       <End Role="Book" EntitySet="Books" />
@@ -218,100 +303,13 @@
       <End Role="Book" EntitySet="Books" />
       <End Role="OrderDetail" EntitySet="OrderDetails" />
     </AssociationSet>
-    <EntitySet Name="AccessOrders" EntityType="BookStoreModel.AccessOrder" />
-    <EntitySet Name="Orders" EntityType="BookStoreModel.Order" />
-    <AssociationSet Name="FK__Order__Id_Access__3C34F16F" Association="BookStoreModel.FK__Order__Id_Access__3C34F16F">
-      <End Role="AccessOrder" EntitySet="AccessOrders" />
-      <End Role="Order" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Order_Account" Association="BookStoreModel.FK_Order_Account">
-      <End Role="Account" EntitySet="Accounts" />
-      <End Role="Order" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Order_StatusOrder" Association="BookStoreModel.FK_Order_StatusOrder">
+    <AssociationSet Name="FK__Order__Id_Status__4BAC3F29" Association="Self.FK__Order__Id_Status__4BAC3F29">
       <End Role="StatusOrder" EntitySet="StatusOrders" />
       <End Role="Order" EntitySet="Orders" />
     </AssociationSet>
-    <AssociationSet Name="FK_OrderDetail_Order" Association="BookStoreModel.FK_OrderDetail_Order">
+    <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
       <End Role="Order" EntitySet="Orders" />
       <End Role="OrderDetail" EntitySet="OrderDetails" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="AccessOrder">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Orders" Relationship="BookStoreModel.FK__Order__Id_Access__3C34F16F" FromRole="AccessOrder" ToRole="Order" />
-  </EntityType>
-  <EntityType Name="Order">
-    <Key>
-      <PropertyRef Name="Id_Order" />
-    </Key>
-    <Property Name="Id_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Id_Customer" Type="Int32" Nullable="false" />
-    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
-    <Property Name="Paymethod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="ExpDeliveryDate" Type="DateTime" Precision="3" />
-    <Property Name="Totalbill" Type="Int32" />
-    <Property Name="Id_Status" Type="Int32" />
-    <Property Name="AddressShipping" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Id_Access" Type="Int32" />
-    <NavigationProperty Name="AccessOrder" Relationship="BookStoreModel.FK__Order__Id_Access__3C34F16F" FromRole="Order" ToRole="AccessOrder" />
-    <NavigationProperty Name="Account" Relationship="BookStoreModel.FK_Order_Account" FromRole="Order" ToRole="Account" />
-    <NavigationProperty Name="StatusOrder" Relationship="BookStoreModel.FK_Order_StatusOrder" FromRole="Order" ToRole="StatusOrder" />
-    <NavigationProperty Name="OrderDetails" Relationship="BookStoreModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
-  </EntityType>
-  <Association Name="FK__Order__Id_Access__3C34F16F">
-    <End Type="BookStoreModel.AccessOrder" Role="AccessOrder" Multiplicity="0..1" />
-    <End Type="BookStoreModel.Order" Role="Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AccessOrder">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="Id_Access" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Order_Account">
-    <End Type="BookStoreModel.Account" Role="Account" Multiplicity="1" />
-    <End Type="BookStoreModel.Order" Role="Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Account">
-        <PropertyRef Name="Id_Customer" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="Id_Customer" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Order_StatusOrder">
-    <End Type="BookStoreModel.StatusOrder" Role="StatusOrder" Multiplicity="0..1" />
-    <End Type="BookStoreModel.Order" Role="Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="StatusOrder">
-        <PropertyRef Name="Id_Status" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="Id_Status" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderDetail_Order">
-    <End Type="BookStoreModel.Order" Role="Order" Multiplicity="1" />
-    <End Type="BookStoreModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="Id_Order" />
-      </Principal>
-      <Dependent Role="OrderDetail">
-        <PropertyRef Name="id_Order" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

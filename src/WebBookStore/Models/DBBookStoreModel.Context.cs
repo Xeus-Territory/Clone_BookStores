@@ -25,18 +25,18 @@ namespace WebBookStore.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AccessOrder> AccessOrders { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Credential> Credentials { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Publisher> Publishers { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<StatusOrder> StatusOrders { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
-        public virtual DbSet<AccessOrder> AccessOrders { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
     }
 }

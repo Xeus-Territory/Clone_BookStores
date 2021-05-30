@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="BookStoreModelStoreContainer" CdmEntityContainer="BookStoreEntities">
+    <EntitySetMapping Name="AccessOrders">
+      <EntityTypeMapping TypeName="BookStoreModel.AccessOrder">
+        <MappingFragment StoreEntitySet="AccessOrder">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="BookStoreModel.Account">
         <MappingFragment StoreEntitySet="Account">
@@ -79,15 +87,31 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="BookStoreModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
+          <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="Paymethod" ColumnName="Paymethod" />
+          <ScalarProperty Name="ExpDeliveryDate" ColumnName="ExpDeliveryDate" />
+          <ScalarProperty Name="Totalbill" ColumnName="Totalbill" />
+          <ScalarProperty Name="AddressShipping" ColumnName="AddressShipping" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+          <ScalarProperty Name="Id_Access" ColumnName="Id_Access" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="OrderDetails">
       <EntityTypeMapping TypeName="BookStoreModel.OrderDetail">
         <MappingFragment StoreEntitySet="OrderDetail">
-          <ScalarProperty Name="Id_Detail" ColumnName="Id_Detail" />
           <ScalarProperty Name="id_Book" ColumnName="id_Book" />
           <ScalarProperty Name="id_Order" ColumnName="id_Order" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -121,32 +145,6 @@
         <MappingFragment StoreEntitySet="UserGroup">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AccessOrders">
-      <EntityTypeMapping TypeName="BookStoreModel.AccessOrder">
-        <MappingFragment StoreEntitySet="AccessOrder">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="BookStoreModel.Order">
-        <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="Id_Access" ColumnName="Id_Access" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="AddressShipping" ColumnName="AddressShipping" />
-          <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
-          <ScalarProperty Name="Totalbill" ColumnName="Totalbill" />
-          <ScalarProperty Name="ExpDeliveryDate" ColumnName="ExpDeliveryDate" />
-          <ScalarProperty Name="Paymethod" ColumnName="Paymethod" />
-          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
-          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-          <ScalarProperty Name="Note" ColumnName="Note" />
-          <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
-          <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

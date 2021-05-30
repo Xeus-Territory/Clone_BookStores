@@ -37,13 +37,13 @@ namespace WebBookStore.Controllers
                 var result = UserDao.Instance.Update(user);
                 if (result)
                 {
-                    ModelState.AddModelError("", "Cap nhat thanh cong");
+                    ModelState.AddModelError("", "* Cập nhật thành công!");
                     return RedirectToAction("Index", "User");
                 }
                 else
                 {
                     ViewBag.Fail = "Cap nhat khong thanh cong";
-                    ModelState.AddModelError("", "Cap nhat khong thanh cong");
+                    ModelState.AddModelError("", "* Cập nhật không thành công!");
                 }
             }
             return View();
@@ -145,16 +145,16 @@ namespace WebBookStore.Controllers
                 string body = "";
                 if (emailFor == "VerifyAccount")
                 {
-                    subject = "You account is successfully created!";
+                    subject = "Tài khoản đã được tạo thành công !";
 
-                    body = "<br/><br/> We are excited to tell you that your Book Store account is " +
-                       "Successfully created ^^. Please click on the below link to verify your account" +
+                    body = "<br/><br/> Tài khoản BookStore của bạn đã " +
+                       "đăng ký thành công ^^. Vui lòng click vào link bên dưới để xác nhận Email của tài khoản" +
                        "<br/><br/><a href =" + link + ">" + link + "</a>";
                 }
                 else if (emailFor == "ResetPassword")
                 {
-                    subject = "Reset Password";
-                    body = "Hi, <br/><br/>We got request for reset your account password. Please click on the below link to reset" +
+                    subject = "Thay đổi mật khẩu";
+                    body = "Xin chào! , <br/><br/>Chúng tôi nhận được yêu cầu thay đổi mật khẩu của bạn. Vui lòng click vào link bên dưới để thay đổi" +
                         "<br/><br/><a href =" + link + ">Reset Password link</a>";
                 }
 
@@ -207,11 +207,11 @@ namespace WebBookStore.Controllers
                 UserDao.Instance.ValidateOnSaveEnabled();
                 UserDao.Instance.SaveChanges();
                 status = true;
-                message = "Check your email to reset password";
+                message = "Kiểm tra Email để thay đổi mật khẩu!";
             }
             else
             {
-                message = "Account not found!";
+                message = "* Tài khoản Email không tìm thấy!";
             }
             ViewBag.Status = status;
             ViewBag.Message = message;
@@ -248,12 +248,12 @@ namespace WebBookStore.Controllers
                     user.ResetPasswordCode = "";
                     UserDao.Instance.ValidateOnSaveEnabled();
                     UserDao.Instance.SaveChanges();
-                    message = "New password updated successfully!";
+                    message = "* Mật khẩu mới đã được cập nhật!";
                 }
             }
             else
             {
-                message = "Something went wrong!";
+                message = "* Mật khẩu cập nhật không thành công!!";
             }
             ViewBag.Message = message;
             return View(model);

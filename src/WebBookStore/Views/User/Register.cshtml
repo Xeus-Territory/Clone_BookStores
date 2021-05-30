@@ -47,6 +47,20 @@
             @Html.ValidationMessage("Email đã tồn tại", new { @class = "wrong-input" })
         </div>
         <button class="btn ctrl--add-to-cart" type="submit">Đăng ký</button>
+
+        if (@ViewBag.Status == true)
+        {
+            <div class="form-group">
+                <div class="success-icon">
+                    <i class="fa fa-check"></i>
+                </div>  
+                <p>Bạn đã đăng ký thành công!</p>
+                <p><a href="https://mail.google.com/mail/u/?authuser=@Model.Email">Vui lòng Check Email để đăng nhập <i class="fa fa-arrow-right"></i></a></p>
+            </div>
+
+        }
     }
 </div>
+
+
 

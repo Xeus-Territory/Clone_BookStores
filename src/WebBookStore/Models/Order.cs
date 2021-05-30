@@ -14,12 +14,6 @@ namespace WebBookStore.Models
     
     public partial class Order
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
-        {
-            this.OrderDetails = new HashSet<OrderDetail>();
-        }
-    
         public int Id_Order { get; set; }
         public int Id_Customer { get; set; }
         public string Note { get; set; }
@@ -28,15 +22,14 @@ namespace WebBookStore.Models
         public string Paymethod { get; set; }
         public Nullable<System.DateTime> ExpDeliveryDate { get; set; }
         public Nullable<int> Totalbill { get; set; }
-        public Nullable<int> Id_Status { get; set; }
         public string AddressShipping { get; set; }
         public string PhoneNumber { get; set; }
+        public Nullable<int> Id_Status { get; set; }
         public Nullable<int> Id_Access { get; set; }
     
         public virtual AccessOrder AccessOrder { get; set; }
         public virtual Account Account { get; set; }
         public virtual StatusOrder StatusOrder { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual OrderDetail OrderDetail { get; set; }
     }
 }

@@ -172,14 +172,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
-    <Compile Include="Areas\Admin\Models\SearchModel.cs" />
     <Compile Include="Models\AccessOrder.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Models\SearchModel.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomePageController.cs" />
@@ -278,6 +278,12 @@
     <Content Include="Areas\Admin\Views\AdminLogin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\AdminLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\LogRegLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageOrder\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomePage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageOrder\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageOrder\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\CustomerExis.cshtml" />
+    <Content Include="Areas\Admin\Views\HomePage\resultSomething.cshtml" />
     <EntityDeploy Include="Models\DBBookStoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBBookStoreModel.Designer.cs</LastGenOutput>
@@ -285,12 +291,6 @@
     <Content Include="Models\DBBookStoreModel.edmx.diagram">
       <DependentUpon>DBBookStoreModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\ManageOrder\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\HomePage\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ManageOrder\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ManageOrder\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Customer\CustomerExis.cshtml" />
-    <Content Include="Areas\Admin\Views\HomePage\resultSomething.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

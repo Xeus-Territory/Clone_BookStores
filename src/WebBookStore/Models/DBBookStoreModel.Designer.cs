@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Code\PBL3BookStores\src\WebBookStore\Models\DBBookStoreModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\ASUS\OneDrive\Desktop\PBL3\PBL3BookStores\src\WebBookStore\Models\DBBookStoreModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
