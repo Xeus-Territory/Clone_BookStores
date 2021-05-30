@@ -288,6 +288,7 @@ namespace WebBookStore.Controllers
             order.OrderDate = DateTime.Now;
             order.Paymethod = "Trả bằng tiền mặt khi giao hàng";
             order.Id_Status = 1;
+            order.Id_Access = 1;
             //Kiểm tra có áp dụng discount không
             if(Session["discount"] == null)
             {

@@ -31,7 +31,9 @@ namespace WebBookStore.Models
         public Nullable<int> Id_Status { get; set; }
         public string AddressShipping { get; set; }
         public string PhoneNumber { get; set; }
+        public Nullable<int> Id_Access { get; set; }
     
+        public virtual AccessOrder AccessOrder { get; set; }
         public virtual Account Account { get; set; }
         public virtual StatusOrder StatusOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

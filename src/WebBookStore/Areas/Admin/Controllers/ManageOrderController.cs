@@ -49,14 +49,21 @@ namespace WebBookStore.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var result = OrderDao.Instance.Update(order);
-                if (result)
+                if (result == 1)
                 {
                     ModelState.AddModelError("", "* Cập nhật thành công !");
                 }
-                else
+                else if(result == -1)
                 {
-                    ModelState.AddModelError("", "* Cập nhật không thành công !");
+                    ModelState.AddModelError("", "* Ngày vận chuyển phải nhỏ hơn ngày hạn chót giao hàng !");
                 }
+                else if(result == -2)
+                {
+                    ModelState.AddModelError("", "* Ngày vận chuyển phải lớn hơn ngày đặt hàng " + order.OrderDate.ToString("dd/MM/yyyy") + "!");
+                }
+                else
+                    ModelState.AddModelError("", "* Cập nhật không thành công !");
+
             }
             ViewBag.Id_Order = order.Id_Order;
             using (BookStoreEntities db = new BookStoreEntities())
@@ -87,8 +94,7 @@ namespace WebBookStore.Areas.Admin.Controllers
         [HasCredential(RoleID = "DELETE_ORDER")]
         public ActionResult ConfirmDelete(int Id_Order)
         {
-            EditOrderModel order = OrderDao.Instance.GetOrderById(Id_Order);
-            var result = OrderDao.Instance.Delete(order);
+            var result = OrderDao.Instance.Delete(Id_Order);
             if (!result)
             {
                 Response.StatusCode = 404;

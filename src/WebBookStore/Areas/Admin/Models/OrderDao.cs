@@ -50,39 +50,48 @@ namespace WebBookStore.Areas.Admin.Models
         //    return db.Orders.OrderByDescending(x => x.DeliveryDate).ToPagedList(page, pageSize);
         //}
 
-        public bool Update(EditOrderModel entity)
+        public int Update(EditOrderModel entity)
         {
             try
             {
                 var order = db.Orders.Find(entity.Id_Order);
-                order.DeliveryDate = entity.DeliveryDate;
-                order.ExpDeliveryDate = entity.ExpDeliveryDate;
-                order.Id_Status = entity.Id_Status;
-                order.Note = entity.Note;
 
-                SaveChanges();
-                return true;
+                //get infor not update
+                entity.OrderDate = order.OrderDate;
+
+                DateTime date1 = Convert.ToDateTime(entity.DeliveryDate);
+                DateTime date2 = Convert.ToDateTime(entity.ExpDeliveryDate);
+                DateTime date3 = order.OrderDate;
+                if(DateTime.Compare(date1, date2) >= 0)
+                {
+                    return -1;
+                }
+                else if(DateTime.Compare(date1, date3) <= 0)
+                {
+                    return -2;
+                }
+                else
+                {
+                    order.DeliveryDate = entity.DeliveryDate;
+                    order.ExpDeliveryDate = entity.ExpDeliveryDate;
+                    order.Id_Status = entity.Id_Status;
+                    order.Note = entity.Note;
+                    SaveChanges();
+                    return 1;
+                }
             }
             catch (Exception)
             {
-                return false;
+                return 0;
             }
         }
 
-        public bool Delete(EditOrderModel entity)
+        public bool Delete(int Id_Order)
         {
             try
             {
-                List<OrderDetail> list = db.OrderDetails.ToList();
-                foreach (var item in list)
-                {
-                    if (item.id_Order == entity.Id_Order)
-                    {
-                        db.OrderDetails.Remove(item);
-                    }
-                }
-                Order obj = db.Orders.Find(entity.Id_Order);
-                db.Orders.Remove(obj);
+                Order obj = db.Orders.Find(Id_Order);
+                obj.Id_Access = 2;
                 SaveChanges();
                 return true;
             }
@@ -90,6 +99,25 @@ namespace WebBookStore.Areas.Admin.Models
             {
                 return false;
             }
+            //try
+            //{
+            //    List<OrderDetail> list = db.OrderDetails.ToList();
+            //    foreach (var item in list)
+            //    {
+            //        if (item.id_Order == entity.Id_Order)
+            //        {
+            //            db.OrderDetails.Remove(item);
+            //        }
+            //    }
+            //    Order obj = db.Orders.Find(entity.Id_Order);
+            //    db.Orders.Remove(obj);
+            //    SaveChanges();
+            //    return true;
+            //}
+            //catch(Exception)
+            //{
+            //    return false;
+            //}
         }
 
         public EditOrderModel GetOrderById(int id)
@@ -111,7 +139,17 @@ namespace WebBookStore.Areas.Admin.Models
 
         public List<Order> ListAllOrder()
         {
-            return db.Orders.ToList();
+            //return db.Orders.ToList();
+            List<Order> orders = db.Orders.ToList();
+            List<Order> show = new List<Order>();
+            foreach(var item in orders)
+            {
+                if(item.Id_Access == 1)
+                {
+                    show.Add(item);
+                }
+            }
+            return show;
         }
     }
 }

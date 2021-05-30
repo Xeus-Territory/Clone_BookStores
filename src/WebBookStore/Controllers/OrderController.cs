@@ -15,7 +15,7 @@ namespace WebBookStore.Controllers
         public ActionResult GetOrderByAcc()
         {
             Account acc = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
-            var item = db.Orders.Where(x => x.Id_Customer == acc.Id_Customer).ToList();
+            var item = db.Orders.Where(x => x.Id_Customer == acc.Id_Customer && x.Id_Access == 1).ToList();
             foreach(var i in item)
             {
                 i.Totalbill += 20000;

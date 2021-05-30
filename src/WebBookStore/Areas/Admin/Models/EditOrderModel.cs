@@ -14,11 +14,14 @@ namespace WebBookStore.Areas.Admin.Models
 
         public int Id_Customer { get; set; }
 
+        public DateTime OrderDate { get; set; }
         [Display(Name = "Ngày vận chuyển")]
+        [Required(ErrorMessage = "* Yêu cầu nhập vào ngày vận chuyển !")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime? DeliveryDate { get; set; }
 
         [Display(Name = "Ngày hạn chót giao hàng")]
+        [Required(ErrorMessage = "* Yêu cầu nhập vào ngày hạn chót giao hàng !")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime? ExpDeliveryDate { get; set; }
         public int? Id_Status { get; set; }

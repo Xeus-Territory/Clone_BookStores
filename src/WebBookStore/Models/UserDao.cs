@@ -103,16 +103,20 @@ namespace WebBookStore.Models
                     {
                         return -1;
                     }
-                    else if (result.ConfirmEmail == false)
+                    else if (result.Password == Password)
                     {
-                        return -3;
+                        if (result.ConfirmEmail == false)
+                        {
+                            return -3;
+                        }
+                        else
+                        {
+                            return 1;
+                        }
                     }
                     else
                     {
-                        if (result.Password == Password)
-                            return 1;
-                        else
-                            return -2;
+                        return -2;
                     }
                 }
 

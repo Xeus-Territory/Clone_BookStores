@@ -40,9 +40,9 @@ namespace WebBookStore.Controllers
                 {
                     ModelState.AddModelError("", "*Tài khoản bị khóa !");
                 }
-                else if (result == -2)
+                else if(result == -3)
                 {
-                    ModelState.AddModelError("", "*Tài khoản hoặc mật khẩu không đúng !");
+                    ModelState.AddModelError("", "*Tài khoản chưa xác nhận Email !");
                 }
                 else
                 {

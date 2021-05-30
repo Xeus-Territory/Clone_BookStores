@@ -79,23 +79,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="BookStoreModel.Order">
-        <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
-          <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
-          <ScalarProperty Name="Note" ColumnName="Note" />
-          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
-          <ScalarProperty Name="Paymethod" ColumnName="Paymethod" />
-          <ScalarProperty Name="ExpDeliveryDate" ColumnName="ExpDeliveryDate" />
-          <ScalarProperty Name="Totalbill" ColumnName="Totalbill" />
-          <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
-          <ScalarProperty Name="AddressShipping" ColumnName="AddressShipping" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="OrderDetails">
       <EntityTypeMapping TypeName="BookStoreModel.OrderDetail">
         <MappingFragment StoreEntitySet="OrderDetail">
@@ -138,6 +121,32 @@
         <MappingFragment StoreEntitySet="UserGroup">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccessOrders">
+      <EntityTypeMapping TypeName="BookStoreModel.AccessOrder">
+        <MappingFragment StoreEntitySet="AccessOrder">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="BookStoreModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Id_Access" ColumnName="Id_Access" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="AddressShipping" ColumnName="AddressShipping" />
+          <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+          <ScalarProperty Name="Totalbill" ColumnName="Totalbill" />
+          <ScalarProperty Name="ExpDeliveryDate" ColumnName="ExpDeliveryDate" />
+          <ScalarProperty Name="Paymethod" ColumnName="Paymethod" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
+          <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

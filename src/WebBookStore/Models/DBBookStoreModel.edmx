@@ -4,7 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BookStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BookStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccessOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="Id_Customer" />
@@ -93,6 +100,7 @@
           <Property Name="Id_Status" Type="int" />
           <Property Name="AddressShipping" Type="nvarchar" MaxLength="200" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id_Access" Type="int" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -134,6 +142,18 @@
           <Property Name="ID" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK__Order__Id_Access__3C34F16F">
+          <End Role="AccessOrder" Type="Self.AccessOrder" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccessOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Id_Access" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Book_Author">
           <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
@@ -231,6 +251,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BookStoreModelStoreContainer">
+          <EntitySet Name="AccessOrder" EntityType="Self.AccessOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
@@ -243,6 +264,10 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StatusOrder" EntityType="Self.StatusOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Order__Id_Access__3C34F16F" Association="Self.FK__Order__Id_Access__3C34F16F">
+            <End Role="AccessOrder" EntitySet="AccessOrder" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
             <End Role="Author" EntitySet="Author" />
             <End Role="Book" EntitySet="Book" />
@@ -276,8 +301,7 @@
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BookStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -301,7 +325,7 @@
           <Property Name="ActivationCode" Type="Guid" />
           <Property Name="ResetPasswordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="GroupID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Account" FromRole="Account" ToRole="Order" />
+          <NavigationProperty Name="Orders" Relationship="BookStoreModel.FK_Order_Account" FromRole="Account" ToRole="Order" />
         </EntityType>
         <EntityType Name="Author">
           <Key>
@@ -363,25 +387,6 @@
           <Property Name="ExpDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Book" Relationship="Self.FK_Discount_Book" FromRole="Discount" ToRole="Book" />
         </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="Id_Order" />
-          </Key>
-          <Property Name="Id_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Customer" Type="Int32" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
-          <Property Name="Paymethod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ExpDeliveryDate" Type="DateTime" Precision="3" />
-          <Property Name="Totalbill" Type="Int32" />
-          <Property Name="Id_Status" Type="Int32" />
-          <Property Name="AddressShipping" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Account" Relationship="Self.FK_Order_Account" FromRole="Order" ToRole="Account" />
-          <NavigationProperty Name="StatusOrder" Relationship="Self.FK_Order_StatusOrder" FromRole="Order" ToRole="StatusOrder" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
-        </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
             <PropertyRef Name="Id_Detail" />
@@ -393,7 +398,7 @@
           <Property Name="Price" Type="Int32" />
           <Property Name="TotalPrice" Type="Int32" />
           <NavigationProperty Name="Book" Relationship="Self.FK_OrderDetail_Book" FromRole="OrderDetail" ToRole="Book" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Order" Relationship="BookStoreModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
         </EntityType>
         <EntityType Name="Publisher">
           <Key>
@@ -417,7 +422,7 @@
           </Key>
           <Property Name="Id_Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_StatusOrder" FromRole="StatusOrder" ToRole="Order" />
+          <NavigationProperty Name="Orders" Relationship="BookStoreModel.FK_Order_StatusOrder" FromRole="StatusOrder" ToRole="Order" />
         </EntityType>
         <EntityType Name="UserGroup">
           <Key>
@@ -426,18 +431,6 @@
           <Property Name="ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_Order_Account">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="Id_Customer" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="Id_Customer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Book_Author">
           <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
@@ -498,30 +491,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_StatusOrder">
-          <End Role="StatusOrder" Type="Self.StatusOrder" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StatusOrder">
-              <PropertyRef Name="Id_Status" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="Id_Status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrderDetail_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="Id_Order" />
-            </Principal>
-            <Dependent Role="OrderDetail">
-              <PropertyRef Name="id_Order" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BookStoreEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Authors" EntityType="Self.Author" />
@@ -529,16 +498,11 @@
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Credentials" EntityType="Self.Credential" />
           <EntitySet Name="Discounts" EntityType="Self.Discount" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Publishers" EntityType="Self.Publisher" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="StatusOrders" EntityType="Self.StatusOrder" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
-          <AssociationSet Name="FK_Order_Account" Association="Self.FK_Order_Account">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
             <End Role="Author" EntitySet="Authors" />
             <End Role="Book" EntitySet="Books" />
@@ -559,15 +523,102 @@
             <End Role="Book" EntitySet="Books" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_StatusOrder" Association="Self.FK_Order_StatusOrder">
+          <EntitySet Name="AccessOrders" EntityType="BookStoreModel.AccessOrder" />
+          <EntitySet Name="Orders" EntityType="BookStoreModel.Order" />
+          <AssociationSet Name="FK__Order__Id_Access__3C34F16F" Association="BookStoreModel.FK__Order__Id_Access__3C34F16F">
+            <End Role="AccessOrder" EntitySet="AccessOrders" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Account" Association="BookStoreModel.FK_Order_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_StatusOrder" Association="BookStoreModel.FK_Order_StatusOrder">
             <End Role="StatusOrder" EntitySet="StatusOrders" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+          <AssociationSet Name="FK_OrderDetail_Order" Association="BookStoreModel.FK_OrderDetail_Order">
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AccessOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="BookStoreModel.FK__Order__Id_Access__3C34F16F" FromRole="AccessOrder" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id_Order" />
+          </Key>
+          <Property Name="Id_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Customer" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+          <Property Name="Paymethod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ExpDeliveryDate" Type="DateTime" Precision="3" />
+          <Property Name="Totalbill" Type="Int32" />
+          <Property Name="Id_Status" Type="Int32" />
+          <Property Name="AddressShipping" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Access" Type="Int32" />
+          <NavigationProperty Name="AccessOrder" Relationship="BookStoreModel.FK__Order__Id_Access__3C34F16F" FromRole="Order" ToRole="AccessOrder" />
+          <NavigationProperty Name="Account" Relationship="BookStoreModel.FK_Order_Account" FromRole="Order" ToRole="Account" />
+          <NavigationProperty Name="StatusOrder" Relationship="BookStoreModel.FK_Order_StatusOrder" FromRole="Order" ToRole="StatusOrder" />
+          <NavigationProperty Name="OrderDetails" Relationship="BookStoreModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <Association Name="FK__Order__Id_Access__3C34F16F">
+          <End Type="BookStoreModel.AccessOrder" Role="AccessOrder" Multiplicity="0..1" />
+          <End Type="BookStoreModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccessOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Id_Access" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Account">
+          <End Type="BookStoreModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="BookStoreModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id_Customer" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Id_Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_StatusOrder">
+          <End Type="BookStoreModel.StatusOrder" Role="StatusOrder" Multiplicity="0..1" />
+          <End Type="BookStoreModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOrder">
+              <PropertyRef Name="Id_Status" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Id_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Order">
+          <End Type="BookStoreModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="BookStoreModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id_Order" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="id_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -652,23 +703,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="BookStoreModel.Order">
-              <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
-                <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
-                <ScalarProperty Name="Paymethod" ColumnName="Paymethod" />
-                <ScalarProperty Name="ExpDeliveryDate" ColumnName="ExpDeliveryDate" />
-                <ScalarProperty Name="Totalbill" ColumnName="Totalbill" />
-                <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
-                <ScalarProperty Name="AddressShipping" ColumnName="AddressShipping" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="BookStoreModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
@@ -711,6 +745,32 @@
               <MappingFragment StoreEntitySet="UserGroup">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccessOrders">
+            <EntityTypeMapping TypeName="BookStoreModel.AccessOrder">
+              <MappingFragment StoreEntitySet="AccessOrder">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="BookStoreModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id_Access" ColumnName="Id_Access" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AddressShipping" ColumnName="AddressShipping" />
+                <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+                <ScalarProperty Name="Totalbill" ColumnName="Totalbill" />
+                <ScalarProperty Name="ExpDeliveryDate" ColumnName="ExpDeliveryDate" />
+                <ScalarProperty Name="Paymethod" ColumnName="Paymethod" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
+                <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="BookStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccessOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Account">
     <Key>
       <PropertyRef Name="Id_Customer" />
@@ -88,6 +95,7 @@
     <Property Name="Id_Status" Type="int" />
     <Property Name="AddressShipping" Type="nvarchar" MaxLength="200" />
     <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_Access" Type="int" />
   </EntityType>
   <EntityType Name="OrderDetail">
     <Key>
@@ -129,6 +137,18 @@
     <Property Name="ID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK__Order__Id_Access__3C34F16F">
+    <End Role="AccessOrder" Type="Self.AccessOrder" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccessOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Id_Access" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Book_Author">
     <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
     <End Role="Book" Type="Self.Book" Multiplicity="*" />
@@ -226,6 +246,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="BookStoreModelStoreContainer">
+    <EntitySet Name="AccessOrder" EntityType="Self.AccessOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
@@ -238,6 +259,10 @@
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StatusOrder" EntityType="Self.StatusOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Order__Id_Access__3C34F16F" Association="Self.FK__Order__Id_Access__3C34F16F">
+      <End Role="AccessOrder" EntitySet="AccessOrder" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
     <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
       <End Role="Author" EntitySet="Author" />
       <End Role="Book" EntitySet="Book" />
