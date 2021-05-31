@@ -279,6 +279,7 @@ namespace WebBookStore.Controllers
         }
         public ActionResult OrderCart(FormCollection f)
         {
+            bool Status = false;
             Order order = new Order();
             List<Cart> listCart = TakeCartToView();
             Account acc = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
@@ -289,8 +290,9 @@ namespace WebBookStore.Controllers
             order.Paymethod = "Trả bằng tiền mặt khi giao hàng";
             order.Id_Status = 1;
             order.Id_Access = 1;
+            Status = true;
             //Kiểm tra có áp dụng discount không
-            if(Session["discount"] == null)
+            if (Session["discount"] == null)
             {
                 order.Totalbill = TotalPrice();
             }
@@ -316,6 +318,7 @@ namespace WebBookStore.Controllers
                 detail.Price = item.Total;
                 db.OrderDetails.Add(detail);
             }
+            ViewBag.Status = Status;
             db.SaveChanges();
             Session["Cart"] = null;
             return View(acc);

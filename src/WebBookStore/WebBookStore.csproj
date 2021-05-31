@@ -291,6 +291,7 @@
     <Content Include="Models\DBBookStoreModel.edmx.diagram">
       <DependentUpon>DBBookStoreModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\AdminLogin\PartialLoginAdmin.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

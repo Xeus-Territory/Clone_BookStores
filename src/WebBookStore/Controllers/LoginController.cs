@@ -65,6 +65,7 @@ namespace WebBookStore.Controllers
         public ActionResult Logout()
         {
             Session[CommonConstant.USER_SESSION] = null;
+            Session[CommonConstant.SESSION_CREDENTIALS] = null;
             return RedirectToAction("Index", "Home");
         }
     }
