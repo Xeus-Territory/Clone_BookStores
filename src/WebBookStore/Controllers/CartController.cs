@@ -82,7 +82,7 @@ namespace WebBookStore.Controllers
                 else
                 {
                     return Redirect(Strurl);
-                }    
+                }
             }
             else
             {
@@ -95,7 +95,7 @@ namespace WebBookStore.Controllers
                 else
                 {
                     return Redirect(Strurl);
-                }    
+                }
             }
         }
         // Cập nhật giỏ hàng
@@ -111,14 +111,14 @@ namespace WebBookStore.Controllers
             Cart cart = listcart.Find(x => x.sID_Book == id_book);
             if (cart != null)
             {
-                if(cart.sQuantity > 0)
+                if (cart.sQuantity > 0)
                 {
                     cart.sQuantity = cart.sQuantity + int.Parse(f["btninc"].ToString());
                 }
                 else
                 {
                     cart.sQuantity = cart.sQuantity + 1;
-                }    
+                }
             }
             return Redirect(Strurl);
         }
@@ -188,12 +188,12 @@ namespace WebBookStore.Controllers
         // Partial Giỏ hảng
         public ActionResult PartialCart()
         {
-            if(TotalItem() == 0)
+            if (TotalItem() == 0)
             {
                 return PartialView();
             }
             List<Cart> listCart = Session["Cart"] as List<Cart>;
-            if(listCart != null)
+            if (listCart != null)
             {
                 ViewBag.TotalItem = TotalItem();
                 ViewBag.TotalPrice = TotalPrice();
@@ -279,6 +279,7 @@ namespace WebBookStore.Controllers
         }
         public ActionResult OrderCart(FormCollection f)
         {
+            bool Status = false;
             Order order = new Order();
             List<Cart> listCart = TakeCartToView();
             Account acc = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
@@ -289,15 +290,16 @@ namespace WebBookStore.Controllers
             order.Paymethod = "Trả bằng tiền mặt khi giao hàng";
             order.Id_Status = 1;
             order.Id_Access = 1;
+            Status = true;
             //Kiểm tra có áp dụng discount không
-            if(Session["discount"] == null)
+            if (Session["discount"] == null)
             {
                 order.Totalbill = TotalPrice();
             }
             else
             {
                 order.Totalbill = ApproveDiscount(discount.id_Discount);
-            }    
+            }
             order.AddressShipping = f["Address"].ToString() + ", " + f["City"].ToString();
             //Add don hang vao de co id don hang
             db.Orders.Add(order);
@@ -316,6 +318,7 @@ namespace WebBookStore.Controllers
                 detail.Price = item.Total;
                 db.OrderDetails.Add(detail);
             }
+            ViewBag.Status = Status;
             db.SaveChanges();
             Session["Cart"] = null;
             return View(acc);

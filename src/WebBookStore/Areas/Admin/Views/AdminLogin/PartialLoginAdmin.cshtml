@@ -1,0 +1,20 @@
+﻿@using WebBookStore.Models;
+@model Account
+@{
+    if (@ViewBag.Login == 0)
+    {
+        <a href="@Url.Action("Index", "AdminLogin")"><i class="fa fa-user-alt account"></i></a>
+    }
+    if (@ViewBag.Login == 1)
+    {
+        <div class="row">
+            <img src="https://ui-avatars.com/api/?name=@Model.Name&background=random" alt="">
+            <div class="user-ctrl">
+                <i class="fa fa-caret-down"></i>
+                <div class="user-dropdown">
+                    <p class="logout">@Html.ActionLink("Đăng xuất", "Logout", "AdminLogin")</p>
+                </div>
+            </div>
+        </div>
+    }
+}

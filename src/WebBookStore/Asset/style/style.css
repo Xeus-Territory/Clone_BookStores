@@ -156,7 +156,9 @@ a {
 
 .toast.success {
     border-color: #69C557;
+    box-shadow: 0 2px 4px 2px rgba(105, 197, 87, 0.3);
 }
+
 
     .toast.success .toast-icon {
         background-color: #69C557;
@@ -164,6 +166,7 @@ a {
 
 .toast.fail {
     border-color: #D70120;
+    box-shadow: 2px 2px 4px 2px rgba(215, 1, 32, 0.1);
 }
 
     .toast.fail .toast-icon {

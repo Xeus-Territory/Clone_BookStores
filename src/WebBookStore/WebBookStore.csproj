@@ -291,6 +291,7 @@
     <Content Include="Areas\Admin\Views\ManageOrder\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\CustomerExis.cshtml" />
     <Content Include="Areas\Admin\Views\HomePage\resultSomething.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLogin\PartialLoginAdmin.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

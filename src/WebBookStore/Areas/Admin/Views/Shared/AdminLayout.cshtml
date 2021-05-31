@@ -233,10 +233,18 @@
                         </div>
                     </form>
                 </div>
-                <div class="main-header-user row">
-                    <img src="https://ui-avatars.com/api/?name=Admin" alt="">
-                    <i class="fa fa-caret-down"></i>
+
+
+                @*<div class="main-header-user row">
+                        <img src="https://ui-avatars.com/api/?name=Admin" alt="">
+                        <i class="fa fa-caret-down"></i>
+                    </div>*@
+                <div class="login-status">
+                    @Html.Action("PartialLoginAdmin", "AdminLogin")
                 </div>
+
+
+
             </div>
             <!-- TAB-BOOK -->
             <div class="tab active tab-book">
@@ -393,4 +401,3 @@
 </body>
 
 </html>
-

@@ -40,7 +40,7 @@ namespace WebBookStore.Controllers
                 {
                     ModelState.AddModelError("", "*Tài khoản bị khóa !");
                 }
-                else if(result == -3)
+                else if (result == -3)
                 {
                     ModelState.AddModelError("", "*Tài khoản chưa xác nhận Email !");
                 }
@@ -53,7 +53,7 @@ namespace WebBookStore.Controllers
         }
         public PartialViewResult PartialLogin()
         {
-            if(Session[CommonConstant.USER_SESSION] == null)
+            if (Session[CommonConstant.USER_SESSION] == null)
             {
                 ViewBag.Login = 0;
                 return PartialView();
@@ -65,6 +65,7 @@ namespace WebBookStore.Controllers
         public ActionResult Logout()
         {
             Session[CommonConstant.USER_SESSION] = null;
+            Session[CommonConstant.SESSION_CREDENTIALS] = null;
             return RedirectToAction("Index", "Home");
         }
     }

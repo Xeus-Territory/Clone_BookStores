@@ -64,5 +64,22 @@ namespace WebBookStore.Areas.Admin.Controllers
             }
             return View("Index");
         }
+        public PartialViewResult PartialLoginAdmin()
+        {
+            if (Session[CommonConstant.USER_SESSION] == null)
+            {
+                ViewBag.Login = 0;
+                return PartialView();
+            }
+            ViewBag.Login = 1;
+            Account user = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
+            return PartialView(user);
+        }
+        public ActionResult Logout()
+        {
+            Session[CommonConstant.USER_SESSION] = null;
+            Session[CommonConstant.SESSION_CREDENTIALS] = null;
+            return RedirectToAction("Index", "AdminLogin");
+        }
     }
 }

@@ -15,9 +15,11 @@ namespace WebBookStore.Areas.Admin.Controllers
         // GET: Admin/HomePage
         [HasCredential(RoleID = "VIEW_BOOK")]
         public ViewResult Index()
-        { 
+        {
             return View();
         }
+
+        [HasCredential(RoleID = "VIEW_BOOK")]
         public PartialViewResult resultSomething(string searchsomething)
         {
             SearchModel result = new SearchModel
