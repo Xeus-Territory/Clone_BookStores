@@ -19,12 +19,14 @@
             <li data-tab="info" class="user-ctrl__item active">
                 <p>Thông tin</p>
             </li>
-            <li class="user-ctrl__item ">
-                <a href="@Url.Action("Edit", "User")"><p>Sửa thông tin</p></a>
-            </li>
-            <li data-tab="order" class="user-ctrl__item">
-                <p>Quản lí đơn hàng</p>
-            </li>
+            <a href="@Url.Action("Edit", "User")">
+                <li class="user-ctrl__item ">
+                    <p>Sửa thông tin</p>
+                </li>
+            </a>
+                <li data-tab="order" class="user-ctrl__item">
+                    <p>Quản lí đơn hàng</p>
+                </li>
         </ul>
     </div>
 

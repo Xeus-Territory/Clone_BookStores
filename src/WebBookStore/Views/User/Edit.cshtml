@@ -59,14 +59,14 @@
 
                 </div>
 
-                <div class="modal-ctrl row">
-                    <button class="btn ctrl--add-to-cart" type="submit" href="Index">
-                        <a href="@Url.Action("Index", "User")">
-                            Trở về
-                        </a>
-                    </button>
-                    <button class="btn ctrl--add-to-cart" type="submit">Cập nhật</button>
-                </div>
+             
+                    <a href="@Url.Action("Index", "User")">
+                        <button class="btn ctrl--add-to-cart" type="submit" href="Index">
+                                Trở về
+                        </button>
+                    </a>
+
+                    <button class="btn ctrl--add-to-cart" type="submit">Cập nhật</button>      
             }
             @if (ViewBag.Message != null)
             {
