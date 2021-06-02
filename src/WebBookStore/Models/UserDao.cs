@@ -208,5 +208,6 @@ namespace WebBookStore.Models
         {
             return ViewDetails(id).Name.ToString();
         }
+
     }
 }

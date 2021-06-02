@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using WebBookStore.Common;
@@ -321,8 +323,73 @@ namespace WebBookStore.Controllers
             ViewBag.Status = Status;
             db.SaveChanges();
             Session["Cart"] = null;
+
+
+            //
+            var user = UserDao.Instance.ViewDetails(UserDao.Instance.GetUserId());
+            if (user != null)
+            {
+                //send email for code
+                //string resetCode = Guid.NewGuid().ToString();
+                SendVerificationLinkEmail(user.Email, /*resetCode,*/ "OrderDetailView", order.Id_Order);
+            }
+            //
+
             return View(acc);
         }
+
+
+        [NonAction]
+        public void SendVerificationLinkEmail(string Email, /*string activationCode,*/ string emailFor, int Id_Order)
+        {
+            var verifyUrl = "/Order/" + emailFor + "?Id_Order="+ Id_Order  /*activationCode*/;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+
+            var fromEmail = new MailAddress("nguyenhoangkim120201@gmail.com");
+            var toEmail = new MailAddress(Email);
+            var fromEmailPassword = "0935740126"; // replace actual password
+            string subject = "";
+            string body = "";
+            //if (emailFor == "VerifyAccount")
+            //{
+            //    subject = "You account is successfully created!";
+
+            //    body = "<br/><br/> We are excited to tell you that your Book Store account is " +
+            //       "Successfully created ^^. Please click on the below link to verify your account" +
+            //       "<br/><br/><a href =" + link + ">" + link + "</a>";
+            //}
+            //else if (emailFor == "ResetPassword")
+            //{
+            //    subject = "Reset Password";
+            //    body = "Hi, <br/><br/>We got request for reset your account password. Please click on the below link to reset" +
+            //        "<br/><br/><a href =" + link + ">Reset Password link</a>";
+            //}
+            if (emailFor == "OrderDetailView")
+            {
+                subject = "Đặt hàng thành công";
+                body = "Hi, <br/><br/>Đơn đặt hàng của bạn đã được shop tiếp nhận. Nhấn vào link để xem chi tiết đơn hàng" +
+                    "<br/><br/><a href =" + link + ">link</a>";
+            }
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword),
+            };
+
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true,
+            })
+                smtp.Send(message);
+        }
+
     }
     #endregion
 }
