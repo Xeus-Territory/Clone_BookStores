@@ -173,6 +173,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageBookController.cs" />
+    <Compile Include="Areas\Admin\Models\BookDao.cs" />
     <Compile Include="Areas\Admin\Models\SearchModel.cs" />
     <Compile Include="Models\AccessOrder.cs">
       <DependentUpon>DBBookStoreModel.tt</DependentUpon>
@@ -292,6 +294,9 @@
     <Content Include="Areas\Admin\Views\Customer\CustomerExis.cshtml" />
     <Content Include="Areas\Admin\Views\HomePage\resultSomething.cshtml" />
     <Content Include="Areas\Admin\Views\AdminLogin\PartialLoginAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageBook\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageBook\HomePage.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageBook\Update.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

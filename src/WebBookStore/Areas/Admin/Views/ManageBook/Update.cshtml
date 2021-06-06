@@ -1,0 +1,133 @@
+﻿@using WebBookStore.Models;
+@model Book
+@{
+    BookStoreEntities db = new BookStoreEntities();
+    var listCate = db.Categories.ToList();
+    List<SelectListItem> newlist = new List<SelectListItem>();
+    string theloai = Model.Category.NameCatelogy;
+    foreach (var i in listCate)
+    {
+        //bool isSlect = String.Compare(theloai, i.NameCatelogy) == 0;
+        SelectListItem selectlist = new SelectListItem { Value = i.Id_Category, Text = i.NameCatelogy};
+        newlist.Add(selectlist);
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link href="~/Asset/style/reset.css" rel="stylesheet" />
+    <!-- SLICK SLIDER -->
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- STYLES -->
+    <link href="~/Asset/style/style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="data__list">
+        <!--<div class="data__header row">-->
+        @*<div class="col-1">  -ID Book:</div>
+        @Html.TextBoxFor(model => model.Id_Book, new { @class = "col-1 row", @disabled = "disabled" })*@
+        <!--<div class="form-group row">
+        </div>
+        <div class="col-5"></div>
+    </div>-->
+        @using (Html.BeginForm("Update", "ManageBook", new { @ID_Book = Model.Id_Book }))
+        {
+            <div class="data__body">
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "wrong-input" })
+
+                @Html.HiddenFor(model => model.Id_Book, new { @class = "form__input" })
+                <div class="form-login ">
+                    <h2 style="font-size: 2.8rem; color: #1B8BCC; margin: 2rem 0 4rem; text-align: center">Cập nhật sách</h2>
+                    <div class="form-group row">
+                        @if (TempData["AlertMessage"] != null)
+                        {
+                            <div class="wrong-input" style="font-size: 1.6rem">
+                                @TempData["AlertMessage"]
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 row"></div>
+                        <div class="col-1 row"><p>Tên sách</p></div>
+                        @Html.EditorFor(model => model.Title, new { @class = "form__input", @disabled = "disabled" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 row"></div>
+                        <div class="col-1 row"><p>Link ảnh bìa</p></div>
+                        @Html.EditorFor(model => model.Images, new { @class = "form__input", @disabled = "disabled" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 row"></div>
+                        <div class="col-1 row"><p>Thể loại</p></div>
+                        @*@Html.EditorFor(model => model.Category.NameCatelogy, new { @class = "form__input", @disabled = "disabled" })*@
+                        @Html.DropDownListFor(model => model.Category.NameCatelogy, newlist, newlist.Find(x => x.Value == Model.Id_Category).Text.ToString(), new { @style = "width: 50%" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 row"></div>
+                        <div class="col-1 row"><p>Số lượng</p></div>
+                        @Html.EditorFor(model => model.Quantity, new { @class = "form__input", @disabled = "disabled" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 row"></div>
+                        <div class="col-1 row"><p>Mô tả</p></div>
+                        @Html.TextAreaFor(model => model.Description, new { @style = "resize: none; height: 12rem" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 row"></div>
+                        <div class="col-1 row"><p>Giá</p></div>
+                        @Html.EditorFor(model => model.Price, new { @class = "form__input", @disabled = "disabled" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 row"></div>
+                        <div class="col-1 row"><p>Tác giả</p></div>
+                        @Html.EditorFor(model => model.Author.Name, new { @class = "form__input", @disabled = "disabled" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 row"></div>
+                        <div class="col-1 row"><p>Nhà xuất bản</p></div>
+                        @Html.EditorFor(model => model.Publisher.Name, new { @class = "form__input", @disabled = "disabled" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 row"></div>
+                        <div class="col-1 row"><p>Ngày thay đổi gần nhất</p></div>
+                        @Html.TextBoxFor(model => model.DateExpUpdate, new { @class = "col-1 row", @disabled = "disabled" })
+                    </div>
+                    <div class="modal-ctrl row">
+                    </div>
+                </div>
+
+                <div class="modal-ctrl row" style="margin-left: 68.3%">
+
+                    <div class="back-home">
+                        @Html.ActionLink("Quay về", "Index", "HomePage")
+                    </div>
+                    <button class="btn btn-modal" type="submit"> Cập nhật</button>
+                </div>
+            </div>
+        }
+    </div>
+    <script type="text/javascript">
+        let optionList = document.querySelectorAll("option");
+        optionList[0].style.display = "none";
+        for (let i = 1; i < optionList.length; i++) {
+            if (optionList[i].innerHTML == optionList[0].innerHTML) {
+                optionList[i].selected = 'selected';
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

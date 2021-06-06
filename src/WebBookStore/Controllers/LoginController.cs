@@ -28,8 +28,13 @@ namespace WebBookStore.Controllers
                     var userSession = new UserLogin();
                     userSession.UserName = user.UserName;
                     userSession.UserId = user.Id_Customer;
-                    dao.SaveUserId(userSession.UserId);
+
+                    var listCredentials = UserDao.Instance.GetListCredentials(userSession.UserName);
+                    UserDao.Instance.SaveUserId(userSession.UserId);
+
+                    Session.Add(CommonConstant.SESSION_CREDENTIALS, listCredentials);
                     Session.Add(CommonConstant.USER_SESSION, userSession);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else if (result == 0)

@@ -2,6 +2,10 @@
 @using WebBookStore.Areas.Admin.Models;
 @model SearchModel
 
+@{
+    BookStoreEntities db = new BookStoreEntities();
+    var listCate = db.Categories.ToList();
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,76 +35,100 @@
         <div class="container">
             <div class="form-container modal">
                 <div class="modal-header row--base">
-                    <h2>Add New Book</h2>
+                    <h2>Thêm sách mới</h2>
                     <span class="close"><i class="fa fa-times"></i></span>
                 </div>
-                <div class="form-login ">
-                    <div class="form-group row">
-                        <p>Name</p>
-                        <input class="form__input" />
+                @using (Html.BeginForm("Add", "ManageBook", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    <div class="form-login ">
+                        <div class="form-group row">
+                            <p>Tên sách</p>
+                            @*@Html.EditorFor(model => model.Title, new { @class = "form__input" })*@
+                            <input class="form__input" type="text" name="Title" />
+                        </div>
+                        <div class="form-group row">
+                            <p>Link ảnh bìa</p>
+                            <input class="form__input" type="text" name="Image" />
+                            @*@ViewBag.Fail*@
+                        </div>
+                        <div class="form-group row">
+                            <p>Thể loại</p>
+                            @*<input class="form__input" type="text" name="Category" />*@
+                            <select class="form__input" name="Category">
+                                <option selected disabled hidden>Chọn thể loại</option>
+                                @foreach (var i in listCate)
+                                {
+                                    <option value="@i.Id_Category">@i.NameCatelogy</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <p>Số lượng</p>
+                            <input class="form__input" type="text" name="Quantity" />
+                        </div>
+                        <div class="form-group row">
+                            <p>Mô tả</p>
+                            <textarea class="form__input" name="Description"></textarea>
+                        </div>
+                        <div class="form-group row">
+                            <p>Giá</p>
+                            <input class="form__input" type="text" name="Price" />
+                        </div>
+                        <div class="form-group row">
+                            <p>Tác giả</p>
+                            <input class="form__input" type="text" name="Author" />
+                        </div>
+                        <div class="form-group row">
+                            <p>Nhà xuất bản</p>
+                            <input class="form__input" type="text" name="Publisher" />
+                        </div>
+                        <div class="modal-ctrl row">
+                            <p class="close">Trở về</p>
+                            <button class="btn btn-modal">Thêm mới</button>
+                        </div>
                     </div>
-                    <div class="form-group row">
-                        <p>Image Link</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="form-group row">
-                        <p>Description</p>
-                        <textarea class="form__input"></textarea>
-                    </div>
-                    <div class="form-group row">
-                        <p>Price</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="form-group row">
-                        <p>Author</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="modal-ctrl row">
-                        <p class="close">Cancel</p>
-                        <button class="btn btn-modal">Add</button>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
     <!-- MODAL CUSTOMER -->
-    <div class="modal-user-infor modal-customer">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="form-container modal">
-                <div class="modal-header row--base">
-                    <h2>Add New Book</h2>
-                    <span class="close"><i class="fa fa-times"></i></span>
-                </div>
-                <div class="form-login ">
-                    <div class="form-group row">
-                        <p>Name</p>
-                        <input class="form__input" />
+    @*<div class="modal-user-infor modal-customer">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="form-container modal">
+                    <div class="modal-header row--base">
+                        <h2>Add New Book</h2>
+                        <span class="close"><i class="fa fa-times"></i></span>
                     </div>
-                    <div class="form-group row">
-                        <p>User Name</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="form-group row">
-                        <p>Password</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="form-group row">
-                        <p>Address</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="form-group row">
-                        <p>Phone Number</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="modal-ctrl row">
-                        <p class="close">Cancel</p>
-                        <button class="btn btn-modal">Add</button>
+                    <div class="form-login ">
+                        <div class="form-group row">
+                            <p>Name</p>
+                            <input class="form__input" />
+                        </div>
+                        <div class="form-group row">
+                            <p>User Name</p>
+                            <input class="form__input" />
+                        </div>
+                        <div class="form-group row">
+                            <p>Password</p>
+                            <input class="form__input" />
+                        </div>
+                        <div class="form-group row">
+                            <p>Address</p>
+                            <input class="form__input" />
+                        </div>
+                        <div class="form-group row">
+                            <p>Phone Number</p>
+                            <input class="form__input" />
+                        </div>
+                        <div class="modal-ctrl row">
+                            <p class="close">Cancel</p>
+                            <button class="btn btn-modal">Add</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>*@
     <!-- MODAL ORDER -->
     @*<div class="modal-user-infor modal-order">
             <div class="overlay"></div>
@@ -236,143 +264,64 @@
                         </div>
                     </form>
                 </div>
-                <div class="main-header-user row">
-                    <img src="https://ui-avatars.com/api/?name=Admin" alt="">
-                    <i class="fa fa-caret-down"></i>
+                @*<div class="main-header-user row">
+                        <img src="https://ui-avatars.com/api/?name=Admin" alt="">
+                        <i class="fa fa-caret-down"></i>
+                    </div>*@
+                <div class="login-status">
+                    @Html.Action("PartialLoginAdmin", "AdminLogin")
                 </div>
             </div>
             <!-- TAB-BOOK -->
             <div class="tab active tab-book">
-                <p class="create-btn newbook"><i class="fa fa-plus"></i> New Book</p>
+                <p class="create-btn newbook"><i class="fa fa-plus"></i>Thêm sách</p>
                 <div class="data__list">
-                    <div class="data__header row">
-                        <div class="col-1">ID</div>
-                        <div class="col-1">Image</div>
-                        <div class="col-3">Name</div>
-                        <div class="col-2">Author</div>
-                        <div class="col-1">Price</div>
-                        <div class="col-1">Quantity</div>
-                        <div class="col-1">Action</div>
-                    </div>
-                    <div class="data__body">
-                        <div class="data__item row">
-                            <div class="col-1">#101115521</div>
-                            <div class="col-1">
-                                <img src="./img/book-1.jpg" alt="">
-                            </div>
-                            <div class="col-3">It e nghia map</div>
-                            <div class="col-2">Nghia map re rach</div>
-                            <div class="col-1">$2.00</div>
-                            <div class="col-1">5</div>
-                            <div class="col-1">
-                                <button class="admin-edit-book edit"><i class="fa fa-edit"></i></button>
-                                <button class="remove"><i class="fa fa-trash"></i></button>
-                            </div>
+                    @if (Model.listbook == null)
+                    {
+                        @ViewBag.Result
+                    }
+                    else
+                    {
+                        <div class="data__header row">
+                            <div class="col-1">ID</div>
+                            <div class="col-1">Hình ảnh</div>
+                            <div class="col-3">Tên sách</div>
+                            <div class="col-2">Tác giả</div>
+                            <div class="col-1">Giá</div>
+                            <div class="col-1">Số lượng</div>
+                            <div class="col-1">Action</div>
                         </div>
-                        <div class="data__item row">
-                            <div class="col-1">#101115521</div>
-                            <div class="col-1">
-                                <img src="./img/book-1.jpg" alt="">
-                            </div>
-                            <div class="col-3">It e nghia map</div>
-                            <div class="col-2">Nghia map re rach</div>
-                            <div class="col-1">$2.00</div>
-                            <div class="col-1">5</div>
-                            <div class="col-1">
-                                <button class="admin-edit-book edit"><i class="fa fa-edit"></i></button>
-                                <button class="remove"><i class="fa fa-trash"></i></button>
-                            </div>
+                        <div class="data__body">
+                            @{
+                                foreach (var item in Model.listbook)
+                                {
+                                    <div class="data__item row">
+                                        <div class="col-1">#@item.Id_Book</div>
+                                        <div class="col-1">
+                                            <img src="@item.Images" alt="">
+                                        </div>
+                                        <div class="col-3 book-title">@item.Title</div>
+                                        <div class="col-2">@item.Author.Name</div>
+                                        <div class="col-1"><span class="price-number">@item.Price</span> VND</div>
+                                        <div class="col-1">@item.Quantity</div>
+                                        <div class="col-1">
+                                            <a href="@Url.Action("Update", "ManageBook", new {  @Id_Book = item.Id_Book })">
+                                                <button class="admin-edit-book edit"><i class="fa fa-edit"></i></button>
+                                            </a>
+                                            <a href="@Url.Action("Remove", "ManageBook", new { @Id_Book = item.Id_Book })">
+                                                <button class="remove"><i class="fa fa-trash"></i></button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                            }
                         </div>
-                        <div class="data__item row">
-                            <div class="col-1">#101115521</div>
-                            <div class="col-1">
-                                <img src="./img/book-1.jpg" alt="">
-                            </div>
-                            <div class="col-3">It e nghia map</div>
-                            <div class="col-2">Nghia map re rach</div>
-                            <div class="col-1">$2.00</div>
-                            <div class="col-1">5</div>
-                            <div class="col-1">
-                                <button class="edit"><i class="fa fa-edit"></i></button>
-                                <button class="remove"><i class="fa fa-trash"></i></button>
-                            </div>
-                        </div>
-                        <div class="data__item row">
-                            <div class="col-1">#101115521</div>
-                            <div class="col-1">
-                                <img src="./img/book-1.jpg" alt="">
-                            </div>
-                            <div class="col-3">It e nghia map</div>
-                            <div class="col-2">Nghia map re rach</div>
-                            <div class="col-1">$2.00</div>
-                            <div class="col-1">5</div>
-                            <div class="col-1">
-                                <button class="edit"><i class="fa fa-edit"></i></button>
-                                <button class="remove"><i class="fa fa-trash"></i></button>
-                            </div>
-                        </div>
-                        <div class="data__item row">
-                            <div class="col-1">#101115521</div>
-                            <div class="col-1">
-                                <img src="~/Areas/Asset/img/book-1.jpg" alt="">
-                            </div>
-                            <div class="col-3">It e nghia map</div>
-                            <div class="col-2">Nghia map re rach</div>
-                            <div class="col-1">$2.00</div>
-                            <div class="col-1">5</div>
-                            <div class="col-1">
-                                <button class="edit"><i class="fa fa-edit"></i></button>
-                                <button class="remove"><i class="fa fa-trash"></i></button>
-                            </div>
-                        </div>
-                        <div class="data__item row">
-                            <div class="col-1">#101115521</div>
-                            <div class="col-1">
-                                <img src="./img/book-1.jpg" alt="">
-                            </div>
-                            <div class="col-3">It e nghia map</div>
-                            <div class="col-2">Nghia map re rach</div>
-                            <div class="col-1">$2.00</div>
-                            <div class="col-1">5</div>
-                            <div class="col-1">
-                                <button class="edit"><i class="fa fa-edit"></i></button>
-                                <button class="remove"><i class="fa fa-trash"></i></button>
-                            </div>
-                        </div>
-                        <div class="data__item row">
-                            <div class="col-1">#101115521</div>
-                            <div class="col-1">
-                                <img src="./img/book-1.jpg" alt="">
-                            </div>
-                            <div class="col-3">It e nghia map</div>
-                            <div class="col-2">Nghia map re rach</div>
-                            <div class="col-1">$2.00</div>
-                            <div class="col-1">5</div>
-                            <div class="col-1">
-                                <button class="edit"><i class="fa fa-edit"></i></button>
-                                <button class="remove"><i class="fa fa-trash"></i></button>
-                            </div>
-                        </div>
-                        <div class="data__item row">
-                            <div class="col-1">#101115521</div>
-                            <div class="col-1">
-                                <img src="./img/book-1.jpg" alt="">
-                            </div>
-                            <div class="col-3">It e nghia map</div>
-                            <div class="col-2">Nghia map re rach</div>
-                            <div class="col-1">$2.00</div>
-                            <div class="col-1">5</div>
-                            <div class="col-1">
-                                <button class="edit"><i class="fa fa-edit"></i></button>
-                                <button class="remove"><i class="fa fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
             <!-- TAB-CUSTOMER -->
             <div class="tab tab-customer">
-                <p class="create-btn newcustomer"><i class="fa fa-plus"></i> New Customer</p>
+                <p class="create-btn newcustomer">@*<i class="fa fa-plus"></i> New Customer*@</p>
                 <div class="data__list">
                     @if (Model.listaccount == null)
                     {
@@ -496,14 +445,12 @@
                                             <div class="@classBrand">@item.StatusOrder.StatusDetail.ToString()</div>
                                         </div>
                                         <div class="col-1 row">
-                                            @using (Html.BeginForm("Edit", "ManageOrder", new { @Id_Order = item.Id_Order }))
-                                            {
+                                            <a href="@Url.Action("Edit", "ManageOrder", new { @Id_Order = item.Id_Order })">
                                                 <button class="admin-edit-order edit"><i class="fa fa-edit"></i></button>
-                                            }
-                                            @using (Html.BeginForm("Delete", "ManageOrder", new { @Id_Order = item.Id_Order }))
-                                            {
+                                            </a>
+                                            <a href="@Url.Action("Delete", "ManageOrder", new { @Id_Order = item.Id_Order })">
                                                 <button class="remove"><i class="fa fa-trash"></i></button>
-                                            }
+                                            </a>
                                         </div>
                                     </div>
                                 }
@@ -517,7 +464,16 @@
 
     <script src="~/Asset/js/Modal.js"></script>
     <script src="~/Asset/js/tab-admin.js"></script>
-
+    <script>
+        const prices = document.querySelectorAll(".price-number");
+        const bookTitles = document.querySelectorAll(".book-title");
+        prices.forEach(price => {
+            price.innerHTML = Number(price.innerHTML).toLocaleString("en-US");
+        })
+        bookTitles.forEach(bookTitle => {
+            bookTitle.innerHTML = bookTitle.innerHTML.length > 45 ? bookTitle.innerHTML.substring(0, 45) + "..." : bookTitle.innerHTML;
+        })
+    </script>
     @*@RenderSection("scripts", required: false)*@
 
 

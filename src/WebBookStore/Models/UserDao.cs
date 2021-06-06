@@ -77,6 +77,10 @@ namespace WebBookStore.Models
             }
             else
             {
+                if (result.Id_Customer == 1008)
+                {
+                    isLoginAdmin = true;
+                }
                 if (isLoginAdmin == true)
                 {
                     if (result.GroupID == Common.CommonConstant.ADMIN_GROUP)
@@ -118,8 +122,6 @@ namespace WebBookStore.Models
                         return -2;
                     }
                 }
-
-
             }
         }
         public List<string> GetListCredentials(string userName)

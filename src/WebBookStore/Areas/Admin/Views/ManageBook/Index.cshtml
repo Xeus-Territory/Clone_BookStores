@@ -1,9 +1,10 @@
 ﻿@using WebBookStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Book>
 @{
     BookStoreEntities db = new BookStoreEntities();
     var listCate = db.Categories.ToList();
 }
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +27,7 @@
     <link href="~/Asset/style/style.css" rel="stylesheet" />
     <link href="~/Content/PagedList.css" rel="stylesheet" />
 </head>
-
 <body>
-    @RenderBody()
     <!-- MODAL BOOK -->
     <div class="modal-user-infor modal-book">
         <div class="overlay"></div>
@@ -91,89 +90,6 @@
             </div>
         </div>
     </div>
-
-    <!-- MODAL CUSTOMER -->
-    <!--<div class="modal-user-infor modal-customer">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="form-container modal">
-                <div class="modal-header row--base">
-                    <h2>Add New Book</h2>
-                    <span class="close"><i class="fa fa-times"></i></span>
-                </div>
-                <div class="form-login ">
-                    <div class="form-group row">
-                        <p>Name</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="form-group row">
-                        <p>User Name</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="form-group row">
-                        <p>Password</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="form-group row">
-                        <p>Address</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="form-group row">
-                        <p>Phone Number</p>
-                        <input class="form__input" />
-                    </div>
-                    <div class="modal-ctrl row">
-                        <p class="close">Cancel</p>
-                        <button class="btn btn-modal">Add</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    <!-- MODAL ORDER -->
-    @*<div class="modal-user-infor modal-order">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="form-container modal">
-                    <div class="modal-header row--base">
-                        <h2>Add New Order</h2>
-                        <span class="close"><i class="fa fa-times"></i></span>
-                    </div>
-                    <div class="form-login ">
-                        <div class="form-group row">
-                            <p>Ngay van chuyen</p>
-                            <input class="form__input" />
-                        </div>
-                        <div class="form-group row">
-                            <p>Ngay het han</p>
-                            <input class="form__input" />
-                        </div>
-                        <div class="form-group row">
-                            <p>Status</p>
-                            <select class="form__input">
-                                <option value="1">
-                                    Dang chuan bi
-                                </option>
-                                <option value="2">
-                                    Dang giao
-                                </option>
-                                <option value="3">
-                                    Da giao
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <p>Thong bao</p>
-                            <textarea placeholder="Type something..." class="form__input"></textarea>
-                        </div>
-                        <div class="modal-ctrl row">
-                            <p class="close">Cancel</p>
-                            <button class="btn btn-modal">Add</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>*@
     <!-- ADMIN -->
     <section class="admin">
         <div class="sidebar">
@@ -273,7 +189,6 @@
                     @Html.Action("PartialLoginAdmin", "AdminLogin")
                 </div>
             </div>
-            <!-- TAB-BOOK -->
             <div class="tab active tab-book">
                 <p class="create-btn newbook"><i class="fa fa-plus"></i>Thêm sách</p>
                 @if (TempData["AlertMessage"] != null)
@@ -283,7 +198,55 @@
                     </div>
                 }
                 <div class="data__list">
-                    @Html.Action("HomePage", "ManageBook")
+                    <div class="data__header row">
+                        <div class="col-1">ID</div>
+                        <div class="col-1">Hình ảnh</div>
+                        <div class="col-3">Tên sách</div>
+                        <div class="col-2">Tác giả</div>
+                        <div class="col-1">Giá</div>
+                        <div class="col-1">Số lượng</div>
+                        <div class="col-1">Action</div>
+                    </div>
+                    <div class="data__body">
+                        @{
+                            foreach (var item in Model)
+                            {
+                                <div class="data__item row">
+                                    <div class="col-1">#@item.Id_Book</div>
+                                    <div class="col-1">
+                                        <img src="@item.Images" alt="">
+                                    </div>
+                                    <div class="col-3 book-title">@item.Title</div>
+                                    <div class="col-2">@item.Author.Name</div>
+                                    <div class="col-1"><span class="price-number">@item.Price</span> VND</div>
+                                    <div class="col-1">@item.Quantity</div>
+                                    <div class="col-1">
+                                        <a href="@Url.Action("Update", "ManageBook", new {  @Id_Book = item.Id_Book })">
+                                            <button class="admin-edit-book edit"><i class="fa fa-edit"></i></button>
+                                        </a>
+                                        <a href="@Url.Action("Remove", "ManageBook", new { @Id_Book = item.Id_Book })">
+                                            <button class="remove"><i class="fa fa-trash"></i></button>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <div style="margin-top: 3rem">
+                            @*Url.Action("Index", "ManageBook")*@
+                            <div style="display: flex; flex-direction: column; align-items: center; font-size: 1.4rem">
+                                <div class="row" style="margin-bottom: 1.5rem">Page @(Model.PageCount < Model.PageNumber ? 0: Model.PageNumber)/@Model.PageCount</div>
+                                <div class=" row">
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                                </div>
+                            </div>
+                            <style>
+                                .row li {
+                                    display: inline;
+                                    margin: 12px;
+                                }
+                            </style>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- TAB-CUSTOMER -->
@@ -315,9 +278,6 @@
             bookTitle.innerHTML = bookTitle.innerHTML.length > 45 ? bookTitle.innerHTML.substring(0, 45) + "..." : bookTitle.innerHTML;
         })
     </script>
-    @RenderSection("scripts", required: false)
-
-
+    @*@RenderSection("scripts", required: false)*@
 </body>
-
 </html>

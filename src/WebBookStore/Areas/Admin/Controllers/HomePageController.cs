@@ -24,7 +24,7 @@ namespace WebBookStore.Areas.Admin.Controllers
         {
             SearchModel result = new SearchModel
             {
-                listbook = db.Books.Where(x => x.Title.Contains(searchsomething)).ToList(),
+                listbook = db.Books.Where(x => x.Title.Contains(searchsomething) && x.Condition == true).ToList(),
                 listorder = db.Orders.Where(x => x.Account.Name.Contains(searchsomething)).ToList(),
                 listaccount = db.Accounts.Where(x => x.UserName.Contains(searchsomething)).ToList()
             };

@@ -1,0 +1,54 @@
+﻿@using WebBookStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Book>
+
+
+<div class="data__header row">
+    <div class="col-1">ID</div>
+    <div class="col-1">Hình ảnh</div>
+    <div class="col-3">Tên sách</div>
+    <div class="col-2">Tác giả</div>
+    <div class="col-1">Giá</div>
+    <div class="col-1">Số lượng</div>
+    <div class="col-1">Action</div>
+</div>
+<div class="data__body">
+    @{
+        foreach (var item in Model)
+        {
+            <div class="data__item row">
+                <div class="col-1">#@item.Id_Book</div>
+                <div class="col-1">
+                    <img src="@item.Images" alt="">
+                </div>
+                <div class="col-3 book-title">@item.Title</div>
+                <div class="col-2">@item.Author.Name</div>
+                <div class="col-1"><span class="price-number">@item.Price</span> VND</div>
+                <div class="col-1">@item.Quantity</div>
+                <div class="col-1">
+                    <a href="@Url.Action("Update", "ManageBook", new {  @Id_Book = item.Id_Book })">
+                        <button class="admin-edit-book edit"><i class="fa fa-edit"></i></button>
+                    </a>
+                    <a href="@Url.Action("Remove", "ManageBook", new { @Id_Book = item.Id_Book })">
+                        <button class="remove"><i class="fa fa-trash"></i></button>
+                    </a>
+                </div>
+            </div>
+        }
+    }
+    <div style="margin-top: 3rem">
+        @*Url.Action("Index", "ManageBook")*@
+        <div style="display: flex; flex-direction: column; align-items: center; font-size: 1.4rem">
+            <div class="row" style="margin-bottom: 1.5rem">Page @(Model.PageCount < Model.PageNumber ? 0: Model.PageNumber)/@Model.PageCount</div>
+            <div class=" row">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+            </div>
+        </div>
+        <style>
+            .row li {
+                display: inline;
+                margin: 12px;
+            }
+        </style>
+    </div>
+</div>
