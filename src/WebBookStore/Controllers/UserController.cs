@@ -138,9 +138,9 @@ namespace WebBookStore.Controllers
                 var verifyUrl = "/User/" + emailFor + "/" + activationCode;
                 var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-                var fromEmail = new MailAddress("nguyenhoangkim120201@gmail.com");
+                var fromEmail = new MailAddress("kobikiu810@gmail.com");
                 var toEmail = new MailAddress(Email);
-                var fromEmailPassword = "0935740126"; // replace actual password
+                var fromEmailPassword = "xeus08102001"; // replace actual password
                 string subject = "";
                 string body = "";
                 if (emailFor == "VerifyAccount")

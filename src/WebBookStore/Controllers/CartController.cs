@@ -337,37 +337,45 @@ namespace WebBookStore.Controllers
         [NonAction]
         public void SendVerificationLinkEmail(string Email, /*string activationCode,*/ string emailFor, int Id_Order)
         {
-            var verifyUrl = "/Order/" + emailFor + "?Id_Order=" + Id_Order  /*activationCode*/;
-            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
-
-            var fromEmail = new MailAddress("nguyenhoangkim120201@gmail.com");
-            var toEmail = new MailAddress(Email);
-            var fromEmailPassword = "0935740126"; // replace actual password
-            string subject = "";
-            string body = "";
-            if (emailFor == "OrderDetailView")
+            try
             {
-                subject = "Đặt hàng thành công";
-                body = "Hi, <br/><br/>Đơn đặt hàng của bạn đã được shop tiếp nhận. Nhấn vào link để xem chi tiết đơn hàng" +
-                    "<br/><br/><a href =" + link + ">link</a>";
+                var verifyUrl = "/Order/" + emailFor + "?Id_Order=" + Id_Order  /*activationCode*/;
+                var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+
+                var fromEmail = new MailAddress("kobikiu810@gmail.com");
+                var toEmail = new MailAddress(Email);
+                var fromEmailPassword = "xeus08102001"; // replace actual password
+                string subject = "";
+                string body = "";
+                if (emailFor == "OrderDetailView")
+                {
+                    subject = "Đặt hàng thành công";
+                    body = "Hi, <br/><br/>Đơn đặt hàng của bạn đã được shop tiếp nhận. Nhấn vào link để xem chi tiết đơn hàng" +
+                        "<br/><br/><a href =" + link + ">link</a>";
+                }
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword),
+                };
+
+                using (var message = new MailMessage(fromEmail, toEmail)
+                {
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = true,
+                })
+                    smtp.Send(message);
             }
-            var smtp = new SmtpClient
+            catch(Exception)
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword),
-            };
 
-            using (var message = new MailMessage(fromEmail, toEmail)
-            {
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true,
-            })
-                smtp.Send(message);
+            }
+            
         }
     }
     #endregion

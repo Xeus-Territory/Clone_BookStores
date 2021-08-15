@@ -41,8 +41,8 @@
         </div>
         <div class="order-info__item">
             <p>Địa chỉ giao hàng</p>
-            <input class="name-input" type="text" name="Name" placeholder="Tên" value="@ViewBag.Name">
-            <input class="address-input" type="text" name="Address" placeholder="Địa chỉ" value="@ViewBag.Address">
+            <input class="name-input" type="text" name="Name" placeholder="Tên người nhận" value="@ViewBag.Name">
+            <input class="address-input" type="text" name="Address" placeholder="Địa chỉ người nhận" value="@ViewBag.Address">
             <select class="city-input" type="text" name="City">
                 <option selected value="@ViewBag.City">@ViewBag.City</option>
             </select>
@@ -134,4 +134,10 @@
         toast.classList.add("hide");
         clearTimeout(timeLine);
     }, 3000)
+</script>
+<script>
+    const prices = document.querySelectorAll(".price-number");
+    prices.forEach(price => {
+        price.innerHTML = Number(price.innerHTML).toLocaleString("en-US");
+    })
 </script>

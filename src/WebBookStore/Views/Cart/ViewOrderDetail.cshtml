@@ -18,10 +18,10 @@
         </div>
         <div class="order-info__item">
             <p>Địa chỉ giao hàng</p>
-            <input class="name-input" type="text" name="Name" placeholder="Tên">
-            <input class="address-input" type="text" name="Address" placeholder="Địa chỉ">
+            <input class="name-input" type="text" name="Name" placeholder="Tên người nhận">
+            <input class="address-input" type="text" name="Address" placeholder="Địa chỉ người nhận">
             <select class="city-input" type="text" name="City">
-                <option selected disabled hidden>Thành phố</option>
+                <option selected disabled hidden>Chọn thành phố</option>
             </select>
         </div>
         <div class="order-ctrl">
@@ -99,4 +99,10 @@
         cityInputHidden.value = e.target.value;
         console.log(cityInputHidden.value);
     });
+</script>
+<script>
+    const prices = document.querySelectorAll(".price-number");
+    prices.forEach(price => {
+        price.innerHTML = Number(price.innerHTML).toLocaleString("en-US");
+    })
 </script>
